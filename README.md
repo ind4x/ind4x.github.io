@@ -68,6 +68,5 @@ To run the system locally:
 *   **Current Mission:** Alternance at Broker Immobilier
 *   **Base:** Casablanca, Morocco
 
----
-*Authored by Youssef Fellah.*
-*Personal Project.*
+Authored by Youssef Fellah.  
+Personal Project.
