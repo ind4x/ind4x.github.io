@@ -69,7 +69,5 @@ To run the system locally:
 *   **Base:** Casablanca, Morocco
 
 ---
-
 *Authored by Youssef Fellah.*
-
-*System Status: ONLINE · WINGS_LOADED · ASCENDING*
+*Personal Project.*
