@@ -6,9 +6,11 @@
 <title>Y C X R V S // ICARUS.SYS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;600;700;800&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preload" href="style.css" as="style">
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -28,6 +30,13 @@
 </div>
 <div id="cur-ring"></div>
 
+<!-- FLOATING AUDIO TOGGLE -->
+<button id="audioToggle" data-label="SOUND ON" aria-label="Toggle audio mute">
+  <span class="t-icon" id="audioIcon">
+    <i data-lucide="volume-2" class="icon-theme"></i>
+  </span>
+</button>
+
 <!-- FLOATING THEME TOGGLE -->
 <button id="themeToggle" data-label="LIGHT MODE" aria-label="Toggle theme">
   <span class="t-icon" id="themeIcon">
@@ -45,6 +54,7 @@
   <ul class="nav-links">
     <li><a href="#about"><i data-lucide="user" class="icon-sm"></i> About</a></li>
     <li><a href="#skills"><i data-lucide="layers" class="icon-sm"></i> Stack</a></li>
+    <li><a href="#" id="nav-terminal-btn"><i data-lucide="terminal" class="icon-sm"></i> Shell</a></li>
     <li><a href="#experience"><i data-lucide="terminal" class="icon-sm"></i> Log</a></li>
     <li><a href="#projects"><i data-lucide="code" class="icon-sm"></i> Projects</a></li>
     <li><a href="#github"><i data-lucide="git-branch" class="icon-sm"></i> GitHub</a></li>
@@ -61,8 +71,8 @@
   <div class="hero-content">
     <div class="hero-unit">UNIT-01 · SOFTWARE ENGINEERING · CLASS 2026</div>
     <h1 class="hero-name">
-      <span class="first">YOUSSEF</span>
-      <span class="last">Fellah</span>
+      <span class="first text-glitch">YOUSSEF</span>
+      <span class="last text-glitch">Fellah</span>
     </h1>
     <p class="hero-tagline"><span class="hl">Full Stack</span> Engineer · <span class="hl2">Blockchain</span> · Cloud · AI</p>
     <p class="hero-desc">Building robust software from architecture to deployment — from clean APIs to smart contracts. The system is always live.</p>
@@ -87,11 +97,13 @@
     <div class="sys-header"><span class="sys-blink">◆</span>&nbsp; SYSTEM_STATUS</div>
     <div class="sys-line"><span class="sys-key">OS_KERNEL</span><span class="sys-sep">:</span><span class="sys-val cyan">FEDORA_44</span></div>
     <div class="sys-line"><span class="sys-key">LOC</span><span class="sys-sep">:</span><span class="sys-val">CASABLANCA_MA</span></div>
+    <div class="sys-line"><span class="sys-key">SYS_TIME</span><span class="sys-sep">:</span><span class="sys-val" id="sys-time">--:--:-- GMT+1</span></div>
     <div class="sys-line"><span class="sys-key">UNIT_ID</span><span class="sys-sep">:</span><span class="sys-val">FELLAH_Y // v2.26</span></div>
     <div class="sys-line"><span class="sys-key">HANDLE</span><span class="sys-sep">:</span><span class="sys-val cyan">ʏ ᴄ x ʀ ᴠ s</span></div>
     <div class="sys-line"><span class="sys-key">ROLE</span><span class="sys-sep">:</span><span class="sys-val red">FULL_STACK_ENG</span></div>
     <div class="sys-line"><span class="sys-key">STATUS</span><span class="sys-sep">:</span><span class="sys-val online">ON_ALTERNANCE ●</span></div>
     <div class="sys-line"><span class="sys-key">UPTIME</span><span class="sys-sep">:</span><span class="sys-val" id="uptime">--:--:--</span></div>
+    <div class="sys-line" id="sys-last-commit-line" style="display:none;"><span class="sys-key">LAST_TX</span><span class="sys-sep">:</span><span class="sys-val cyan" id="sys-last-commit">--</span></div>
     <div class="sys-line"><span class="sys-key">STACK</span><span class="sys-sep">:</span><span class="sys-val">SPRING · ANGULAR · PY</span></div>
     <div class="sys-footer">WINGS_LOADED · ASCENDING</div>
   </div>
@@ -433,8 +445,28 @@
 <footer>
   <span class="footer-handle">ʏ ᴄ x ʀ ᴠ s</span>
   <span class="footer-myth">flew too close — and touched it anyway</span>
-  <span>Youssef Fellah © 2026 · HTML · CSS · JS · GitHub API · Fedora 43</span>
+  <span>Youssef Fellah © 2026 · HTML · CSS · JS · GitHub API · Fedora 44</span>
 </footer>
+
+<!-- SYSTEM INTERACTIVE TERMINAL OVERLAY -->
+<div id="terminal-overlay" class="terminal-hidden">
+  <canvas id="matrix-canvas"></canvas>
+  <div class="terminal-container">
+    <div class="terminal-header">
+      <span class="terminal-title">// ICARUS.SYS OPERATOR SHELL v2.26</span>
+      <button id="close-terminal" class="terminal-close-btn" aria-label="Close terminal">&times;</button>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+      <div class="terminal-line"><span class="sys-blink">◆</span>&nbsp; ICARUS_OS SHELL INITIATED. COMM_SECT ACTIVE.</div>
+      <div class="terminal-line">Welcome, operator. Type <span class="cyan" style="color:var(--accent)">'help'</span> for diagnostic protocols.</div>
+      <div class="terminal-line">Press [ ` ] (backtick) to exit this interface.</div>
+    </div>
+    <div class="terminal-input-row">
+      <span class="terminal-prompt">operator@icarus:~$</span>
+      <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
