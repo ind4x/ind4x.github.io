@@ -1,6 +1,6 @@
 # icarus.sys // Portfolio v2.26
 
-A high-performance, immersive personal portfolio website built with a Cyberpunk / Industrial aesthetic. This repository houses the digital identity of Youssef Fellah (Y C X R V S), showcasing software engineering expertise, academic achievements, and professional experience.
+A high-performance, immersive personal portfolio website built with a Cyberpunk / Industrial aesthetic. This repository houses the digital identity of Youssef Fellah, showcasing software engineering expertise, academic achievements, and professional experience.
 
 > **LIVE ACCESS:** [yss-ef.github.io](https://yss-ef.github.io)
 

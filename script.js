@@ -405,7 +405,7 @@ const terminalCommands = {
     "  <span class='cyan'>exit</span>     - Exit operator shell session"
   ],
   about: () => [
-    "OPERATOR: Fellah Youssef (Y C X R V S)",
+    "OPERATOR: YOUSSEF FELLAH",
     "ROLE: Software Engineer // Full Stack Developer // Class of 2026",
     "LOCATION: Casablanca, Morocco // System Uptime: Stable",
     "CURRENT CONTRACT: CRM SaaS Developer @ Broker Immobilier",
