@@ -1,474 +1,911 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y. FELLAH // CORE_OS</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;600;700;800&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="preload" href="style.css" as="style">
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Youssef Fellah — Software Engineer & Architect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['DM Serif Display', 'serif'],
+            sans:  ['DM Sans', 'sans-serif'],
+            mono:  ['DM Mono', 'monospace'],
+          },
+          colors: {
+            paper: '#f7f7f8',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #111; color: #f7f7f8; }
+
+    .grid-texture {
+      background-image:
+        linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .grid-texture-dense {
+      background-image:
+        linear-gradient(rgba(0,0,0,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.07) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f7f7f8; }
+    ::-webkit-scrollbar-thumb { background: #e4e4e7; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #d4d4d8; }
+
+    .nav-pill {
+      background: rgba(255,255,255,.60);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid #e4e4e7;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+
+    .hero-head { letter-spacing: -0.035em; line-height: .88; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim { opacity: 0; animation: fadeUp .7s cubic-bezier(.22,1,.36,1) forwards; }
+    .anim-1 { animation-delay: .05s; }
+    .anim-2 { animation-delay: .18s; }
+    .anim-3 { animation-delay: .32s; }
+    .anim-4 { animation-delay: .46s; }
+    .anim-5 { animation-delay: .60s; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .corner-tl::before {
+      content: ''; position: absolute; top: 1.5rem; left: 1.5rem;
+      width: 1.2rem; height: 1.2rem;
+      border-top: 1.5px solid #c4c4c4; border-left: 1.5px solid #c4c4c4;
+    }
+    .corner-br::after {
+      content: ''; position: absolute; bottom: 1.5rem; right: 1.5rem;
+      width: 1.2rem; height: 1.2rem;
+      border-bottom: 1.5px solid #c4c4c4; border-right: 1.5px solid #c4c4c4;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #a0a0a0;
+    }
+
+    .card-lift {
+      transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.08);
+      border-color: #999;
+    }
+
+    .cap-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .45rem 1rem; border-radius: 99px;
+      border: 1px solid #e0e0e0;
+      background: #fff;
+      font-size: .7rem; font-family: 'DM Mono', monospace;
+      text-transform: uppercase; letter-spacing: .14em; color: #666;
+      transition: background .25s, border-color .25s, color .25s;
+    }
+    .cap-pill:hover { background: #111; color: #f7f7f8; border-color: #111; }
+
+    .cert-row {
+      display: flex; align-items: center; gap: 2rem;
+      padding: 1.8rem 1.5rem; margin: 0 -1.5rem;
+      border-radius: 1rem;
+      transition: background .25s;
+    }
+    .cert-row:hover { background: rgba(0,0,0,.025); }
+
+    .rail { border-left: 1px solid #e0e0e0; padding-left: 2rem; }
+    .rail-dot {
+      width: .55rem; height: .55rem; border-radius: 50%;
+      background: #111; margin-left: -2.3rem; margin-right: 1.75rem;
+      flex-shrink: 0; margin-top: .3rem;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace; font-size: .62rem;
+      text-transform: uppercase; letter-spacing: .15em;
+      color: #999;
+    }
+    .tag-dark { color: #222; }
+
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-inner { display: flex; animation: marquee 28s linear infinite; white-space: nowrap; }
+    .marquee-inner:hover { animation-play-state: paused; }
+
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    .status-dot { width: .5rem; height: .5rem; border-radius: 50%; background: #222; animation: pulse 2.4s ease-in-out infinite; }
+
+    .divider-orb {
+      width: 6px; height: 6px; border-radius: 50%; background: #d4d4d4; flex-shrink: 0;
+    }
+
+    .num { font-family: 'DM Serif Display', serif; font-style: italic; }
+  </style>
 </head>
-<body>
 
-<div id="boot-screen">
-  <div class="boot-content" id="boot-text"></div>
-</div>
+<body class="bg-paper font-sans text-zinc-900 grid-texture">
 
-<div class="scanlines"></div>
-<div class="grid-bg"></div>
-<div id="impactFlash"></div>
-<div id="cur">
-  <div class="cur-bracket tl"></div>
-  <div class="cur-bracket tr"></div>
-  <div class="cur-bracket bl"></div>
-  <div class="cur-bracket br"></div>
-  <div id="cur-dot"></div>
-</div>
-<div id="cur-ring"></div>
-
-<!-- FLOATING AUDIO TOGGLE -->
-<button id="audioToggle" data-label="SOUND ON" aria-label="Toggle audio mute">
-  <span class="t-icon" id="audioIcon">
-    <i data-lucide="volume-2" class="icon-theme"></i>
-  </span>
-</button>
-
-<!-- FLOATING THEME TOGGLE -->
-<button id="themeToggle" data-label="LIGHT MODE" aria-label="Toggle theme">
-  <span class="t-icon" id="themeIcon">
-    <i data-lucide="sun" class="icon-theme"></i>
-  </span>
-</button>
-
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">
-    <span class="nav-logo-handle">CORE_OS // V4.3</span>
-    <span class="nav-logo-sep"></span>
-    <span class="nav-logo-name">fellah youssef</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about"><i data-lucide="user" class="icon-sm"></i> About</a></li>
-    <li><a href="#skills"><i data-lucide="layers" class="icon-sm"></i> Stack</a></li>
-    <li><a href="#" id="nav-terminal-btn"><i data-lucide="terminal" class="icon-sm"></i> Shell</a></li>
-    <li><a href="#experience"><i data-lucide="terminal" class="icon-sm"></i> Log</a></li>
-    <li><a href="#projects"><i data-lucide="code" class="icon-sm"></i> Projects</a></li>
-    <li><a href="#github"><i data-lucide="git-branch" class="icon-sm"></i> GitHub</a></li>
-    <li><a href="https://linkedin.com/in/yss-ef" target="_blank"><i data-lucide="link" class="icon-sm"></i> LinkedIn</a></li>
-    <li><a href="#certifications"><i data-lucide="award" class="icon-sm"></i> Certs</a></li>
-    <li><a href="#contact"><i data-lucide="mail" class="icon-sm"></i> Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-wings">✦</div>
-  <div class="hero-scan"></div>
-  <div class="hero-content">
-    <div class="hero-unit">UNIT-01 · SOFTWARE ENGINEERING · CLASS 2026</div>
-    <h1 class="hero-name">
-      <span class="first text-glitch">YOUSSEF</span>
-      <span class="last text-glitch">Fellah</span>
-    </h1>
-    <p class="hero-tagline"><span class="hl">Full Stack</span> Engineer · <span class="hl2">Blockchain</span> · Cloud · AI</p>
-    <p class="hero-desc">Building robust software from architecture to deployment — from clean APIs to smart contracts. The system is always live.</p>
-    <div class="hero-badge"><span class="live-dot"></span>Currently on alternance · Broker Immobilier</div>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn-primary">
-        <i data-lucide="folder-open" class="icon-sm"></i>
-        View Projects
-      </a>
-      <a href="mailto:fellahyoussef010@gmail.com" class="btn-outline">
-        <i data-lucide="mail" class="icon-sm"></i>
-        Get in Touch
-      </a>
+<header class="fixed top-0 inset-x-0 z-[100] flex justify-center py-4 px-4">
+  <nav class="nav-pill w-full max-w-[1600px] px-8 py-3 flex items-center justify-between rounded-full">
+    <a href="#" class="font-serif text-base tracking-tight text-zinc-950">Youssef Fellah</a>
+    <div class="flex items-center gap-8 text-zinc-500">
+      <a href="#about"       class="text-sm font-medium hover:text-zinc-900 transition-colors">About</a>
+      <a href="#stack"       class="text-sm font-medium hover:text-zinc-900 transition-colors">Arsenal</a>
+      <a href="#experience"  class="text-sm font-medium hover:text-zinc-900 transition-colors">Experience</a>
+      <a href="#projects"    class="text-sm font-medium hover:text-zinc-900 transition-colors">Projects</a>
+      <a href="#credentials" class="text-sm font-medium hover:text-zinc-900 transition-colors">Credentials</a>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num">3<span>+</span></div><div class="stat-label">Yrs coding</div></div>
-      <div class="stat"><div class="stat-num">7<span>+</span></div><div class="stat-label">Projects</div></div>
-      <div class="stat"><div class="stat-num">7<span>+</span></div><div class="stat-label">Certs</div></div>
-    </div>
+  </nav>
+</header>
+
+
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-20 text-center overflow-hidden">
+
+  <div class="pointer-events-none select-none absolute inset-0 opacity-[.04]" aria-hidden="true">
+    <div class="absolute top-16 left-10 font-mono text-[10px] tracking-[.4em] uppercase rotate-90 origin-top-left text-zinc-900">sys_arch // v3.0</div>
+    <div class="absolute bottom-24 right-10 font-mono text-[10px] tracking-[.4em] uppercase -rotate-90 origin-bottom-right text-zinc-900">me.yss-ef</div>
   </div>
-  <div class="system-status">
-    <div class="sys-header"><span class="sys-blink">◆</span>&nbsp; SYSTEM_STATUS</div>
-    <div class="sys-line"><span class="sys-key">OS_KERNEL</span><span class="sys-sep">:</span><span class="sys-val cyan">FEDORA_44</span></div>
-    <div class="sys-line"><span class="sys-key">LOC</span><span class="sys-sep">:</span><span class="sys-val">CASABLANCA_MA</span></div>
-    <div class="sys-line"><span class="sys-key">SYS_TIME</span><span class="sys-sep">:</span><span class="sys-val" id="sys-time">--:--:-- GMT+1</span></div>
-    <div class="sys-line"><span class="sys-key">UNIT_ID</span><span class="sys-sep">:</span><span class="sys-val">FELLAH_Y // v2.26</span></div>
-    <div class="sys-line"><span class="sys-key">HANDLE</span><span class="sys-sep">:</span><span class="sys-val cyan">ARCH_ROOT</span></div>
-    <div class="sys-line"><span class="sys-key">ROLE</span><span class="sys-sep">:</span><span class="sys-val red">FULL_STACK_ENG</span></div>
-    <div class="sys-line"><span class="sys-key">STATUS</span><span class="sys-sep">:</span><span class="sys-val online">ON_ALTERNANCE ●</span></div>
-    <div class="sys-line"><span class="sys-key">UPTIME</span><span class="sys-sep">:</span><span class="sys-val" id="uptime">--:--:--</span></div>
-    <div class="sys-line" id="sys-last-commit-line" style="display:none;"><span class="sys-key">LAST_TX</span><span class="sys-sep">:</span><span class="sys-val cyan" id="sys-last-commit">--</span></div>
-    <div class="sys-line"><span class="sys-key">STACK</span><span class="sys-sep">:</span><span class="sys-val">SPRING · ANGULAR · PY</span></div>
-    <div class="sys-footer">WINGS_LOADED · ASCENDING</div>
+
+  <div class="anim anim-1 mb-10 cap-pill">
+    <i data-lucide="cpu" class="w-3 h-3"></i>
+    Software Engineer &amp; System Architect
+  </div>
+
+  <h1 class="anim anim-2 hero-head font-serif text-[clamp(3rem,10vw,9.5rem)] text-zinc-900 max-w-6xl mx-auto">
+    Designing<br/>
+    <em class="text-zinc-400 not-italic">Systems</em><br/>
+    Executing Logic
+  </h1>
+
+  <p class="anim anim-3 mt-10 text-xl md:text-2xl text-zinc-400 font-light max-w-2xl mx-auto leading-snug tracking-tight">
+    Building <span class="text-zinc-800 font-normal">robust architectures</span> and <span class="text-zinc-800 font-normal">intelligent systems</span> from the ground up.
+  </p>
+
+  <div class="anim anim-4 mt-14 flex flex-wrap justify-center gap-3">
+    <span class="cap-pill"><i data-lucide="lightbulb" class="w-3 h-3"></i>System Analysis</span>
+    <span class="cap-pill"><i data-lucide="layers" class="w-3 h-3"></i>Technical Architecture</span>
+    <span class="cap-pill"><i data-lucide="code-2" class="w-3 h-3"></i>Software Engineering</span>
+    <span class="cap-pill"><i data-lucide="shield-check" class="w-3 h-3"></i>Testing &amp; Security</span>
+    <span class="cap-pill"><i data-lucide="cloud-upload" class="w-3 h-3"></i>Cloud Infrastructure</span>
+  </div>
+
+  <div class="anim anim-5 mt-10 flex gap-3">
+    <a href="#projects" class="flex items-center gap-2 bg-zinc-900 text-paper px-7 py-3.5 rounded-full tag tag-dark hover:bg-zinc-700 transition-colors" style="color:#f7f7f8">
+      View Projects <i data-lucide="arrow-right" class="w-3 h-3"></i>
+    </a>
+    <a href="#about" class="flex items-center gap-2 border border-zinc-300 bg-white px-7 py-3.5 rounded-full tag tag-dark hover:border-zinc-500 transition-colors">
+      Read Bio
+    </a>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
+    <div class="w-px h-10 bg-zinc-500"></div>
+    <span class="tag" style="font-size:.58rem">scroll</span>
   </div>
 </section>
 
-<div class="hud-divider"></div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header reveal">
-    <div class="section-label">Who I am</div>
-    <h2 class="section-title"><i data-lucide="user" class="icon-lg"></i> Operator <em>Profile</em></h2>
+<div class="overflow-hidden border-y border-zinc-200 py-4 bg-white">
+  <div class="marquee-inner">
+    <span class="tag px-8">System Architecture</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">Full-Stack Engineering</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">Cloud Infrastructure</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">Blockchain &amp; Web3</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">RAG &amp; LLM Integration</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">ERP Customization</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">System Architecture</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">Full-Stack Engineering</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">Cloud Infrastructure</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">Blockchain &amp; Web3</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">RAG &amp; LLM Integration</span><span class="tag px-3">✦</span>
+    <span class="tag px-8">ERP Customization</span><span class="tag px-3">✦</span>
   </div>
-  <div class="dossier reveal">
-    <div class="dossier-corner tl"></div>
-    <div class="dossier-corner br"></div>
-    <div class="dossier-header">
-      <span class="dossier-classification">// RESTRICTED //</span>
-      <span>FILE NO. YF-026-CS · UNIT: FELLAH_YOUSSEF · DEV_ENV</span>
+</div>
+
+
+<section id="about" class="py-36 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal flex items-center gap-4 mb-20">
+      <div class="divider-orb"></div>
+      <span class="section-label">01 // Biography</span>
+      <div class="h-px flex-1 bg-zinc-200"></div>
     </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p class="lead">A builder who lives in the full lifecycle — from clean architecture diagrams to deployed production systems.</p>
-        <p>I'm a 2nd-year engineering student at <strong>Université Mundiapolis, Casablanca</strong>, specializing in software engineering. My work spans the entire stack and beyond.</p>
-        <p>Experience covers <strong>ERP customization</strong> in PHP/SQL, <strong>decentralized applications</strong> with Solidity &amp; Web3.js, <strong>full-stack SaaS systems</strong> on Spring Boot and Angular, and <strong>AI integration</strong> with RAG pipelines.</p>
-        <p>Currently on alternance at <strong>Broker Immobilier</strong> — building a CRM SaaS from conception to AI-powered features.</p>
-        <div class="about-links">
-          <a href="https://linkedin.com/in/yss-ef" target="_blank" class="link-chip">
-            <i data-lucide="link" class="icon-sm"></i>LinkedIn
+
+    <div class="flex flex-col lg:flex-row gap-16 items-start">
+
+      <div class="reveal w-full lg:w-[38%] lg:sticky lg:top-28">
+        <div class="relative bg-zinc-100 rounded-3xl border border-zinc-200 overflow-hidden aspect-[3/4] corner-tl corner-br grid-texture-dense flex items-center justify-center">
+          <div class="text-center relative z-10 space-y-3">
+            <div class="w-14 h-14 rounded-full bg-white border border-zinc-200 flex items-center justify-center mx-auto shadow-sm">
+              <i data-lucide="user" class="text-zinc-300 w-7 h-7"></i>
+            </div>
+            <p class="tag" style="font-size:.62rem">Photo Placeholder</p>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-col gap-2">
+          <a href="mailto:fellahyoussef010@gmail.com"
+             class="flex items-center gap-3 px-5 py-3 bg-zinc-900 rounded-2xl tag hover:bg-zinc-700 transition-colors" style="color:#f7f7f8">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i> fellahyoussef010@gmail.com
           </a>
-          <a href="https://github.com/yss-ef" target="_blank" class="link-chip">
-            <i data-lucide="git-branch" class="icon-sm"></i>GitHub
-          </a>
-          <a href="mailto:fellahyoussef010@gmail.com" class="link-chip">
-            <i data-lucide="mail" class="icon-sm"></i>Email
+          <div class="flex gap-2">
+            <a href="https://github.com/yss-ef" target="_blank"
+               class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-white border border-zinc-200 rounded-2xl tag tag-dark hover:border-zinc-500 transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub
+            </a>
+            <a href="https://linkedin.com/in/yss-ef" target="_blank"
+               class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-white border border-zinc-200 rounded-2xl tag tag-dark hover:border-zinc-500 transition-colors">
+              <i data-lucide="link" class="w-3.5 h-3.5"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-[62%] space-y-10 reveal">
+        <h2 class="font-serif text-5xl md:text-6xl leading-[1.05] tracking-tight">
+          From clean architecture<br/>
+          <em class="text-zinc-400">to deployed production</em>
+        </h2>
+
+        <div class="space-y-6 text-xl text-zinc-500 font-light leading-relaxed">
+          <p>
+            Engineering student at <span class="text-zinc-900 font-normal">Mundiapolis University, Casablanca</span>, with a focus on architecting and executing complex software systems across the full technology stack.
+          </p>
+          <p>
+            My domain spans <span class="text-zinc-900 font-normal">ERP customization</span>, <span class="text-zinc-900 font-normal">decentralized application development</span>, and the end-to-end engineering of <span class="text-zinc-900 font-normal">enterprise SaaS platforms</span> — each discipline sharpening a different edge of the engineering mindset.
+          </p>
+          <p>
+            Currently on alternance at <span class="text-zinc-900 font-normal border-b border-zinc-300 pb-0.5">Broker Immobilier</span>, leading architecture and delivery of an AI-powered CRM for the real estate sector.
+          </p>
+        </div>
+
+        <div class="pt-8 border-t border-zinc-200 grid grid-cols-3 gap-6">
+          <div>
+            <p class="num text-4xl text-zinc-900">3+</p>
+            <p class="tag mt-1" style="font-size:.62rem">Years<br/>Coding</p>
+          </div>
+          <div>
+            <p class="num text-4xl text-zinc-900">10+</p>
+            <p class="tag mt-1" style="font-size:.62rem">Certs &amp;<br/>Credentials</p>
+          </div>
+          <div>
+            <p class="num text-4xl text-zinc-900">5+</p>
+            <p class="tag mt-1" style="font-size:.62rem">Production<br/>Projects</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="stack" class="py-36 px-6 bg-white border-y border-zinc-200">
+  <div class="max-w-6xl mx-auto space-y-24">
+
+    <div class="reveal flex items-center gap-4">
+      <div class="divider-orb"></div>
+      <span class="section-label">02 // Arsenal — Technical Specification</span>
+      <div class="h-px flex-1 bg-zinc-200"></div>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12">
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Backend &amp; Core</h4>
+          <span class="tag" style="font-size:.58rem">01</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-900 font-medium">Java</span>
+          <span class="text-zinc-900 font-medium">Spring Boot</span>
+          <span class="text-zinc-500">Spring Security</span>
+          <span class="text-zinc-900 font-medium">PHP</span>
+          <span class="text-zinc-900 font-medium">Node.js</span>
+          <span class="text-zinc-900 font-medium">Python</span>
+          <span class="text-zinc-900 font-medium">Solidity</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Frontend</h4>
+          <span class="tag" style="font-size:.58rem">02</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-900 font-medium">Angular</span>
+          <span class="text-zinc-900 font-medium">React.js</span>
+          <span class="text-zinc-900 font-medium">Flutter</span>
+          <span class="text-zinc-900 font-medium">TypeScript</span>
+          <span class="text-zinc-500">JavaScript</span>
+          <span class="text-zinc-500">HTML5 / SCSS</span>
+          <span class="text-zinc-500">Tailwind</span>
+          <span class="text-zinc-900 font-medium">Web3.js</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Data &amp; Databases</h4>
+          <span class="tag" style="font-size:.58rem">03</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-900 font-medium">PostgreSQL</span>
+          <span class="text-zinc-900 font-medium">MySQL</span>
+          <span class="text-zinc-500">SQL / PL-SQL</span>
+          <span class="text-zinc-900 font-medium">MongoDB</span>
+          <span class="text-zinc-500">Hibernate / JPA</span>
+          <span class="text-zinc-900 font-medium">Power BI</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Data Analytics</h4>
+          <span class="tag" style="font-size:.58rem">04</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-500">Data Visualization</span>
+          <span class="text-zinc-900 font-medium">Tableau</span>
+          <span class="text-zinc-500">Exploratory Analysis</span>
+          <span class="text-zinc-500">Reporting / Dashboards</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Cloud &amp; Infrastructure</h4>
+          <span class="tag" style="font-size:.58rem">05</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-900 font-medium">AWS</span>
+          <span class="text-zinc-500">EC2 / S3 / RDS</span>
+          <span class="text-zinc-900 font-medium">Linux</span>
+          <span class="text-zinc-500">Windows Server</span>
+          <span class="text-zinc-900 font-medium">Docker</span>
+          <span class="text-zinc-900 font-medium">Zabbix</span>
+          <span class="text-zinc-500">Git / CI-CD</span>
+          <span class="text-zinc-500">OpenStack</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Security &amp; Networks</h4>
+          <span class="tag" style="font-size:.58rem">06</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-500">Firewall Management</span>
+          <span class="text-zinc-900 font-medium">OPNsense</span>
+          <span class="text-zinc-500">Endpoint Security</span>
+          <span class="text-zinc-900 font-medium">IoT</span>
+          <span class="text-zinc-500">Network Config</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">AI &amp; Integration</h4>
+          <span class="tag" style="font-size:.58rem">07</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-900 font-medium">RAG Systems</span>
+          <span class="text-zinc-500">AI Integration</span>
+          <span class="text-zinc-900 font-medium">LLM APIs</span>
+          <span class="text-zinc-500">Document Generation</span>
+          <span class="text-zinc-500">Python AI Libs</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Blockchain &amp; Web3</h4>
+          <span class="tag" style="font-size:.58rem">08</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-900 font-medium">Solidity</span>
+          <span class="text-zinc-500">Smart Contracts</span>
+          <span class="text-zinc-900 font-medium">Web3.js</span>
+          <span class="text-zinc-900 font-medium">IPFS</span>
+          <span class="text-zinc-900 font-medium">Ethereum</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Methods &amp; DevOps</h4>
+          <span class="tag" style="font-size:.58rem">09</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-900 font-medium">Agile / Scrum</span>
+          <span class="text-zinc-900 font-medium">UML</span>
+          <span class="text-zinc-500">REST APIs</span>
+          <span class="text-zinc-500">JWT / RBAC</span>
+          <span class="text-zinc-900 font-medium">Postman</span>
+          <span class="text-zinc-900 font-medium">DevOps</span>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
+          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Testing &amp; QA</h4>
+          <span class="tag" style="font-size:.58rem">10</span>
+        </div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+          <span class="text-zinc-900 font-medium">Squash TM</span>
+          <span class="text-zinc-900 font-medium">Mantis BT</span>
+          <span class="text-zinc-900 font-medium">SoapUI</span>
+          <span class="text-zinc-900 font-medium">Selenium</span>
+          <span class="text-zinc-500">Black-box Testing</span>
+          <span class="text-zinc-500">White-box Testing</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="experience" class="py-36 px-6">
+  <div class="max-w-6xl mx-auto space-y-24">
+
+    <div class="reveal flex items-center gap-4">
+      <div class="divider-orb"></div>
+      <span class="section-label">03 // Field Experience</span>
+      <div class="h-px flex-1 bg-zinc-200"></div>
+    </div>
+
+    <div class="reveal flex flex-col lg:flex-row gap-12 lg:gap-20">
+      <div class="lg:w-1/3">
+        <div class="rail space-y-6">
+          <div class="flex items-start">
+            <div class="rail-dot"></div>
+            <div class="space-y-1">
+              <p class="tag tag-dark font-medium" style="font-size:.7rem">Active Mission</p>
+              <p class="tag">Feb 2026 — Present</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h4 class="font-sans font-bold text-zinc-900 tracking-tight">Broker Immobilier</h4>
+            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.62rem] uppercase tracking-widest text-zinc-400">
+              <span>Angular</span><span class="text-zinc-200">/</span><span>Spring Boot</span><span class="text-zinc-200">/</span><span>RAG AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-2/3 space-y-8">
+        <h3 class="font-serif text-4xl md:text-5xl leading-tight">
+          Full-Stack Engineer<br/>
+          <em class="text-zinc-400">SaaS Architecture</em>
+        </h3>
+        <div class="space-y-6 text-lg text-zinc-500 font-light leading-relaxed">
+          <p>Leading the engineering of a <span class="text-zinc-900 font-normal">next-generation real estate CRM</span>, translating product requirements into production-ready microservices, reactive interfaces, and AI-powered document pipelines.</p>
+          <div class="space-y-4 pt-4 border-t border-zinc-100">
+            <div class="flex gap-5"><span class="tag flex-shrink-0 pt-1">01</span><p>Architecting scalable microservices with Spring Boot and reactive interfaces in Angular.</p></div>
+            <div class="flex gap-5"><span class="tag flex-shrink-0 pt-1">02</span><p>Implementing RAG pipelines and LLM integrations for automated property document synthesis.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal flex flex-col lg:flex-row gap-12 lg:gap-20 pt-8 border-t border-zinc-100">
+      <div class="lg:w-1/3">
+        <div class="rail space-y-6">
+          <div class="flex items-start">
+            <div class="rail-dot" style="background:#aaa"></div>
+            <div class="space-y-1">
+              <p class="tag tag-dark font-medium" style="font-size:.7rem">Completed</p>
+              <p class="tag">Aug 2025</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h4 class="font-sans font-bold text-zinc-900 tracking-tight">HTBS Africa</h4>
+            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.62rem] uppercase tracking-widest text-zinc-400">
+              <span>PHP</span><span class="text-zinc-200">/</span><span>SQL</span><span class="text-zinc-200">/</span><span>Dolibarr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-2/3 space-y-8">
+        <h3 class="font-serif text-4xl md:text-5xl leading-tight">
+          ERP Developer<br/>
+          <em class="text-zinc-400">Financial Engineering</em>
+        </h3>
+        <div class="space-y-6 text-lg text-zinc-500 font-light leading-relaxed">
+          <p>Specialized in <span class="text-zinc-900 font-normal">ERP customization</span> within a demanding financial environment. Engineered mission-critical modules that sharpened both reporting accuracy and operational throughput.</p>
+          <div class="space-y-4 pt-4 border-t border-zinc-100">
+            <div class="flex gap-5"><span class="tag flex-shrink-0 pt-1">01</span><p>Refactored Dolibarr ERP internals to integrate new business logic for treasury management.</p></div>
+            <div class="flex gap-5"><span class="tag flex-shrink-0 pt-1">02</span><p>Authored optimized SQL queries, reducing tax report load time by 40%.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal flex flex-col lg:flex-row gap-12 lg:gap-20 pt-8 border-t border-zinc-100">
+      <div class="lg:w-1/3">
+        <div class="rail space-y-6">
+          <div class="flex items-start">
+            <div class="rail-dot" style="background:#aaa"></div>
+            <div class="space-y-1">
+              <p class="tag tag-dark font-medium" style="font-size:.7rem">PFE Project</p>
+              <p class="tag">Apr — Jul 2025</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <h4 class="font-sans font-bold text-zinc-900 tracking-tight">FST Errachidia</h4>
+            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.62rem] uppercase tracking-widest text-zinc-400">
+              <span>Solidity</span><span class="text-zinc-200">/</span><span>Web3.js</span><span class="text-zinc-200">/</span><span>React</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-2/3 space-y-8">
+        <h3 class="font-serif text-4xl md:text-5xl leading-tight">
+          Blockchain Developer<br/>
+          <em class="text-zinc-400">Decentralized Systems</em>
+        </h3>
+        <div class="space-y-6 text-lg text-zinc-500 font-light leading-relaxed">
+          <p>Final-year project: designed and deployed a <span class="text-zinc-900 font-normal">decentralized e-learning platform</span> on Ethereum, combining on-chain smart contracts with IPFS-distributed content storage.</p>
+          <div class="space-y-4 pt-4 border-t border-zinc-100">
+            <div class="flex gap-5"><span class="tag flex-shrink-0 pt-1">01</span><p>Authored and deployed Solidity smart contracts for verifiable certification and IPFS integration.</p></div>
+            <div class="flex gap-5"><span class="tag flex-shrink-0 pt-1">02</span><p>Engineered a React-based frontend with seamless Web3 wallet interaction.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="projects" class="py-36 px-6 bg-white border-y border-zinc-200">
+  <div class="max-w-6xl mx-auto space-y-24">
+
+    <div class="reveal flex items-center gap-4">
+      <div class="divider-orb"></div>
+      <span class="section-label">04 // Featured Solutions</span>
+      <div class="h-px flex-1 bg-zinc-200"></div>
+    </div>
+
+    <div class="reveal">
+      <div class="flex items-center gap-4 mb-12">
+        <span class="tag tag-dark font-medium" style="font-size:.65rem">Core Systems</span>
+        <div class="h-px flex-1 bg-zinc-100"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="card-lift bg-paper border border-zinc-200 rounded-3xl p-8 space-y-5 relative overflow-hidden">
+          <div class="absolute inset-0 grid-texture-dense opacity-[.025] pointer-events-none"></div>
+          <div class="relative z-10 space-y-5">
+            <div class="flex justify-between items-start">
+              <span class="num text-zinc-300 text-3xl">01</span>
+              <i data-lucide="terminal" class="w-4 h-4 text-zinc-300"></i>
+            </div>
+            <h4 class="font-sans font-bold text-zinc-900 tracking-tight text-lg">devctl</h4>
+            <p class="text-sm text-zinc-500 font-light leading-relaxed">A unified CLI that automates development lifecycle orchestration — spinning up Spring Boot, Angular, and Vue.js environments through a single command surface.</p>
+            <div class="pt-4 border-t border-zinc-100 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
+              <span>Python</span><span class="text-zinc-200">/</span><span>Shell</span><span class="text-zinc-200">/</span><span>Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-lift bg-paper border border-zinc-200 rounded-3xl p-8 space-y-5 relative overflow-hidden">
+          <div class="absolute inset-0 grid-texture-dense opacity-[.025] pointer-events-none"></div>
+          <div class="relative z-10 space-y-5">
+            <div class="flex justify-between items-start">
+              <span class="num text-zinc-300 text-3xl">02</span>
+              <i data-lucide="link-2" class="w-4 h-4 text-zinc-300"></i>
+            </div>
+            <h4 class="font-sans font-bold text-zinc-900 tracking-tight text-lg">Decentralized Edu</h4>
+            <p class="text-sm text-zinc-500 font-light leading-relaxed">Blockchain-native e-learning platform using smart contracts for tamper-proof certification issuance and IPFS for resilient content storage.</p>
+            <div class="pt-4 border-t border-zinc-100 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
+              <span>Solidity</span><span class="text-zinc-200">/</span><span>React.js</span><span class="text-zinc-200">/</span><span>Web3.js</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-lift bg-paper border border-zinc-200 rounded-3xl p-8 space-y-5 relative overflow-hidden">
+          <div class="absolute inset-0 grid-texture-dense opacity-[.025] pointer-events-none"></div>
+          <div class="relative z-10 space-y-5">
+            <div class="flex justify-between items-start">
+              <span class="num text-zinc-300 text-3xl">03</span>
+              <i data-lucide="building-2" class="w-4 h-4 text-zinc-300"></i>
+            </div>
+            <h4 class="font-sans font-bold text-zinc-900 tracking-tight text-lg">CRM SaaS Platform</h4>
+            <p class="text-sm text-zinc-500 font-light leading-relaxed">Enterprise real estate ecosystem built on clean architecture principles, with RAG AI pipelines for intelligent document processing and client management.</p>
+            <div class="pt-4 border-t border-zinc-100 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
+              <span>Spring Boot</span><span class="text-zinc-200">/</span><span>Angular</span><span class="text-zinc-200">/</span><span>RAG AI</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="flex items-center gap-4 mb-12">
+        <span class="tag tag-dark font-medium" style="font-size:.65rem">Infrastructure Modules</span>
+        <div class="h-px flex-1 bg-zinc-100"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12">
+        <div class="flex gap-8">
+          <span class="num text-zinc-200 text-3xl pt-1">04</span>
+          <div class="space-y-3">
+            <h4 class="font-sans font-bold text-zinc-900 uppercase tracking-tight text-sm">Firewall Configuration</h4>
+            <p class="text-sm text-zinc-500 font-light leading-relaxed">OPNsense firewall deployment with custom ruleset, VLAN segmentation, and enterprise-grade network hardening.</p>
+            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
+              <span>OPNsense</span><span>Networking</span><span>Security</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-8">
+          <span class="num text-zinc-200 text-3xl pt-1">05</span>
+          <div class="space-y-3">
+            <h4 class="font-sans font-bold text-zinc-900 uppercase tracking-tight text-sm">Infrastructure Supervision</h4>
+            <p class="text-sm text-zinc-500 font-light leading-relaxed">Cloud monitoring with Zabbix on AWS, covering Linux and Windows servers for performance metrics and alerting.</p>
+            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
+              <span>AWS</span><span>Zabbix</span><span>Monitoring</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal pt-12 border-t border-zinc-200">
+      <div class="flex flex-col md:flex-row justify-between items-end gap-4 mb-12">
+        <div class="space-y-1">
+          <span class="section-label">Technical Archive</span>
+          <h3 class="font-serif text-3xl">Open-source work</h3>
+        </div>
+        <a href="https://github.com/yss-ef" target="_blank"
+           class="flex items-center gap-2 tag tag-dark border border-zinc-200 px-4 py-2 rounded-full hover:border-zinc-500 transition-colors">
+          All repositories <i data-lucide="external-link" class="w-3 h-3"></i>
+        </a>
+      </div>
+      <div id="github-repos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="col-span-3 text-center py-10 tag">Loading repositories…</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="credentials" class="py-36 px-6">
+  <div class="max-w-6xl mx-auto space-y-20">
+
+    <div class="reveal flex items-center gap-4">
+      <div class="divider-orb"></div>
+      <span class="section-label">05 // Validated Expertise</span>
+      <div class="h-px flex-1 bg-zinc-200"></div>
+    </div>
+
+    <div class="reveal border-t border-zinc-200 divide-y divide-zinc-100">
+
+      <div class="cert-row flex-col md:flex-row">
+        <div class="w-10 h-10 flex-shrink-0 bg-zinc-50 rounded-full border border-zinc-200 flex items-center justify-center">
+          <i data-lucide="cloud" class="w-4 h-4 text-zinc-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="tag mb-1">Amazon Web Services</p>
+          <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">AWS Academy Graduate — Cloud Foundations</h4>
+        </div>
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <span class="hidden md:block tag italic">Verified Identity</span>
+          <a href="https://www.credly.com/badges/499818eb-ee08-4b36-9eb5-6c7dd77333af/public_url" target="_blank"
+             class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all" style="--tw-text-opacity:1">
+            Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
           </a>
         </div>
       </div>
-      <div class="about-info">
-        <div class="info-row"><span class="info-label">Status</span><span class="info-value"><span class="status-dot">On alternance</span></span></div>
-        <div class="info-row"><span class="info-label">Location</span><span class="info-value">Casablanca, Morocco</span></div>
-        <div class="info-row"><span class="info-label">Phone</span><span class="info-value"><a href="tel:+212778874684">+212 778 874 684</a></span></div>
-        <div class="info-row"><span class="info-label">University</span><span class="info-value">Mundiapolis, Casablanca</span></div>
-        <div class="info-row"><span class="info-label">Languages</span><span class="info-value">FR · EN · AR</span></div>
-        <div class="info-row"><span class="info-label">Interests</span><span class="info-value">Cloud · AI · Blockchain · Blender</span></div>
+
+      <div class="cert-row flex-col md:flex-row">
+        <div class="w-10 h-10 flex-shrink-0 bg-zinc-50 rounded-full border border-zinc-200 flex items-center justify-center">
+          <i data-lucide="server" class="w-4 h-4 text-zinc-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="tag mb-1">Huawei ICT Academy</p>
+          <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">HCIA-Cloud Computing V5.5</h4>
+        </div>
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <span class="hidden md:block tag italic">Internal Pass</span>
+          <span class="px-4 py-2 border border-zinc-100 bg-zinc-50 rounded-full tag text-zinc-400">Active</span>
+        </div>
       </div>
+
+      <div class="cert-row flex-col md:flex-row">
+        <div class="w-10 h-10 flex-shrink-0 bg-zinc-50 rounded-full border border-zinc-200 flex items-center justify-center">
+          <i data-lucide="graduation-cap" class="w-4 h-4 text-zinc-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="tag mb-1">IBM · Coursera</p>
+          <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">Introduction to Software Engineering</h4>
+        </div>
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <span class="hidden md:block tag italic">Verified Identity</span>
+          <a href="https://coursera.org/share/4ed7bd110eee1929633c20be030418c0" target="_blank"
+             class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
+            Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="cert-row flex-col md:flex-row">
+        <div class="w-10 h-10 flex-shrink-0 bg-zinc-50 rounded-full border border-zinc-200 flex items-center justify-center">
+          <i data-lucide="bar-chart-2" class="w-4 h-4 text-zinc-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="tag mb-1">Cisco Networking Academy</p>
+          <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">Data Analytics Essentials</h4>
+        </div>
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <span class="hidden md:block tag italic">Verified Identity</span>
+          <a href="https://www.credly.com/badges/2ebafeec-8d1a-4c38-af96-00a793a7a939/public_url" target="_blank"
+             class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
+            Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="cert-row flex-col md:flex-row">
+        <div class="w-10 h-10 flex-shrink-0 bg-zinc-50 rounded-full border border-zinc-200 flex items-center justify-center">
+          <i data-lucide="git-branch" class="w-4 h-4 text-zinc-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="tag mb-1">Microsoft · GitHub</p>
+          <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">GitHub Foundations — Part 1 of 2</h4>
+        </div>
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <span class="hidden md:block tag italic">Verified Identity</span>
+          <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/NMWZVH8F?sharingId=57FCD8AE461DCC45" target="_blank"
+             class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
+            Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="cert-row flex-col md:flex-row">
+        <div class="w-10 h-10 flex-shrink-0 bg-zinc-50 rounded-full border border-zinc-200 flex items-center justify-center">
+          <i data-lucide="git-branch" class="w-4 h-4 text-zinc-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="tag mb-1">Microsoft · GitHub</p>
+          <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">GitHub Foundations — Part 2 of 2</h4>
+        </div>
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <span class="hidden md:block tag italic">Verified Identity</span>
+          <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/PGESC6D4?sharingId=57FCD8AE461DCC45" target="_blank"
+             class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
+            Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="cert-row flex-col md:flex-row">
+        <div class="w-10 h-10 flex-shrink-0 bg-zinc-50 rounded-full border border-zinc-200 flex items-center justify-center">
+          <i data-lucide="git-branch" class="w-4 h-4 text-zinc-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="tag mb-1">Microsoft · GitHub</p>
+          <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">GitHub Admin &amp; Product Features</h4>
+        </div>
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <span class="hidden md:block tag italic">Verified Identity</span>
+          <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/9RCFAERU?sharingId=57FCD8AE461DCC45" target="_blank"
+             class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
+            Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<div class="hud-divider"></div>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header reveal">
-    <div class="section-label">Arsenal</div>
-    <h2 class="section-title"><i data-lucide="layers" class="icon-lg"></i> Technical <em>Stack</em></h2>
+<section class="py-36 px-6 bg-zinc-950 text-paper relative overflow-hidden">
+  <div class="pointer-events-none select-none absolute inset-0 flex items-end justify-center pb-8 opacity-[.04]" aria-hidden="true">
+    <span class="font-serif text-[clamp(6rem,20vw,18rem)] leading-none">Connect</span>
   </div>
-  <div class="skills-categories reveal">
-    <!-- Backend & Core -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="cpu" class="icon-cat"></i></div>
-      <div class="skill-cat-name">Backend &amp; Core</div>
-      <div class="skill-tags"><span class="skill-tag featured">Java</span><span class="skill-tag featured">Spring Boot</span><span class="skill-tag">Spring Security</span><span class="skill-tag">PHP</span><span class="skill-tag">Node.js</span><span class="skill-tag featured">Python</span><span class="skill-tag">Solidity</span></div>
+  <div class="max-w-6xl mx-auto relative z-10 space-y-16 text-center">
+    <div class="space-y-6">
+      <span class="section-label" style="color:#555">Open to opportunities</span>
+      <h3 class="font-serif text-5xl md:text-7xl leading-[1.05] tracking-tight">
+        Initialize<br/>
+        <em class="text-zinc-500">Connection</em>
+      </h3>
+      <p class="text-xl text-zinc-400 font-light max-w-xl mx-auto leading-snug">
+        Available for ambitious engineering roles. Systems architecture, high-scale development, and everything in between.
+      </p>
     </div>
-    <!-- Frontend -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="monitor" class="icon-cat"></i></div>
-      <div class="skill-cat-name">Frontend</div>
-      <div class="skill-tags"><span class="skill-tag featured">Angular</span><span class="skill-tag featured">React.js</span><span class="skill-tag">Flutter</span><span class="skill-tag">TypeScript</span><span class="skill-tag">JavaScript</span><span class="skill-tag">HTML5/SCSS</span><span class="skill-tag">Tailwind</span><span class="skill-tag">Web3.js</span></div>
-    </div>
-    <!-- Data & Databases -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="database" class="icon-cat"></i></div>
-      <div class="skill-cat-name">Data &amp; Databases</div>
-      <div class="skill-tags"><span class="skill-tag featured">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag featured">SQL</span><span class="skill-tag">PL/SQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Hibernate/JPA</span><span class="skill-tag featured">Power BI</span><span class="skill-tag">Excel</span></div>
-    </div>
-    <!-- Data Analytics -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="bar-chart-2" class="icon-cat"></i></div>
-      <div class="skill-cat-name">Data Analytics</div>
-      <div class="skill-tags"><span class="skill-tag featured">Data Visualization</span><span class="skill-tag featured">Tableau</span><span class="skill-tag featured">Dashboard</span><span class="skill-tag">Exploratory Analysis</span><span class="skill-tag">Reporting</span></div>
-    </div>
-    <!-- Cloud & Infrastructure -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="cloud" class="icon-cat"></i></div>
-      <div class="skill-cat-name">Cloud &amp; Infrastructure</div>
-      <div class="skill-tags"><span class="skill-tag featured">AWS</span><span class="skill-tag">EC2 / S3 / RDS</span><span class="skill-tag featured">Linux</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Docker</span><span class="skill-tag">Zabbix</span><span class="skill-tag">Git/GitHub</span><span class="skill-tag">CI/CD</span><span class="skill-tag">OpenStack</span></div>
-    </div>
-    <!-- Security & Networks -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="shield" class="icon-cat"></i></div>
-      <div class="skill-cat-name">Security &amp; Networks</div>
-      <div class="skill-tags"><span class="skill-tag featured">Firewall Mgmt</span><span class="skill-tag featured">OPNsense</span><span class="skill-tag">Endpoint Security</span><span class="skill-tag">IoT</span><span class="skill-tag">Network Config</span></div>
-    </div>
-    <!-- AI & Integration -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="bot" class="icon-cat"></i></div>
-      <div class="skill-cat-name">AI &amp; Integration</div>
-      <div class="skill-tags"><span class="skill-tag featured">RAG Systems</span><span class="skill-tag featured">AI Integration</span><span class="skill-tag">LLM APIs</span><span class="skill-tag">Doc Generation</span><span class="skill-tag">Python AI libs</span></div>
-    </div>
-    <!-- Blockchain & Web3 -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="link-2" class="icon-cat"></i></div>
-      <div class="skill-cat-name">Blockchain &amp; Web3</div>
-      <div class="skill-tags"><span class="skill-tag featured">Solidity</span><span class="skill-tag">Smart Contracts</span><span class="skill-tag">Web3.js</span><span class="skill-tag">IPFS</span><span class="skill-tag">Ethereum</span></div>
-    </div>
-    <!-- Tools & Methods -->
-    <div class="skill-cat">
-      <div class="skill-cat-icon"><i data-lucide="wrench" class="icon-cat"></i></div>
-      <div class="skill-cat-name">Tools &amp; Methods</div>
-      <div class="skill-tags"><span class="skill-tag featured">Agile/Scrum</span><span class="skill-tag">UML</span><span class="skill-tag">Postman</span><span class="skill-tag featured">Mantis</span><span class="skill-tag featured">Squash TM</span><span class="skill-tag">REST APIs</span><span class="skill-tag">JWT/RBAC</span><span class="skill-tag">DevOps</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="hud-divider"></div>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-header reveal">
-    <div class="section-label">Sortie Log</div>
-    <h2 class="section-title"><i data-lucide="terminal" class="icon-lg"></i> Field <em>Experience</em></h2>
-  </div>
-  <div class="timeline reveal">
-    <div class="timeline-item">
-      <div class="timeline-node"></div>
-      <div class="timeline-date">Feb 2026 – Present · Alternance</div>
-      <div class="timeline-company">Broker Immobilier</div>
-      <div class="timeline-role">Full Stack Engineer — CRM SaaS (Angular · Spring Boot)</div>
-      <ul class="timeline-points">
-        <li>Building a CRM SaaS platform from scratch — conception, architecture, UX/UI design and full-stack implementation.</li>
-        <li>Frontend with Angular; backend API with Spring Boot following a clean layered architecture.</li>
-        <li>Integrating AI features including a RAG system and automated document generation.</li>
-        <li>Handling the full product lifecycle: requirements, data modeling, development, and testing.</li>
-      </ul>
-      <div class="timeline-tags"><span class="t-tag">Angular</span><span class="t-tag">Spring Boot</span><span class="t-tag">RAG</span><span class="t-tag">AI Integration</span><span class="t-tag">Doc Generation</span><span class="t-tag">SaaS</span><span class="t-tag">CRM</span></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-node"></div>
-      <div class="timeline-date">Aug 2025 · 2 months</div>
-      <div class="timeline-company">HTBS Africa</div>
-      <div class="timeline-role">Full Stack Engineer Intern (ERP) · Casablanca</div>
-      <ul class="timeline-points">
-        <li>Analyzed and refactored code on the Dolibarr ERP to integrate new business rules.</li>
-        <li>Designed and developed 4 custom modules for Treasury &amp; Tax management (PHP/SQL).</li>
-        <li>Reduced load time on critical financial statements through query optimization.</li>
-        <li>Automated administrative workflows with dynamic PDF generation.</li>
-      </ul>
-      <div class="timeline-tags"><span class="t-tag">PHP</span><span class="t-tag">SQL</span><span class="t-tag">Dolibarr ERP</span><span class="t-tag">PDF generation</span></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-node"></div>
-      <div class="timeline-date">Apr – Jul 2025 · Final Year Project</div>
-      <div class="timeline-company">FST Errachidia</div>
-      <div class="timeline-role">Blockchain Developer (PFE)</div>
-      <ul class="timeline-points">
-        <li>Designed a decentralized e-learning platform on Web 3.0 architecture.</li>
-        <li>Built interactive frontend with React.js for a smooth user experience.</li>
-        <li>Developed and deployed Smart Contracts in Solidity, integrated via Web3.js.</li>
-      </ul>
-      <div class="timeline-tags"><span class="t-tag">Solidity</span><span class="t-tag">React.js</span><span class="t-tag">Web3.js</span><span class="t-tag">Blockchain</span><span class="t-tag">IPFS</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="hud-divider"></div>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-header reveal">
-    <div class="section-label">Deployed Ops</div>
-    <h2 class="section-title"><i data-lucide="code" class="icon-lg"></i> Featured <em>Projects</em></h2>
-  </div>
-  <div class="projects-filter reveal" id="filterBar">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="Java">Java</button>
-    <button class="filter-btn" data-filter="JavaScript">JavaScript</button>
-    <button class="filter-btn" data-filter="TypeScript">TypeScript</button>
-    <button class="filter-btn" data-filter="Python">Python</button>
-    <button class="filter-btn" data-filter="PHP">PHP</button>
-    <button class="filter-btn" data-filter="Solidity">Solidity</button>
-    <button class="filter-btn" data-filter="Dart">Flutter</button>
-    <button class="filter-btn" data-filter="Shell">Shell</button>
-  </div>
-  <div class="projects-list reveal" id="projectsGrid"></div>
-</section>
-
-<div class="hud-divider"></div>
-
-<!-- GITHUB -->
-<section id="github">
-  <div class="section-header reveal">
-    <div class="section-label">Open Source</div>
-    <h2 class="section-title"><i data-lucide="git-branch" class="icon-lg"></i> GitHub <em>Repositories</em></h2>
-  </div>
-  <div class="gh-meta reveal" id="ghMeta"></div>
-  <div class="gh-grid reveal" id="ghGrid">
-    <div class="projects-loading"><span class="loading-dots">Fetching repos from GitHub API</span></div>
-  </div>
-  <div class="gh-cta reveal">
-    <a href="https://github.com/yss-ef" target="_blank" class="btn-outline">
-      <i data-lucide="git-branch" class="icon-sm"></i>
-      View all repositories
-    </a>
-  </div>
-</section>
-
-<div class="hud-divider"></div>
-
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="section-header reveal">
-    <div class="section-label">Credentials</div>
-    <h2 class="section-title"><i data-lucide="award" class="icon-lg"></i> Certified <em>Clearance</em></h2>
-  </div>
-  <div class="cert-list reveal">
-    <!-- AWS -->
-    <div class="cert-row">
-      <div class="cr-bar"></div>
-      <div class="cr-icon"><i data-lucide="cloud" class="icon-cert" style="color:var(--accent)"></i></div>
-      <div class="cr-content">
-        <div class="cr-issuer">Amazon Web Services</div>
-        <div class="cr-name">AWS Academy Graduate &mdash; Cloud Foundations</div>
-        <div class="cr-desc">Core AWS services, architecture, security, pricing, and support models.</div>
-      </div>
-      <div class="cr-action"><span class="cr-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><a href="https://www.credly.com/badges/499818eb-ee08-4b36-9eb5-6c7dd77333af/public_url" target="_blank">View</a></span></div>
-    </div>
-    <!-- Huawei -->
-    <div class="cert-row">
-      <div class="cr-bar"></div>
-      <div class="cr-icon"><i data-lucide="server" class="icon-cert" style="color:var(--accent2)"></i></div>
-      <div class="cr-content">
-        <div class="cr-issuer">Huawei ICT Academy</div>
-        <div class="cr-name">HCIA-Cloud Computing V5.5</div>
-        <div class="cr-desc">Virtualization, cloud architecture, and cloud services deployment.</div>
-      </div>
-    </div>
-    <!-- IBM -->
-    <div class="cert-row">
-      <div class="cr-bar"></div>
-      <div class="cr-icon"><i data-lucide="graduation-cap" class="icon-cert" style="color:var(--accent)"></i></div>
-      <div class="cr-content">
-        <div class="cr-issuer">IBM &middot; Coursera</div>
-        <div class="cr-name">Introduction to Software Engineering</div>
-        <div class="cr-desc">SDLC, engineering practices, and modern development methodologies.</div>
-      </div>
-      <div class="cr-action"><span class="cr-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><a href="https://coursera.org/share/4ed7bd110eee1929633c20be030418c0" target="_blank">View</a></span></div>
-    </div>
-    <!-- Cisco Data Analytics -->
-    <div class="cert-row">
-      <div class="cr-bar"></div>
-      <div class="cr-icon"><i data-lucide="bar-chart-2" class="icon-cert" style="color:var(--accent3)"></i></div>
-      <div class="cr-content">
-        <div class="cr-issuer">Cisco Networking Academy &middot; ENSET</div>
-        <div class="cr-name">Data Analytics Essentials</div>
-        <div class="cr-desc">Data analytics fundamentals, exploration, visualization, and storytelling with data.</div>
-      </div>
-      <div class="cr-action"><span class="cr-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><a href="https://www.credly.com/badges/2ebafeec-8d1a-4c38-af96-00a793a7a939/public_url" target="_blank">View</a></span></div>
-    </div>
-    <!-- GitHub Admin -->
-    <div class="cert-row">
-      <div class="cr-bar"></div>
-      <div class="cr-icon"><i data-lucide="git-branch" class="icon-cert" style="color:var(--text2)"></i></div>
-      <div class="cr-content">
-        <div class="cr-issuer">Microsoft &middot; GitHub</div>
-        <div class="cr-name">GitHub Fundamentals &mdash; Administration basics and product features (Part 1 of 2)</div>
-        <div class="cr-desc">GitHub administration, repository management, DevOps workflows and product features.</div>
-      </div>
-      <div class="cr-action"><span class="cr-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/9RCFAERU?sharingId=57FCD8AE461DCC45" target="_blank">View</a></span></div>
-    </div>
-    <!-- GitHub Foundations 2 -->
-    <div class="cert-row">
-      <div class="cr-bar"></div>
-      <div class="cr-icon"><i data-lucide="git-branch" class="icon-cert" style="color:var(--text2)"></i></div>
-      <div class="cr-content">
-        <div class="cr-issuer">Microsoft &middot; GitHub</div>
-        <div class="cr-name">GitHub Foundations (Part 2 of 2)</div>
-        <div class="cr-desc">GitHub collaboration, Git version control, branching strategies and open source workflows.</div>
-      </div>
-      <div class="cr-action"><span class="cr-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/PGESC6D4?sharingId=57FCD8AE461DCC45" target="_blank">View</a></span></div>
-    </div>
-    <!-- GitHub Foundations 1 -->
-    <div class="cert-row">
-      <div class="cr-bar"></div>
-      <div class="cr-icon"><i data-lucide="git-branch" class="icon-cert" style="color:var(--text2)"></i></div>
-      <div class="cr-content">
-        <div class="cr-issuer">Microsoft &middot; GitHub</div>
-        <div class="cr-name">GitHub Foundations (Part 1 of 2)</div>
-        <div class="cr-desc">Core GitHub fundamentals &mdash; repositories, commits, pull requests, issues and collaborative development.</div>
-      </div>
-      <div class="cr-action"><span class="cr-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/NMWZVH8F?sharingId=57FCD8AE461DCC45" target="_blank">View</a></span></div>
-    </div>
-    <!-- Pending -->
-    <div class="cert-row pending">
-      <div class="cr-bar"></div>
-      <div class="cr-icon"><i data-lucide="target" class="icon-cert" style="color:var(--text3)"></i></div>
-      <div class="cr-content">
-        <div class="cr-issuer">In Progress</div>
-        <div class="cr-name">Next certification incoming</div>
-        <div class="cr-desc">Always expanding &mdash; cloud, AI, or security domain.</div>
-      </div>
-      <div class="cr-action"><span class="cr-verified" style="color:var(--text3);">Pending</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="hud-divider"></div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-wrapper">
-    <div class="reveal">
-      <div class="section-label">Open Channel</div>
-      <h2 class="contact-headline">Initiate <em>transmission</em></h2>
-      <p class="contact-sub">Currently on alternance and open to ambitious projects. Whether you have an idea, an opportunity, or just want to connect — signal received.</p>
-    </div>
-    <div class="contact-cards reveal">
-      <a href="mailto:fellahyoussef010@gmail.com" class="contact-card">
-        <div class="contact-card-icon"><i data-lucide="mail" class="icon-contact" style="color:var(--accent)"></i></div>
-        <div><div class="contact-card-label">Email</div><div class="contact-card-value">fellahyoussef010@gmail.com</div></div>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="mailto:fellahyoussef010@gmail.com"
+         class="flex items-center gap-2 px-8 py-4 bg-paper text-zinc-900 rounded-full tag tag-dark hover:bg-zinc-200 transition-colors">
+        <i data-lucide="mail" class="w-3.5 h-3.5"></i> Contact via Email
       </a>
-      <a href="https://linkedin.com/in/yss-ef" target="_blank" class="contact-card">
-        <div class="contact-card-icon"><i data-lucide="link" class="icon-contact" style="color:var(--accent)"></i></div>
-        <div><div class="contact-card-label">LinkedIn</div><div class="contact-card-value">linkedin.com/in/yss-ef</div></div>
-      </a>
-      <a href="https://github.com/yss-ef" target="_blank" class="contact-card">
-        <div class="contact-card-icon"><i data-lucide="git-branch" class="icon-contact" style="color:var(--accent)"></i></div>
-        <div><div class="contact-card-label">GitHub</div><div class="contact-card-value">github.com/yss-ef</div></div>
-      </a>
-      <a href="tel:+212778874684" class="contact-card">
-        <div class="contact-card-icon"><i data-lucide="smartphone" class="icon-contact" style="color:var(--accent)"></i></div>
-        <div><div class="contact-card-label">Phone</div><div class="contact-card-value">+212 778 874 684</div></div>
+      <a href="https://linkedin.com/in/yss-ef" target="_blank"
+         class="flex items-center gap-2 px-8 py-4 border border-zinc-700 text-zinc-300 rounded-full tag hover:border-zinc-400 hover:text-paper transition-colors">
+        <i data-lucide="link" class="w-3.5 h-3.5"></i> LinkedIn Profile
       </a>
     </div>
   </div>
+  <footer class="mt-28 text-center tag" style="font-size:.58rem; color:#444; letter-spacing:.3em;">
+    ʏ ᴄ x ʀ ᴠ s &nbsp;//&nbsp; me.yss-ef.github.io &nbsp;//&nbsp; 2026
+  </footer>
 </section>
 
-<footer>
-  <span class="footer-handle">ʏ ᴄ x ʀ ᴠ s</span>
-  <span class="footer-myth">flew too close — and touched it anyway</span>
-  <span>Youssef Fellah © 2026 · HTML · CSS · JS · GitHub API · Fedora 44</span>
-</footer>
 
-<!-- SYSTEM INTERACTIVE TERMINAL OVERLAY -->
-<div id="terminal-overlay" class="terminal-hidden">
-  <canvas id="matrix-canvas"></canvas>
-  <div class="terminal-container">
-    <div class="terminal-header">
-      <span class="terminal-title">// ICARUS.SYS OPERATOR SHELL v2.26</span>
-      <button id="close-terminal" class="terminal-close-btn" aria-label="Close terminal">&times;</button>
-    </div>
-    <div class="terminal-body" id="terminal-output">
-      <div class="terminal-line"><span class="sys-blink">◆</span>&nbsp; ICARUS_OS SHELL INITIATED. COMM_SECT ACTIVE.</div>
-      <div class="terminal-line">Welcome, operator. Type <span class="cyan" style="color:var(--accent)">'help'</span> for diagnostic protocols.</div>
-      <div class="terminal-line">Press [ ` ] (backtick) to exit this interface.</div>
-    </div>
-    <div class="terminal-input-row">
-      <span class="terminal-prompt">operator@icarus:~$</span>
-      <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
-    </div>
-  </div>
-</div>
+<script>
+  lucide.createIcons();
 
-<script src="script.js"></script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  async function fetchRepos() {
+    const container = document.getElementById('github-repos');
+    try {
+      const res = await fetch('https://api.github.com/users/yss-ef/repos?sort=updated&per_page=12');
+      const repos = await res.json();
+      container.innerHTML = '';
+      repos.slice(0, 6).forEach(repo => {
+        const year = new Date(repo.updated_at).getFullYear();
+        const card = document.createElement('a');
+        card.href = repo.html_url;
+        card.target = '_blank';
+        card.className = 'card-lift group block p-7 border border-zinc-200 rounded-2xl bg-paper relative overflow-hidden';
+        card.innerHTML = `
+          <div class="absolute inset-0 grid-texture-dense opacity-[.025] pointer-events-none"></div>
+          <div class="relative z-10 space-y-4">
+            <div class="flex justify-between items-start">
+              <h4 class="font-sans font-bold text-zinc-900 text-sm tracking-tight uppercase group-hover:text-zinc-600 transition-colors">${repo.name}</h4>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-zinc-300 group-hover:text-zinc-600 transition-colors"></i>
+            </div>
+            <p class="text-xs text-zinc-500 font-light leading-relaxed line-clamp-2 h-8">${repo.description || 'No description.'}</p>
+            <div class="pt-3 border-t border-zinc-100 flex justify-between items-center">
+              <span class="tag" style="font-size:.58rem">${repo.language || 'Code'}</span>
+              <span class="tag" style="font-size:.58rem">${year}</span>
+            </div>
+          </div>`;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    } catch {
+      container.innerHTML = '<p class="col-span-3 text-center py-10 tag text-zinc-400">ERR: FAILED_TO_FETCH_REPOS</p>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchRepos);
+</script>
 </body>
 </html>
-
