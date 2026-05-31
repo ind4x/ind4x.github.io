@@ -27,7 +27,7 @@
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 110%; }
     body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     ::selection { background: #111; color: #f7f7f8; }
 
@@ -86,7 +86,7 @@
 
     .section-label {
       font-family: 'DM Mono', monospace;
-      font-size: .65rem;
+      font-size: .75rem;
       letter-spacing: .22em;
       text-transform: uppercase;
       color: #a0a0a0;
@@ -106,7 +106,7 @@
       padding: .45rem 1rem; border-radius: 99px;
       border: 1px solid #e0e0e0;
       background: #fff;
-      font-size: .7rem; font-family: 'DM Mono', monospace;
+      font-size: .8rem; font-family: 'DM Mono', monospace;
       text-transform: uppercase; letter-spacing: .14em; color: #666;
       transition: background .25s, border-color .25s, color .25s;
     }
@@ -128,7 +128,7 @@
     }
 
     .tag {
-      font-family: 'DM Mono', monospace; font-size: .62rem;
+      font-family: 'DM Mono', monospace; font-size: .7rem;
       text-transform: uppercase; letter-spacing: .15em;
       color: #999;
     }
@@ -168,8 +168,8 @@
 <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-20 text-center overflow-hidden">
 
   <div class="pointer-events-none select-none absolute inset-0 opacity-[.04]" aria-hidden="true">
-    <div class="absolute top-16 left-10 font-mono text-[10px] tracking-[.4em] uppercase rotate-90 origin-top-left text-zinc-900">sys_arch // v3.0</div>
-    <div class="absolute bottom-24 right-10 font-mono text-[10px] tracking-[.4em] uppercase -rotate-90 origin-bottom-right text-zinc-900">me.yss-ef</div>
+    <div class="absolute top-16 left-10 font-mono text-[12px] tracking-[.4em] uppercase rotate-90 origin-top-left text-zinc-900">sys_arch // v3.0</div>
+    <div class="absolute bottom-24 right-10 font-mono text-[12px] tracking-[.4em] uppercase -rotate-90 origin-bottom-right text-zinc-900">me.yss-ef</div>
   </div>
 
   <div class="anim anim-1 mb-10 cap-pill">
@@ -206,7 +206,7 @@
 
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
     <div class="w-px h-10 bg-zinc-500"></div>
-    <span class="tag" style="font-size:.58rem">scroll</span>
+    <span class="tag" style="font-size:.65rem">scroll</span>
   </div>
 </section>
 
@@ -246,7 +246,7 @@
             <div class="w-14 h-14 rounded-full bg-white border border-zinc-200 flex items-center justify-center mx-auto shadow-sm">
               <i data-lucide="user" class="text-zinc-300 w-7 h-7"></i>
             </div>
-            <p class="tag" style="font-size:.62rem">Photo Placeholder</p>
+            <p class="tag" style="font-size:.7rem">Photo Placeholder</p>
           </div>
         </div>
         <div class="mt-6 flex flex-col gap-2">
@@ -288,15 +288,15 @@
         <div class="pt-8 border-t border-zinc-200 grid grid-cols-3 gap-6">
           <div>
             <p class="num text-4xl text-zinc-900">3+</p>
-            <p class="tag mt-1" style="font-size:.62rem">Years<br/>Coding</p>
+            <p class="tag mt-1" style="font-size:.7rem">Years<br/>Coding</p>
           </div>
           <div>
             <p class="num text-4xl text-zinc-900">10+</p>
-            <p class="tag mt-1" style="font-size:.62rem">Certs &amp;<br/>Credentials</p>
+            <p class="tag mt-1" style="font-size:.7rem">Certs &amp;<br/>Credentials</p>
           </div>
           <div>
             <p class="num text-4xl text-zinc-900">5+</p>
-            <p class="tag mt-1" style="font-size:.62rem">Production<br/>Projects</p>
+            <p class="tag mt-1" style="font-size:.7rem">Production<br/>Projects</p>
           </div>
         </div>
       </div>
@@ -319,10 +319,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Backend &amp; Core</h4>
-          <span class="tag" style="font-size:.58rem">01</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Backend &amp; Core</h4>
+          <span class="tag" style="font-size:.65rem">01</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-900 font-medium">Java</span>
           <span class="text-zinc-900 font-medium">Spring Boot</span>
           <span class="text-zinc-500">Spring Security</span>
@@ -335,10 +335,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Frontend</h4>
-          <span class="tag" style="font-size:.58rem">02</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Frontend</h4>
+          <span class="tag" style="font-size:.65rem">02</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-900 font-medium">Angular</span>
           <span class="text-zinc-900 font-medium">React.js</span>
           <span class="text-zinc-900 font-medium">Flutter</span>
@@ -352,10 +352,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Data &amp; Databases</h4>
-          <span class="tag" style="font-size:.58rem">03</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Data &amp; Databases</h4>
+          <span class="tag" style="font-size:.65rem">03</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-900 font-medium">PostgreSQL</span>
           <span class="text-zinc-900 font-medium">MySQL</span>
           <span class="text-zinc-500">SQL / PL-SQL</span>
@@ -367,10 +367,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Data Analytics</h4>
-          <span class="tag" style="font-size:.58rem">04</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Data Analytics</h4>
+          <span class="tag" style="font-size:.65rem">04</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-500">Data Visualization</span>
           <span class="text-zinc-900 font-medium">Tableau</span>
           <span class="text-zinc-500">Exploratory Analysis</span>
@@ -380,10 +380,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Cloud &amp; Infrastructure</h4>
-          <span class="tag" style="font-size:.58rem">05</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Cloud &amp; Infrastructure</h4>
+          <span class="tag" style="font-size:.65rem">05</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-900 font-medium">AWS</span>
           <span class="text-zinc-500">EC2 / S3 / RDS</span>
           <span class="text-zinc-900 font-medium">Linux</span>
@@ -397,10 +397,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Security &amp; Networks</h4>
-          <span class="tag" style="font-size:.58rem">06</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Security &amp; Networks</h4>
+          <span class="tag" style="font-size:.65rem">06</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-500">Firewall Management</span>
           <span class="text-zinc-900 font-medium">OPNsense</span>
           <span class="text-zinc-500">Endpoint Security</span>
@@ -411,10 +411,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">AI &amp; Integration</h4>
-          <span class="tag" style="font-size:.58rem">07</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">AI &amp; Integration</h4>
+          <span class="tag" style="font-size:.65rem">07</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-900 font-medium">RAG Systems</span>
           <span class="text-zinc-500">AI Integration</span>
           <span class="text-zinc-900 font-medium">LLM APIs</span>
@@ -425,10 +425,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Blockchain &amp; Web3</h4>
-          <span class="tag" style="font-size:.58rem">08</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Blockchain &amp; Web3</h4>
+          <span class="tag" style="font-size:.65rem">08</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-900 font-medium">Solidity</span>
           <span class="text-zinc-500">Smart Contracts</span>
           <span class="text-zinc-900 font-medium">Web3.js</span>
@@ -439,10 +439,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Methods &amp; DevOps</h4>
-          <span class="tag" style="font-size:.58rem">09</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Methods &amp; DevOps</h4>
+          <span class="tag" style="font-size:.65rem">09</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-900 font-medium">Agile / Scrum</span>
           <span class="text-zinc-900 font-medium">UML</span>
           <span class="text-zinc-500">REST APIs</span>
@@ -454,10 +454,10 @@
 
       <div class="space-y-3">
         <div class="flex justify-between items-baseline pb-2.5 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-medium" style="font-size:.72rem">Testing &amp; QA</h4>
-          <span class="tag" style="font-size:.58rem">10</span>
+          <h4 class="tag tag-dark font-medium" style="font-size:.85rem">Testing &amp; QA</h4>
+          <span class="tag" style="font-size:.65rem">10</span>
         </div>
-        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.65rem] uppercase tracking-widest leading-loose">
+        <div class="flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[.75rem] uppercase tracking-widest leading-loose">
           <span class="text-zinc-900 font-medium">Squash TM</span>
           <span class="text-zinc-900 font-medium">Mantis BT</span>
           <span class="text-zinc-900 font-medium">SoapUI</span>
@@ -855,7 +855,7 @@
       </a>
     </div>
   </div>
-  <footer class="mt-28 text-center tag" style="font-size:.58rem; color:#444; letter-spacing:.3em;">
+  <footer class="mt-28 text-center tag" style="font-size:.65rem; color:#444; letter-spacing:.3em;">
     ʏ ᴄ x ʀ ᴠ s &nbsp;//&nbsp; me.yss-ef.github.io &nbsp;//&nbsp; 2026
   </footer>
 </section>
@@ -893,8 +893,8 @@
             </div>
             <p class="text-xs text-zinc-500 font-light leading-relaxed line-clamp-2 h-8">${repo.description || 'No description.'}</p>
             <div class="pt-3 border-t border-zinc-100 flex justify-between items-center">
-              <span class="tag" style="font-size:.58rem">${repo.language || 'Code'}</span>
-              <span class="tag" style="font-size:.58rem">${year}</span>
+              <span class="tag" style="font-size:.65rem">${repo.language || 'Code'}</span>
+              <span class="tag" style="font-size:.65rem">${year}</span>
             </div>
           </div>`;
         container.appendChild(card);
