@@ -1,72 +1,79 @@
-# icarus.sys // Portfolio v2.26
+# Icarus.sys portfolio
 
-A high-performance, immersive personal portfolio website built with a Cyberpunk / Industrial aesthetic. This repository houses the digital identity of Youssef Fellah, showcasing software engineering expertise, academic achievements, and professional experience.
+This repository contains the source code for the personal portfolio website of
+Youssef Fellah. The site features a terminal-inspired interface designed to
+showcase software engineering expertise, academic achievements, and professional
+experience.
 
-> **LIVE ACCESS:** [yss-ef.github.io](https://yss-ef.github.io)
+The live site is accessible at [yss-ef.github.io](https://yss-ef.github.io).
 
----
+## Technical overview
 
-## Technical Overview
+The system utilizes modern web standards to provide a high-performance,
+immersive experience without the overhead of heavy frameworks.
 
-The system is built for speed and impact, utilizing modern web standards to create a terminal-like HUD (Heads-Up Display) experience without the overhead of heavy frameworks.
+### Core stack
 
-### **Core Stack**
-*   **Engine:** Vanilla HTML5 / Modern CSS3 (SCSS Logic)
-*   **Logic:** Modern JavaScript (ES6+)
-*   **Iconography:** Lucide Icons (Dynamically injected)
-*   **Typography:** Google Fonts (Share Tech Mono, Cormorant Garamond, Syne)
-*   **Hosting:** GitHub Pages
+- Engine: Vanilla HTML5 and modern CSS3 (SCSS)
+- Logic: Modern JavaScript (ES6+)
+- Iconography: Lucide Icons
+- Typography: Google Fonts (Share Tech Mono, Cormorant Garamond, Syne)
+- Hosting: GitHub Pages
 
----
+## System features
 
-## System Features
+### Boot sequence logic
 
-### 1. **Boot Sequence Logic**
-The application features a simulated OS initialization sequence (INITIALIZING ICARUS_OS...). This is handled via asynchronous JavaScript to ensure a seamless transition from the boot screen to the main interface once all assets are loaded.
+The application implements a simulated operating system initialization sequence.
+Asynchronous JavaScript manages the transition from the boot screen to the main
+interface once all assets load.
 
-### 2. **Reactive UI & Motion**
-*   **Adaptive Cursor:** A custom-engineered bracketed cursor system that reacts to mouse movement with acceleration physics.
-*   **Dynamic Grid:** The background grid system utilizes CSS custom properties (--mouse-x, --mouse-y) updated in real-time by JS to create a reactive light-follow effect.
-*   **Impact Effects:** Flash feedback on specific system events (like boot completion) to reinforce the industrial feel.
+### Reactive UI and motion
 
-### 3. **Thematic Engine**
-The site features a dual-state theme engine (Light/Dark mode) that persists across sessions. The transition includes a custom animation for the icon swap and a global CSS variable shift to maintain the high-contrast aesthetic.
+- Adaptive cursor: A custom cursor system reacts to mouse movement using
+  acceleration physics.
+- Dynamic grid: The background grid uses CSS custom properties updated in
+  real-time to create a reactive light-follow effect.
+- Impact effects: Flash feedback reinforces the industrial aesthetic during
+  system events.
 
-### 4. **Responsive Architecture**
-The HUD layout is designed with flexbox and grid, ensuring that the "Terminal" experience scales perfectly from desktop monitors to mobile devices without losing its industrial character.
+### Thematic engine
 
----
+The site includes a dual-state theme engine that persists across sessions. A
+custom animation handles icon transitions, while global CSS variables maintain
+high-contrast aesthetics.
 
-## System Directory
+### Responsive architecture
+
+The layout uses Flexbox and Grid to ensure the terminal experience scales across
+desktop and mobile devices while maintaining its industrial character.
+
+## System directory
 
 ```text
-├── index.html   # Core structure & HUD layout
-├── style.css    # Industrial design system & animations
-├── script.js    # System logic, boot sequence & reactive UI
+├── index.html   # Core structure and HUD layout
+├── style.css    # Industrial design system and animations
+├── script.js    # System logic, boot sequence, and reactive UI
 └── .git         # Version control history
 ```
 
----
+## Installation and modification
 
-## Installation & Modification
+Follow these steps to run the system locally:
 
-To run the system locally:
-
-1. **Clone the repository:**
+1. Clone the repository:
    ```bash
    git clone git@github.com:yss-ef/yss-ef.github.io.git
    ```
-2. **Launch:**
-   Open `index.html` in any modern browser. No build step required.
+2. Launch the application:
+   Open `index.html` in a modern browser. No build step is required.
 
----
+## Operator profile
 
-## Operator Profile
+- Role: Full Stack Engineer (Class of 2026)
+- Specializations: Spring Boot, Angular, Solidity, AI (RAG Systems)
+- Current Mission: Alternance at Broker Immobilier
+- Base: Casablanca, Morocco
 
-*   **Role:** Full Stack Engineer (Class of 2026)
-*   **Specializations:** Spring Boot, Angular, Blockchain (Solidity), AI (RAG Systems)
-*   **Current Mission:** Alternance at Broker Immobilier
-*   **Base:** Casablanca, Morocco
-
-Authored by Youssef Fellah.  
-Personal Project.
+Authored by Youssef Fellah.
+Personal project.
