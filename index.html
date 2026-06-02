@@ -152,7 +152,7 @@
 <body class="bg-paper font-sans text-zinc-900 grid-texture">
 
 <header class="fixed top-0 inset-x-0 z-[100] flex justify-center py-4 px-4">
-  <nav class="nav-pill w-full max-w-[1600px] px-8 py-3 flex items-center justify-between rounded-full">
+  <nav class="nav-pill w-full max-w-[1200px] px-6 py-2.5 flex items-center justify-between rounded-full">
     <a href="#" class="font-serif text-base tracking-tight text-zinc-950">Youssef Fellah</a>
     <div class="flex items-center gap-8 text-zinc-500">
       <a href="#about"       class="text-sm font-medium hover:text-zinc-900 transition-colors">About</a>
@@ -594,11 +594,7 @@
     </div>
 
     <div class="reveal">
-      <div class="flex items-center gap-4 mb-12">
-        <span class="tag tag-dark font-medium" style="font-size:.65rem">Core Systems</span>
-        <div class="h-px flex-1 bg-zinc-100"></div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
         <div class="card-lift bg-paper border border-zinc-200 rounded-3xl p-8 space-y-5 relative overflow-hidden">
           <div class="absolute inset-0 grid-texture-dense opacity-[.025] pointer-events-none"></div>
@@ -645,35 +641,36 @@
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <div class="reveal">
-      <div class="flex items-center gap-4 mb-12">
-        <span class="tag tag-dark font-medium" style="font-size:.65rem">Infrastructure Modules</span>
-        <div class="h-px flex-1 bg-zinc-100"></div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12">
-        <div class="flex gap-8">
-          <span class="num text-zinc-200 text-3xl pt-1">04</span>
-          <div class="space-y-3">
-            <h4 class="font-sans font-bold text-zinc-900 uppercase tracking-tight text-sm">Firewall Configuration</h4>
+        <div class="card-lift bg-paper border border-zinc-200 rounded-3xl p-8 space-y-5 relative overflow-hidden">
+          <div class="absolute inset-0 grid-texture-dense opacity-[.025] pointer-events-none"></div>
+          <div class="relative z-10 space-y-5">
+            <div class="flex justify-between items-start">
+              <span class="num text-zinc-300 text-3xl">04</span>
+              <i data-lucide="shield-check" class="w-4 h-4 text-zinc-300"></i>
+            </div>
+            <h4 class="font-sans font-bold text-zinc-900 tracking-tight text-lg">Firewall Configuration</h4>
             <p class="text-sm text-zinc-500 font-light leading-relaxed">OPNsense firewall deployment with custom ruleset, VLAN segmentation, and enterprise-grade network hardening.</p>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
-              <span>OPNsense</span><span>Networking</span><span>Security</span>
+            <div class="pt-4 border-t border-zinc-100 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
+              <span>OPNsense</span><span class="text-zinc-200">/</span><span>Networking</span><span class="text-zinc-200">/</span><span>Security</span>
             </div>
           </div>
         </div>
-        <div class="flex gap-8">
-          <span class="num text-zinc-200 text-3xl pt-1">05</span>
-          <div class="space-y-3">
-            <h4 class="font-sans font-bold text-zinc-900 uppercase tracking-tight text-sm">Infrastructure Supervision</h4>
+
+        <div class="card-lift bg-paper border border-zinc-200 rounded-3xl p-8 space-y-5 relative overflow-hidden">
+          <div class="absolute inset-0 grid-texture-dense opacity-[.025] pointer-events-none"></div>
+          <div class="relative z-10 space-y-5">
+            <div class="flex justify-between items-start">
+              <span class="num text-zinc-300 text-3xl">05</span>
+              <i data-lucide="activity" class="w-4 h-4 text-zinc-300"></i>
+            </div>
+            <h4 class="font-sans font-bold text-zinc-900 tracking-tight text-lg">Infrastructure Supervision</h4>
             <p class="text-sm text-zinc-500 font-light leading-relaxed">Cloud monitoring with Zabbix on AWS, covering Linux and Windows servers for performance metrics and alerting.</p>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
-              <span>AWS</span><span>Zabbix</span><span>Monitoring</span>
+            <div class="pt-4 border-t border-zinc-100 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[.6rem] uppercase tracking-widest text-zinc-400">
+              <span>AWS</span><span class="text-zinc-200">/</span><span>Zabbix</span><span class="text-zinc-200">/</span><span>Monitoring</span>
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -717,7 +714,6 @@
           <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">AWS Academy Graduate — Cloud Foundations</h4>
         </div>
         <div class="flex items-center gap-4 flex-shrink-0">
-          <span class="hidden md:block tag italic">Verified Identity</span>
           <a href="https://www.credly.com/badges/499818eb-ee08-4b36-9eb5-6c7dd77333af/public_url" target="_blank"
              class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all" style="--tw-text-opacity:1">
             Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
@@ -734,7 +730,6 @@
           <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">HCIA-Cloud Computing V5.5</h4>
         </div>
         <div class="flex items-center gap-4 flex-shrink-0">
-          <span class="hidden md:block tag italic">Internal Pass</span>
           <span class="px-4 py-2 border border-zinc-100 bg-zinc-50 rounded-full tag text-zinc-400">Active</span>
         </div>
       </div>
@@ -748,7 +743,6 @@
           <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">Introduction to Software Engineering</h4>
         </div>
         <div class="flex items-center gap-4 flex-shrink-0">
-          <span class="hidden md:block tag italic">Verified Identity</span>
           <a href="https://coursera.org/share/4ed7bd110eee1929633c20be030418c0" target="_blank"
              class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
             Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
@@ -765,7 +759,6 @@
           <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">Data Analytics Essentials</h4>
         </div>
         <div class="flex items-center gap-4 flex-shrink-0">
-          <span class="hidden md:block tag italic">Verified Identity</span>
           <a href="https://www.credly.com/badges/2ebafeec-8d1a-4c38-af96-00a793a7a939/public_url" target="_blank"
              class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
             Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
@@ -782,7 +775,6 @@
           <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">GitHub Foundations — Part 1 of 2</h4>
         </div>
         <div class="flex items-center gap-4 flex-shrink-0">
-          <span class="hidden md:block tag italic">Verified Identity</span>
           <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/NMWZVH8F?sharingId=57FCD8AE461DCC45" target="_blank"
              class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
             Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
@@ -799,7 +791,6 @@
           <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">GitHub Foundations — Part 2 of 2</h4>
         </div>
         <div class="flex items-center gap-4 flex-shrink-0">
-          <span class="hidden md:block tag italic">Verified Identity</span>
           <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/PGESC6D4?sharingId=57FCD8AE461DCC45" target="_blank"
              class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
             Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
@@ -816,7 +807,6 @@
           <h4 class="font-sans font-semibold text-zinc-900 tracking-tight">GitHub Admin &amp; Product Features</h4>
         </div>
         <div class="flex items-center gap-4 flex-shrink-0">
-          <span class="hidden md:block tag italic">Verified Identity</span>
           <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/9RCFAERU?sharingId=57FCD8AE461DCC45" target="_blank"
              class="flex items-center gap-1.5 px-4 py-2 border border-zinc-200 rounded-full tag tag-dark hover:bg-zinc-900 hover:text-paper hover:border-zinc-900 transition-all">
             Verify <i data-lucide="shield-check" class="w-3 h-3"></i>
