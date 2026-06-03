@@ -124,8 +124,8 @@
 
     .rail { border-left: 2px solid #f4f4f5; padding-left: 2.5rem; }
     .rail-dot {
-      width: .6rem; height: .6rem; border-radius: 50%;
-      background: #2563eb; margin-left: -2.85rem; margin-right: 2.25rem;
+      width: .65rem; height: .65rem; border-radius: 2px;
+      background: #2563eb; margin-left: -2.875rem; margin-right: 2.25rem;
       flex-shrink: 0; margin-top: .35rem;
       box-shadow: 0 0 0 4px #fafafa;
     }
@@ -140,11 +140,11 @@
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .marquee-inner { display: flex; animation: marquee 40s linear infinite; white-space: nowrap; }
 
-    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: .5; } }
-    .status-dot { width: .5rem; height: .5rem; border-radius: 50%; background: #2563eb; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: .6; } }
+    .status-dot { width: .5rem; height: .5rem; border-radius: 1px; background: #2563eb; animation: pulse 2s ease-in-out infinite; }
 
     .divider-orb {
-      width: 8px; height: 8px; border-radius: 50%; background: #2563eb; flex-shrink: 0;
+      width: 6px; height: 6px; border-radius: 1px; background: #2563eb; flex-shrink: 0;
     }
 
     .num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; opacity: 0.1; }
