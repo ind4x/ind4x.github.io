@@ -95,32 +95,129 @@
     }
 
     .card-lift {
+      background: rgba(255, 255, 255, 0.65) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(228, 228, 231, 0.6) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02), inset 0 8px 32px rgba(255, 255, 255, 0.4);
       transition: all 0.5s cubic-bezier(.16,1,.3,1);
     }
     .card-lift:hover {
       transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
-      border-color: #52525b;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08), inset 0 8px 32px rgba(255, 255, 255, 0.6);
+      border-color: rgba(82, 82, 91, 0.4) !important;
+      background: rgba(255, 255, 255, 0.75) !important;
     }
 
     .cap-pill {
       display: inline-flex; align-items: center; gap: .5rem;
       padding: .5rem 1.25rem; border-radius: 99px;
-      border: 1px solid #e4e4e7;
-      background: #fff;
+      border: 1px solid rgba(228, 228, 231, 0.6);
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       font-size: .75rem; font-weight: 500; font-family: 'Space Grotesk', sans-serif;
       text-transform: uppercase; letter-spacing: .1em; color: #3f3f46;
       transition: all 0.4s cubic-bezier(.16,1,.3,1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
     }
     .cap-pill:hover { background: #18181b; color: #ffffff; border-color: #18181b; transform: translateY(-2px); }
+
+    /* Antigravity floating shape definitions */
+    .parallax-layer {
+      position: absolute;
+      will-change: transform;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Glassmorphism shape presets */
+    .glass-orb {
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: inset 0 8px 32px rgba(255,255,255,0.3), inset 0 -8px 32px rgba(0,0,0,0.05), 0 12px 32px rgba(0,0,0,0.03);
+    }
+    .glass-orb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 75% 75%, rgba(239, 125, 0, 0.1) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    
+    .glass-orb-silver {
+      border-radius: 50%;
+      border: 16px solid rgba(228, 228, 231, 0.6);
+      background: linear-gradient(135deg, rgba(250,250,250,0.1), rgba(161,161,170,0.05));
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: inset 0 4px 12px rgba(255,255,255,0.8), inset 0 -4px 12px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.03);
+    }
+
+    .glass-orb-cube {
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: inset 0 8px 24px rgba(255,255,255,0.3), inset 0 -8px 24px rgba(0,0,0,0.05), 0 10px 24px rgba(0,0,0,0.02);
+    }
+
+    /* Unsynchronized global float animations */
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg) scale(1); }
+      50% { transform: translateY(-15px) rotate(3deg) scale(1.02); }
+      100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    }
+    @keyframes float-alt {
+      0% { transform: translate(0px, 0px) rotate(0deg); }
+      33% { transform: translate(8px, -12px) rotate(-4deg); }
+      66% { transform: translate(-8px, 8px) rotate(4deg); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+    @keyframes float-cube {
+      0% { transform: translateY(0px) rotate(35deg) scale(1); }
+      50% { transform: translateY(12px) rotate(42deg) scale(0.97); }
+      100% { transform: translateY(0px) rotate(35deg) scale(1); }
+    }
+    @keyframes float-orb {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+
+    .float-slow { animation: float 28s ease-in-out infinite; }
+    .float-medium { animation: float-alt 22s ease-in-out infinite; }
+    .float-cube-anim { animation: float-cube 20s ease-in-out infinite; }
+    .float-fast { animation: float-orb 16s ease-in-out infinite; }
+
+    /* Support legacy hero naming if unchanged */
+    .float-anim-1 { animation: float 18s ease-in-out infinite; }
+    .float-anim-2 { animation: float-alt 24s ease-in-out infinite; }
+    .float-anim-3 { animation: float-cube 20s ease-in-out infinite; }
+    .float-anim-4 { animation: float-orb 16s ease-in-out infinite; }
 
     .cert-row {
       display: flex; align-items: center; gap: 2rem;
       padding: 2rem; margin: 0 -1.5rem;
       border-radius: 1.25rem;
+      border: 1px solid transparent;
       transition: all 0.4s cubic-bezier(.16,1,.3,1);
     }
-    .cert-row:hover { background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.04); }
+    .cert-row:hover {
+      background: rgba(255, 255, 255, 0.65) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-color: rgba(228, 228, 231, 0.6) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03), inset 0 4px 12px rgba(255, 255, 255, 0.4);
+    }
+
 
     .rail { border-left: 2px solid #f4f4f5; padding-left: 2.5rem; }
 
@@ -154,43 +251,70 @@
 </header>
 
 
-<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-20 text-center overflow-hidden">
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-20 text-center overflow-hidden bg-paper bg-none z-10">
 
-  <div class="pointer-events-none select-none absolute inset-0 opacity-[.06]" aria-hidden="true">
+  <!-- Parallax Floating Shapes Container -->
+  <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden" id="hero-floating-container">
+    <!-- Background glowing ambience -->
+    <div class="absolute top-[10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-orange-500/5 blur-[120px]"></div>
+    <div class="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-indigo-500/5 blur-[120px]"></div>
+    
+    <!-- Shape 1: Glass Sphere -->
+    <div class="absolute top-[15%] left-[5%] md:left-[12%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.04">
+      <div class="w-36 h-36 md:w-64 md:h-64 rounded-full float-anim-1 glass-sphere border border-white/40 shadow-[inset_0_8px_32px_rgba(255,255,255,0.4),_inset_0_-8px_32px_rgba(0,0,0,0.05),_0_12px_32px_rgba(0,0,0,0.03)] bg-gradient-to-tr from-white/10 to-white/35 backdrop-blur-[16px]"></div>
+    </div>
+    
+    <!-- Shape 2: Silver Torus/Ring -->
+    <div class="absolute bottom-[20%] right-[3%] md:right-[10%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.06">
+      <div class="w-32 h-32 md:w-52 md:h-52 rounded-full border-[16px] md:border-[24px] border-zinc-200 float-anim-2 shadow-[inset_0_4px_12px_rgba(255,255,255,0.8),_inset_0_-4px_12px_rgba(0,0,0,0.1),_0_10px_30px_rgba(0,0,0,0.04)] bg-gradient-to-br from-zinc-100/10 to-zinc-200/20 backdrop-blur-[8px]"></div>
+    </div>
+    
+    <!-- Shape 3: Frosted Glass Cube (isometric rot) -->
+    <div class="absolute top-[20%] right-[5%] md:right-[12%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.03">
+      <div class="w-24 h-24 md:w-40 md:h-40 rounded-[1.5rem] md:rounded-[2.25rem] float-anim-3 rotate-[35deg] border border-white/30 shadow-[inset_0_8px_24px_rgba(255,255,255,0.3),_inset_0_-8px_24px_rgba(0,0,0,0.05),_0_10px_24px_rgba(0,0,0,0.02)] bg-gradient-to-br from-white/20 via-white/5 to-indigo-500/5 backdrop-blur-[14px]"></div>
+    </div>
+    
+    <!-- Shape 4: Glowing Core Orb -->
+    <div class="absolute bottom-[25%] left-[5%] md:left-[15%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.08">
+      <div class="w-20 h-20 md:w-32 md:h-32 rounded-full float-anim-4 shadow-[inset_0_6px_20px_rgba(255,255,255,0.4),_0_15px_30px_rgba(239,125,0,0.08),_0_-15px_30px_rgba(99,102,241,0.06)] bg-gradient-to-tr from-orange-500/10 via-white/20 to-indigo-500/15 backdrop-blur-[10px]"></div>
+    </div>
+  </div>
+
+  <div class="pointer-events-none select-none absolute inset-0 opacity-[.06] z-0" aria-hidden="true">
     <div class="absolute top-20 left-10 font-mono text-[10px] font-bold tracking-[.6em] uppercase rotate-90 origin-top-left text-zinc-900">sys_arch // v3.0</div>
     <div class="absolute bottom-32 right-10 font-mono text-[10px] font-bold tracking-[.6em] uppercase -rotate-90 origin-bottom-right text-zinc-900">me.yss-ef</div>
   </div>
 
-  <div class="anim anim-1 mb-12 cap-pill border-accent/20 text-accent">
-    <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
-    Software Engineer &amp; System Architect
+  <!-- Content Container (sit above the floating items) -->
+  <div class="relative z-10 w-full flex flex-col items-center justify-center">
+
+
+    <h1 class="anim anim-2 hero-head font-serif font-bold text-[clamp(3.5rem,12vw,10.5rem)] text-zinc-900 max-w-7xl mx-auto leading-none">
+      Designing<br/>
+      <em class="text-accent not-italic">Systems</em><br/>
+      Executing Logic
+    </h1>
+
+    <p class="anim anim-3 mt-12 text-xl md:text-2xl text-zinc-400 font-medium max-w-3xl mx-auto leading-relaxed tracking-tight">
+      Building <span class="text-zinc-900">robust architectures</span> and <span class="text-zinc-900">intelligent systems</span> from the ground up.
+    </p>
+
+    <div class="anim anim-4 mt-16 flex flex-wrap justify-center gap-4 max-w-4xl px-4">
+      <span class="cap-pill"><i data-lucide="lightbulb" class="w-3.5 h-3.5"></i>System Analysis</span>
+      <span class="cap-pill"><i data-lucide="layers" class="w-3.5 h-3.5"></i>Technical Architecture</span>
+      <span class="cap-pill"><i data-lucide="code-2" class="w-3.5 h-3.5"></i>Software Engineering</span>
+      <span class="cap-pill"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i>Testing &amp; Security</span>
+      <span class="cap-pill"><i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i>Cloud Infrastructure</span>
+    </div>
+
+    <div class="anim anim-5 mt-14">
+      <a href="#projects" class="flex items-center gap-3 bg-zinc-900 text-white px-10 py-4 rounded-full font-serif font-bold text-sm uppercase tracking-widest hover:bg-accent transition-all hover:scale-105 active:scale-95">
+        View Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
   </div>
 
-  <h1 class="anim anim-2 hero-head font-serif font-bold text-[clamp(3.5rem,12vw,10.5rem)] text-zinc-900 max-w-7xl mx-auto">
-    Designing<br/>
-    <em class="text-accent not-italic">Systems</em><br/>
-    Executing Logic
-  </h1>
-
-  <p class="anim anim-3 mt-12 text-xl md:text-2xl text-zinc-400 font-medium max-w-3xl mx-auto leading-relaxed tracking-tight">
-    Building <span class="text-zinc-900">robust architectures</span> and <span class="text-zinc-900">intelligent systems</span> from the ground up.
-  </p>
-
-  <div class="anim anim-4 mt-16 flex flex-wrap justify-center gap-4">
-    <span class="cap-pill"><i data-lucide="lightbulb" class="w-3.5 h-3.5"></i>System Analysis</span>
-    <span class="cap-pill"><i data-lucide="layers" class="w-3.5 h-3.5"></i>Technical Architecture</span>
-    <span class="cap-pill"><i data-lucide="code-2" class="w-3.5 h-3.5"></i>Software Engineering</span>
-    <span class="cap-pill"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i>Testing &amp; Security</span>
-    <span class="cap-pill"><i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i>Cloud Infrastructure</span>
-  </div>
-
-  <div class="anim anim-5 mt-14">
-    <a href="#projects" class="flex items-center gap-3 bg-zinc-900 text-white px-10 py-4 rounded-full font-serif font-bold text-sm uppercase tracking-widest hover:bg-accent transition-all hover:scale-105 active:scale-95">
-      View Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
-    </a>
-  </div>
-
-  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
+  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40 z-10">
     <div class="w-px h-12 bg-accent"></div>
     <span class="tag text-accent" style="font-size:.6rem">scroll</span>
   </div>
@@ -215,13 +339,25 @@
 </div>
 
 
-<section id="about" class="py-48 px-6">
-  <div class="max-w-7xl mx-auto">
+<section id="about" class="relative py-48 px-6 overflow-hidden">
+  <!-- Parallax Floating Background Shapes -->
+  <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+    <div class="absolute top-[10%] right-[5%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.04">
+      <div class="w-32 h-32 md:w-48 md:h-48 relative float-slow glass-orb"></div>
+    </div>
+    <div class="absolute bottom-[10%] left-[2%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.06">
+      <div class="w-28 h-28 md:w-40 md:h-40 relative float-medium glass-orb-silver"></div>
+    </div>
+  </div>
 
-    <div class="reveal flex items-center gap-6 mb-24">
-      
-      <span class="section-label">01 // Biography</span>
-      <div class="h-px flex-1 bg-zinc-100"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    <div class="reveal space-y-4 mb-24">
+      <div class="flex items-center gap-6">
+        <span class="section-label">01 // Biography</span>
+        <div class="h-px flex-1 bg-zinc-100"></div>
+      </div>
+      <h2 class="font-serif font-bold text-5xl md:text-8xl tracking-tighter text-zinc-900 leading-none">About Me</h2>
     </div>
 
     <div class="flex flex-col lg:flex-row gap-20 items-start">
@@ -273,7 +409,7 @@
 
         <div class="pt-12 border-t border-zinc-100 grid grid-cols-3 gap-8">
           <div>
-            <p class="num text-5xl text-accent">3+</p>
+            <p class="num text-5xl text-accent">4+</p>
             <p class="tag mt-2">Years<br/>Coding</p>
           </div>
           <div>
@@ -289,363 +425,553 @@
 
     </div>
   </div>
+</div>
 </section>
 
 
-<section id="stack" class="py-48 px-6 bg-white border-y border-zinc-100">
-  <div class="max-w-7xl mx-auto space-y-24">
+<section id="stack" class="relative py-48 px-6 bg-white border-y border-zinc-100 overflow-hidden">
+  <!-- Parallax Floating Background Shapes -->
+  <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+    <div class="absolute top-[15%] left-[8%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.05">
+      <div class="w-24 h-24 md:w-36 md:h-36 relative float-fast glass-orb"></div>
+    </div>
+    <div class="absolute bottom-[15%] right-[5%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.03">
+      <div class="w-28 h-28 md:w-44 md:h-44 relative float-cube-anim glass-orb-cube"></div>
+    </div>
+  </div>
 
-    <div class="reveal flex items-center gap-6">
-      
-      <span class="section-label">02 // Arsenal — Technical Specification</span>
-      <div class="h-px flex-1 bg-zinc-100"></div>
+  <div class="max-w-7xl mx-auto space-y-24 relative z-10">
+
+    <div class="reveal space-y-4">
+      <div class="flex items-center gap-6">
+        <span class="section-label">02 // Arsenal</span>
+        <div class="h-px flex-1 bg-zinc-100"></div>
+      </div>
+      <h2 class="font-serif font-bold text-5xl md:text-8xl tracking-tighter text-zinc-900 leading-none">My Stack</h2>
     </div>
 
-    <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-16">
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">Backend &amp; Core</h4>
-          <span class="tag text-accent">01</span>
+      <!-- Bento 1: Backend & Core (Wide, spanning 2 columns) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-2">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
         </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-900">Java</span>
-          <span class="text-zinc-900">Spring Boot</span>
-          <span class="text-zinc-400">Spring Security</span>
-          <span class="text-zinc-900">PHP</span>
-          <span class="text-zinc-900">Node.js</span>
-          <span class="text-zinc-900">Python</span>
-          <span class="text-zinc-900">Solidity</span>
+        <div class="relative z-10 space-y-8">
+          <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
+            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Backend &amp; Core</h4>
+            <span class="tag text-accent font-bold">01</span>
+          </div>
+          <div class="flex flex-wrap gap-x-6 gap-y-4 font-serif text-lg font-bold uppercase tracking-widest leading-loose">
+            <span class="text-zinc-900">Java</span>
+            <span class="text-zinc-900">Spring Boot</span>
+            <span class="text-zinc-400">Spring Security</span>
+            <span class="text-zinc-900">PHP</span>
+            <span class="text-zinc-900">Node.js</span>
+            <span class="text-zinc-900">Python</span>
+            <span class="text-zinc-900">Solidity</span>
+          </div>
         </div>
       </div>
 
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">Frontend</h4>
-          <span class="tag text-accent">02</span>
+      <!-- Bento 2: Frontend (Standard, spanning 1 column) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
         </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-900">Angular</span>
-          <span class="text-zinc-900">React.js</span>
-          <span class="text-zinc-900">Flutter</span>
-          <span class="text-zinc-900">TypeScript</span>
-          <span class="text-zinc-400">JavaScript</span>
-          <span class="text-zinc-400">HTML5 / SCSS</span>
-          <span class="text-zinc-400">Tailwind</span>
-          <span class="text-zinc-900">Web3.js</span>
-        </div>
-      </div>
-
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">Data &amp; Databases</h4>
-          <span class="tag text-accent">03</span>
-        </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-900">PostgreSQL</span>
-          <span class="text-zinc-900">MySQL</span>
-          <span class="text-zinc-400">SQL / PL-SQL</span>
-          <span class="text-zinc-900">MongoDB</span>
-          <span class="text-zinc-400">Hibernate / JPA</span>
-          <span class="text-zinc-900">Power BI</span>
+        <div class="relative z-10 space-y-8">
+          <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
+            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Frontend</h4>
+            <span class="tag text-accent font-bold">02</span>
+          </div>
+          <div class="flex flex-wrap gap-x-5 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
+            <span class="text-zinc-900">Angular</span>
+            <span class="text-zinc-900">React.js</span>
+            <span class="text-zinc-900">Flutter</span>
+            <span class="text-zinc-900">TypeScript</span>
+            <span class="text-zinc-400">JavaScript</span>
+            <span class="text-zinc-400">HTML5 / SCSS</span>
+            <span class="text-zinc-400">Tailwind</span>
+            <span class="text-zinc-900">Web3.js</span>
+          </div>
         </div>
       </div>
 
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">Data Analytics</h4>
-          <span class="tag text-accent">04</span>
+      <!-- Bento 3: Blockchain & Web3 (Tall, spanning 1 col, 2 rows) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1 lg:row-span-2 flex flex-col justify-between">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
         </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-400">Data Visualization</span>
-          <span class="text-zinc-900">Tableau</span>
-          <span class="text-zinc-400">Exploratory Analysis</span>
-          <span class="text-zinc-400">Reporting / Dashboards</span>
-        </div>
-      </div>
-
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">Cloud &amp; Infrastructure</h4>
-          <span class="tag text-accent">05</span>
-        </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-900">AWS</span>
-          <span class="text-zinc-400">EC2 / S3 / RDS</span>
-          <span class="text-zinc-900">Linux</span>
-          <span class="text-zinc-400">Windows Server</span>
-          <span class="text-zinc-900">Docker</span>
-          <span class="text-zinc-900">Zabbix</span>
-          <span class="text-zinc-400">Git / CI-CD</span>
-          <span class="text-zinc-400">OpenStack</span>
+        <div class="relative z-10 space-y-8 flex-grow flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
+              <h4 class="tag tag-dark font-bold text-sm tracking-widest">Blockchain &amp; Web3</h4>
+              <span class="tag text-accent font-bold">03</span>
+            </div>
+            <p class="text-xs text-zinc-400 font-medium tracking-tight">Decentralized protocols, smart contracts execution, and self-sovereign identity structures.</p>
+          </div>
+          <div class="flex flex-wrap gap-x-5 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose pt-6">
+            <span class="text-zinc-900">Solidity</span>
+            <span class="text-zinc-400">Smart Contracts</span>
+            <span class="text-zinc-900">Web3.js</span>
+            <span class="text-zinc-900">IPFS</span>
+            <span class="text-zinc-900">Ethereum</span>
+          </div>
         </div>
       </div>
 
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">Security &amp; Networks</h4>
-          <span class="tag text-accent">06</span>
+      <!-- Bento 4: Cloud & Infrastructure (Standard, spanning 1 column) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
         </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-400">Firewall Management</span>
-          <span class="text-zinc-900">OPNsense</span>
-          <span class="text-zinc-400">Endpoint Security</span>
-          <span class="text-zinc-900">IoT</span>
-          <span class="text-zinc-400">Network Config</span>
-        </div>
-      </div>
-
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">AI &amp; Integration</h4>
-          <span class="tag text-accent">07</span>
-        </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-900">RAG Systems</span>
-          <span class="text-zinc-400">AI Integration</span>
-          <span class="text-zinc-900">LLM APIs</span>
-          <span class="text-zinc-400">Document Generation</span>
-          <span class="text-zinc-400">Python AI Libs</span>
+        <div class="relative z-10 space-y-8">
+          <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
+            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Cloud &amp; Infrastructure</h4>
+            <span class="tag text-accent font-bold">04</span>
+          </div>
+          <div class="flex flex-wrap gap-x-4 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
+            <span class="text-zinc-900">AWS</span>
+            <span class="text-zinc-400">EC2 / S3 / RDS</span>
+            <span class="text-zinc-900">Linux</span>
+            <span class="text-zinc-400">Windows Server</span>
+            <span class="text-zinc-900">Docker</span>
+            <span class="text-zinc-900">Zabbix</span>
+            <span class="text-zinc-400">Git / CI-CD</span>
+            <span class="text-zinc-400">OpenStack</span>
+          </div>
         </div>
       </div>
 
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">Blockchain &amp; Web3</h4>
-          <span class="tag text-accent">08</span>
+      <!-- Bento 5: AI & Integration (Standard, spanning 1 column) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
         </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-900">Solidity</span>
-          <span class="text-zinc-400">Smart Contracts</span>
-          <span class="text-zinc-900">Web3.js</span>
-          <span class="text-zinc-900">IPFS</span>
-          <span class="text-zinc-900">Ethereum</span>
+        <div class="relative z-10 space-y-8">
+          <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
+            <h4 class="tag tag-dark font-bold text-sm tracking-widest">AI &amp; Integration</h4>
+            <span class="tag text-accent font-bold">05</span>
+          </div>
+          <div class="flex flex-wrap gap-x-4 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
+            <span class="text-zinc-900">RAG Systems</span>
+            <span class="text-zinc-400">AI Integration</span>
+            <span class="text-zinc-900">LLM APIs</span>
+            <span class="text-zinc-400">Document Generation</span>
+            <span class="text-zinc-400">Python AI Libs</span>
+          </div>
         </div>
       </div>
 
-      <div class="space-y-5">
-        <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100">
-          <h4 class="tag tag-dark font-bold text-sm tracking-widest">Methods &amp; DevOps</h4>
-          <span class="tag text-accent">09</span>
+      <!-- Bento 6: Data & Analytics (Wide, spanning 2 columns) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-2">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
         </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.85rem] font-bold uppercase tracking-widest leading-loose">
-          <span class="text-zinc-900">Agile / Scrum</span>
-          <span class="text-zinc-900">UML</span>
-          <span class="text-zinc-400">REST APIs</span>
-          <span class="text-zinc-400">JWT / RBAC</span>
-          <span class="text-zinc-900">Postman</span>
-          <span class="text-zinc-900">DevOps</span>
+        <div class="relative z-10 space-y-8">
+          <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
+            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Data &amp; Analytics</h4>
+            <span class="tag text-accent font-bold">06</span>
+          </div>
+          <div class="flex flex-wrap gap-x-5 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
+            <span class="text-zinc-900">PostgreSQL</span>
+            <span class="text-zinc-900">MySQL</span>
+            <span class="text-zinc-400">SQL / PL-SQL</span>
+            <span class="text-zinc-900">MongoDB</span>
+            <span class="text-zinc-400">Hibernate / JPA</span>
+            <span class="text-zinc-900">Power BI</span>
+            <span class="text-zinc-400">Data Visualization</span>
+            <span class="text-zinc-900">Tableau</span>
+            <span class="text-zinc-400">Exploratory Analysis</span>
+            <span class="text-zinc-400">Reporting / Dashboards</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 7: Security & Networks (Wide, spanning 2 columns) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-2">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+        </div>
+        <div class="relative z-10 space-y-8">
+          <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
+            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Security &amp; Networks</h4>
+            <span class="tag text-accent font-bold">07</span>
+          </div>
+          <div class="flex flex-wrap gap-x-5 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
+            <span class="text-zinc-400">Firewall Management</span>
+            <span class="text-zinc-900">OPNsense</span>
+            <span class="text-zinc-400">Endpoint Security</span>
+            <span class="text-zinc-900">IoT</span>
+            <span class="text-zinc-400">Network Config</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 8: Methods & DevOps (Standard, spanning 1 column) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+        </div>
+        <div class="relative z-10 space-y-8">
+          <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
+            <h4 class="tag tag-dark font-bold text-sm tracking-widest">DevOps &amp; Methods</h4>
+            <span class="tag text-accent font-bold">08</span>
+          </div>
+          <div class="flex flex-wrap gap-x-4 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
+            <span class="text-zinc-900">Agile / Scrum</span>
+            <span class="text-zinc-900">UML</span>
+            <span class="text-zinc-400">REST APIs</span>
+            <span class="text-zinc-400">JWT / RBAC</span>
+            <span class="text-zinc-900">Postman</span>
+            <span class="text-zinc-900">DevOps</span>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
+</div>
 </section>
 
 
-<section id="experience" class="py-48 px-6">
-  <div class="max-w-7xl mx-auto space-y-32">
-
-    <div class="reveal flex items-center gap-6">
-      
-      <span class="section-label">03 // Field Experience</span>
-      <div class="h-px flex-1 bg-zinc-100"></div>
+<section id="experience" class="relative py-48 px-6 overflow-hidden">
+  <!-- Parallax Floating Background Shapes -->
+  <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+    <div class="absolute top-[20%] right-[10%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.04">
+      <div class="w-32 h-32 md:w-48 md:h-48 relative float-slow glass-orb-silver"></div>
     </div>
-
-    <div class="reveal flex flex-col lg:flex-row gap-16 lg:gap-24">
-      <div class="lg:w-1/3">
-        <div class="rail space-y-8">
-          <div class="flex items-start">
-            
-            <div class="space-y-2">
-              <p class="tag text-accent font-bold" style="font-size:.75rem">Active Mission</p>
-              <p class="tag font-bold">Feb 2026 — Present</p>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h4 class="font-serif font-bold text-2xl text-zinc-950 tracking-tight">Broker Immobilier</h4>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 font-serif text-[.65rem] font-bold uppercase tracking-[.2em] text-accent">
-              <span>Angular</span><span class="text-zinc-200">/</span><span>Spring Boot</span><span class="text-zinc-200">/</span><span>RAG AI</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="lg:w-2/3 space-y-10">
-        <h3 class="font-serif font-bold text-5xl md:text-6xl leading-tight text-zinc-900">
-          Full-Stack Engineer<br/>
-          <em class="text-zinc-300">SaaS Architecture</em>
-        </h3>
-        <div class="space-y-8 text-xl text-zinc-500 font-medium leading-relaxed">
-          <p>Leading the engineering of a <span class="text-zinc-900">next-generation real estate CRM</span>, translating product requirements into production-ready microservices, reactive interfaces, and AI-powered document pipelines.</p>
-          <div class="space-y-6 pt-8 border-t border-zinc-100">
-            <div class="flex gap-6"><span class="tag text-accent font-bold pt-1">01</span><p>Architecting scalable microservices with Spring Boot and reactive interfaces in Angular.</p></div>
-            <div class="flex gap-6"><span class="tag text-accent font-bold pt-1">02</span><p>Implementing RAG pipelines and LLM integrations for automated property document synthesis.</p></div>
-          </div>
-        </div>
-      </div>
+    <div class="absolute bottom-[15%] left-[5%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.05">
+      <div class="w-24 h-24 md:w-40 md:h-40 relative float-medium glass-orb"></div>
     </div>
-
-    <div class="reveal flex flex-col lg:flex-row gap-16 lg:gap-24 pt-16 border-t border-zinc-100">
-      <div class="lg:w-1/3">
-        <div class="rail space-y-8">
-          <div class="flex items-start">
-            
-            <div class="space-y-2">
-              <p class="tag text-zinc-400 font-bold" style="font-size:.75rem">Completed</p>
-              <p class="tag font-bold">Aug 2025</p>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h4 class="font-serif font-bold text-2xl text-zinc-950 tracking-tight">HTBS Africa</h4>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 font-serif text-[.65rem] font-bold uppercase tracking-[.2em] text-zinc-400">
-              <span>PHP</span><span class="text-zinc-200">/</span><span>SQL</span><span class="text-zinc-200">/</span><span>Dolibarr</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="lg:w-2/3 space-y-10">
-        <h3 class="font-serif font-bold text-5xl md:text-6xl leading-tight text-zinc-900">
-          ERP Developer<br/>
-          <em class="text-zinc-300">Financial Engineering</em>
-        </h3>
-        <div class="space-y-8 text-xl text-zinc-500 font-medium leading-relaxed">
-          <p>Specialized in <span class="text-zinc-900">ERP customization</span> within a demanding financial environment. Engineered mission-critical modules that sharpened both reporting accuracy and operational throughput.</p>
-          <div class="space-y-6 pt-8 border-t border-zinc-100">
-            <div class="flex gap-6"><span class="tag text-zinc-400 font-bold pt-1">01</span><p>Refactored Dolibarr ERP internals to integrate new business logic for treasury management.</p></div>
-            <div class="flex gap-6"><span class="tag text-zinc-400 font-bold pt-1">02</span><p>Authored optimized SQL queries, reducing tax report load time by 40%.</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal flex flex-col lg:flex-row gap-16 lg:gap-24 pt-16 border-t border-zinc-100">
-      <div class="lg:w-1/3">
-        <div class="rail space-y-8">
-          <div class="flex items-start">
-            
-            <div class="space-y-2">
-              <p class="tag text-zinc-400 font-bold" style="font-size:.75rem">PFE Project</p>
-              <p class="tag font-bold">Apr — Jul 2025</p>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h4 class="font-serif font-bold text-2xl text-zinc-950 tracking-tight">FST Errachidia</h4>
-            <div class="flex flex-wrap gap-x-3 gap-y-1 font-serif text-[.65rem] font-bold uppercase tracking-[.2em] text-zinc-400">
-              <span>Solidity</span><span class="text-zinc-200">/</span><span>Web3.js</span><span class="text-zinc-200">/</span><span>React</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="lg:w-2/3 space-y-10">
-        <h3 class="font-serif font-bold text-5xl md:text-6xl leading-tight text-zinc-900">
-          Blockchain Developer<br/>
-          <em class="text-zinc-300">Decentralized Systems</em>
-        </h3>
-        <div class="space-y-8 text-xl text-zinc-500 font-medium leading-relaxed">
-          <p>Final-year project: designed and deployed a <span class="text-zinc-900">decentralized e-learning platform</span> on Ethereum, combining on-chain smart contracts with IPFS-distributed content storage.</p>
-          <div class="space-y-6 pt-8 border-t border-zinc-100">
-            <div class="flex gap-6"><span class="tag text-zinc-400 font-bold pt-1">01</span><p>Authored and deployed Solidity smart contracts for verifiable certification and IPFS integration.</p></div>
-            <div class="flex gap-6"><span class="tag text-zinc-400 font-bold pt-1">02</span><p>Engineered a React-based frontend with seamless Web3 wallet interaction.</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
+
+  <div class="max-w-7xl mx-auto space-y-24 relative z-10">
+
+    <div class="reveal space-y-4">
+      <div class="flex items-center gap-6">
+        <span class="section-label">03 // Experience</span>
+        <div class="h-px flex-1 bg-zinc-100"></div>
+      </div>
+      <h2 class="font-serif font-bold text-5xl md:text-8xl tracking-tighter text-zinc-900 leading-none">Field Work</h2>
+    </div>
+
+    <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      <!-- Experience Card 1: Broker Immobilier (Wide, Active Mission) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-2">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+        </div>
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Column 1: Meta -->
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 text-[0.65rem] font-bold tracking-widest uppercase">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>Active Mission
+              </span>
+              <p class="tag font-bold text-zinc-400">Feb 2026 — Present</p>
+            </div>
+            <div class="space-y-3">
+              <div class="w-14 h-14 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
+                <i data-lucide="building-2" class="w-6 h-6 text-accent"></i>
+              </div>
+              <h4 class="font-serif font-bold text-2xl text-zinc-950 tracking-tight">Broker Immobilier</h4>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[10px] font-bold tracking-wider text-zinc-500 uppercase">Angular</span>
+              <span class="px-3 py-1 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[10px] font-bold tracking-wider text-zinc-500 uppercase">Spring Boot</span>
+              <span class="px-3 py-1 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[10px] font-bold tracking-wider text-zinc-500 uppercase">RAG AI</span>
+            </div>
+          </div>
+          
+          <!-- Columns 2-3: Core Content -->
+          <div class="lg:col-span-2 space-y-6">
+            <h3 class="font-serif font-bold text-3xl md:text-4xl leading-tight text-zinc-900">
+              Full-Stack Engineer<br/>
+              <em class="text-zinc-400 not-italic">SaaS Architecture</em>
+            </h3>
+            <div class="space-y-6 text-base text-zinc-500 font-medium leading-relaxed">
+              <p>Leading the engineering of a <span class="text-zinc-900">next-generation real estate CRM</span>, translating product requirements into production-ready microservices, reactive interfaces, and AI-powered document pipelines.</p>
+              <div class="space-y-4 pt-6 border-t border-zinc-100">
+                <div class="flex gap-4 items-start">
+                  <span class="tag text-accent font-bold pt-1">01</span>
+                  <p class="text-sm">Architecting scalable microservices with Spring Boot and reactive interfaces in Angular.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                  <span class="tag text-accent font-bold pt-1">02</span>
+                  <p class="text-sm">Implementing RAG pipelines and LLM integrations for automated property document synthesis.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Experience Card 2: HTBS Africa (Standard Column) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1 flex flex-col justify-between">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+        </div>
+        <div class="relative z-10 space-y-6 flex-grow flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="flex justify-between items-start">
+              <div class="space-y-1">
+                <span class="px-2.5 py-0.5 rounded-full bg-zinc-200/55 text-zinc-500 text-[10px] font-bold tracking-widest uppercase">Completed</span>
+                <p class="tag font-bold text-zinc-400">Aug 2025</p>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
+                <i data-lucide="briefcase" class="w-5 h-5 text-accent"></i>
+              </div>
+            </div>
+            
+            <div class="space-y-2">
+              <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">HTBS Africa</h4>
+              <h3 class="font-serif font-bold text-2xl leading-snug text-zinc-900">
+                ERP Developer &mdash; <em class="text-zinc-400 not-italic">Finance</em>
+              </h3>
+            </div>
+            
+            <p class="text-sm text-zinc-500 font-medium leading-relaxed">Specialized in <span class="text-zinc-900">ERP customization</span> within a demanding financial environment. Engineered mission-critical modules that sharpened both reporting accuracy and operational throughput.</p>
+          </div>
+          
+          <div class="space-y-4 pt-6 border-t border-zinc-100/50">
+            <div class="flex gap-4 items-start">
+              <span class="tag text-zinc-400 font-bold pt-0.5">01</span>
+              <p class="text-xs text-zinc-500">Refactored Dolibarr ERP internals to integrate treasury management business logic.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="tag text-zinc-400 font-bold pt-0.5">02</span>
+              <p class="text-xs text-zinc-500">Authored optimized SQL queries, reducing tax report load time by 40%.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-2 py-0.5 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[9px] font-bold tracking-wider text-zinc-400 uppercase">PHP</span>
+              <span class="px-2 py-0.5 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[9px] font-bold tracking-wider text-zinc-400 uppercase">SQL</span>
+              <span class="px-2 py-0.5 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[9px] font-bold tracking-wider text-zinc-400 uppercase">Dolibarr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Card 3: FST Errachidia (Standard Column) -->
+      <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1 flex flex-col justify-between">
+        <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-950">
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+        </div>
+        <div class="relative z-10 space-y-6 flex-grow flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="flex justify-between items-start">
+              <div class="space-y-1">
+                <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 border border-indigo-500/15 text-[10px] font-bold tracking-widest uppercase">PFE Project</span>
+                <p class="tag font-bold text-zinc-400">Apr &mdash; Jul 2025</p>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
+                <i data-lucide="link-2" class="w-5 h-5 text-accent"></i>
+              </div>
+            </div>
+            
+            <div class="space-y-2">
+              <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">FST Errachidia</h4>
+              <h3 class="font-serif font-bold text-2xl leading-snug text-zinc-900">
+                Blockchain Developer &mdash; <em class="text-zinc-400 not-italic">Web3</em>
+              </h3>
+            </div>
+            
+            <p class="text-sm text-zinc-500 font-medium leading-relaxed">Final-year project: designed and deployed a <span class="text-zinc-900">decentralized e-learning platform</span> on Ethereum, combining on-chain smart contracts with IPFS-distributed content storage.</p>
+          </div>
+          
+          <div class="space-y-4 pt-6 border-t border-zinc-100/50">
+            <div class="flex gap-4 items-start">
+              <span class="tag text-zinc-400 font-bold pt-0.5">01</span>
+              <p class="text-xs text-zinc-500">Authored Solidity smart contracts for verifiable certification and IPFS integration.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="tag text-zinc-400 font-bold pt-0.5">02</span>
+              <p class="text-xs text-zinc-500">Engineered a React frontend with Web3 wallet interactions.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-2 py-0.5 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[9px] font-bold tracking-wider text-zinc-400 uppercase">Solidity</span>
+              <span class="px-2 py-0.5 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[9px] font-bold tracking-wider text-zinc-400 uppercase">Web3.js</span>
+              <span class="px-2 py-0.5 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[9px] font-bold tracking-wider text-zinc-400 uppercase">React</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 </section>
 
 
-<section id="projects" class="py-48 px-6 bg-white border-y border-zinc-100">
-  <div class="max-w-7xl mx-auto space-y-24">
+<section id="projects" class="relative py-48 px-6 bg-white border-y border-zinc-100 overflow-hidden">
+  <!-- Parallax Floating Background Shapes -->
+  <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+    <div class="absolute top-[12%] left-[4%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.03">
+      <div class="w-28 h-28 md:w-44 md:h-44 relative float-cube-anim glass-orb-cube"></div>
+    </div>
+    <div class="absolute bottom-[10%] right-[8%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.05">
+      <div class="w-24 h-24 md:w-36 md:h-36 relative float-slow glass-orb"></div>
+    </div>
+  </div>
 
-    <div class="reveal flex items-center gap-6">
-      
-      <span class="section-label">04 // Featured Solutions</span>
-      <div class="h-px flex-1 bg-zinc-100"></div>
+  <div class="max-w-7xl mx-auto space-y-24 relative z-10">
+
+    <div class="reveal space-y-4">
+      <div class="flex items-center gap-6">
+        <span class="section-label">04 // Solutions</span>
+        <div class="h-px flex-1 bg-zinc-100"></div>
+      </div>
+      <h2 class="font-serif font-bold text-5xl md:text-8xl tracking-tighter text-zinc-900 leading-none">Featured Work</h2>
     </div>
 
     <div class="reveal">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <div class="card-lift bg-paper border border-zinc-200 rounded-[2.5rem] p-10 space-y-6 relative overflow-hidden group">
-          <div class="absolute inset-0 grid-texture-dense opacity-[.03] pointer-events-none transition-opacity group-hover:opacity-[.08]"></div>
-          <div class="relative z-10 space-y-6">
-            <div class="flex justify-between items-start">
-              <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">01</span>
-              <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm group-hover:border-accent/20 transition-all">
-                <i data-lucide="terminal" class="w-5 h-5 text-accent"></i>
+        <!-- Bento 1: devctl (Wide) -->
+        <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-2">
+          <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-955">
+            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+          </div>
+          <div class="relative z-10 space-y-6 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">01</span>
+                <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
+                  <i data-lucide="terminal" class="w-5 h-5 text-accent"></i>
+                </div>
               </div>
+              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">devctl</h4>
+              <p class="text-base text-zinc-500 font-medium leading-relaxed">A unified CLI that automates development lifecycle orchestration — spinning up Spring Boot, Angular, and Vue.js environments through a single command surface.</p>
             </div>
-            <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">devctl</h4>
-            <p class="text-base text-zinc-500 font-medium leading-relaxed">A unified CLI that automates development lifecycle orchestration — spinning up Spring Boot, Angular, and Vue.js environments through a single command surface.</p>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
               <span>Python</span><span class="text-zinc-200">/</span><span>Shell</span><span class="text-zinc-200">/</span><span>Docker</span>
             </div>
           </div>
         </div>
 
-        <div class="card-lift bg-paper border border-zinc-200 rounded-[2.5rem] p-10 space-y-6 relative overflow-hidden group">
-          <div class="absolute inset-0 grid-texture-dense opacity-[.03] pointer-events-none transition-opacity group-hover:opacity-[.08]"></div>
-          <div class="relative z-10 space-y-6">
-            <div class="flex justify-between items-start">
-              <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">02</span>
-              <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm group-hover:border-accent/20 transition-all">
-                <i data-lucide="link-2" class="w-5 h-5 text-accent"></i>
+        <!-- Bento 2: Decentralized Edu (Square) -->
+        <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1">
+          <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-955">
+            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+          </div>
+          <div class="relative z-10 space-y-6 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">02</span>
+                <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
+                  <i data-lucide="link-2" class="w-5 h-5 text-accent"></i>
+                </div>
               </div>
+              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Decentralized Edu</h4>
+              <p class="text-base text-zinc-500 font-medium leading-relaxed">Blockchain-native e-learning platform using smart contracts for tamper-proof certification issuance and IPFS for resilient content storage.</p>
             </div>
-            <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Decentralized Edu</h4>
-            <p class="text-base text-zinc-500 font-medium leading-relaxed">Blockchain-native e-learning platform using smart contracts for tamper-proof certification issuance and IPFS for resilient content storage.</p>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
               <span>Solidity</span><span class="text-zinc-200">/</span><span>React.js</span><span class="text-zinc-200">/</span><span>Web3.js</span>
             </div>
           </div>
         </div>
 
-        <div class="card-lift bg-paper border border-zinc-200 rounded-[2.5rem] p-10 space-y-6 relative overflow-hidden group">
-          <div class="absolute inset-0 grid-texture-dense opacity-[.03] pointer-events-none transition-opacity group-hover:opacity-[.08]"></div>
-          <div class="relative z-10 space-y-6">
-            <div class="flex justify-between items-start">
-              <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">03</span>
-              <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm group-hover:border-accent/20 transition-all">
-                <i data-lucide="building-2" class="w-5 h-5 text-accent"></i>
+        <!-- Bento 3: CRM SaaS Platform (Tall, spanning 2 rows) -->
+        <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1 lg:row-span-2 flex flex-col justify-between">
+          <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-955">
+            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+          </div>
+          <div class="relative z-10 space-y-8 flex-grow flex flex-col justify-between">
+            <div class="space-y-6">
+              <div class="flex justify-between items-start">
+                <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">03</span>
+                <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
+                  <i data-lucide="building-2" class="w-5 h-5 text-accent"></i>
+                </div>
               </div>
+              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">CRM SaaS Platform</h4>
+              <p class="text-base text-zinc-500 font-medium leading-relaxed">Enterprise real estate ecosystem built on clean architecture principles, with RAG AI pipelines for intelligent document processing and client management.</p>
             </div>
-            <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">CRM SaaS Platform</h4>
-            <p class="text-base text-zinc-500 font-medium leading-relaxed">Enterprise real estate ecosystem built on clean architecture principles, with RAG AI pipelines for intelligent document processing and client management.</p>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
               <span>Spring Boot</span><span class="text-zinc-200">/</span><span>Angular</span><span class="text-zinc-200">/</span><span>RAG AI</span>
             </div>
           </div>
         </div>
 
-        <div class="card-lift bg-paper border border-zinc-200 rounded-[2.5rem] p-10 space-y-6 relative overflow-hidden group">
-          <div class="absolute inset-0 grid-texture-dense opacity-[.03] pointer-events-none transition-opacity group-hover:opacity-[.08]"></div>
-          <div class="relative z-10 space-y-6">
-            <div class="flex justify-between items-start">
-              <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">04</span>
-              <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm group-hover:border-accent/20 transition-all">
-                <i data-lucide="shield-check" class="w-5 h-5 text-accent"></i>
+        <!-- Bento 4: Firewall Config (Square) -->
+        <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1">
+          <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-955">
+            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+          </div>
+          <div class="relative z-10 space-y-6 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">04</span>
+                <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
+                  <i data-lucide="shield-check" class="w-5 h-5 text-accent"></i>
+                </div>
               </div>
+              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Firewall Config</h4>
+              <p class="text-base text-zinc-500 font-medium leading-relaxed">OPNsense firewall deployment with custom ruleset, VLAN segmentation, and enterprise-grade network hardening.</p>
             </div>
-            <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Firewall Config</h4>
-            <p class="text-base text-zinc-500 font-medium leading-relaxed">OPNsense firewall deployment with custom ruleset, VLAN segmentation, and enterprise-grade network hardening.</p>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
               <span>OPNsense</span><span class="text-zinc-200">/</span><span>Networking</span><span class="text-zinc-200">/</span><span>Security</span>
             </div>
           </div>
         </div>
 
-        <div class="card-lift bg-paper border border-zinc-200 rounded-[2.5rem] p-10 space-y-6 relative overflow-hidden group">
-          <div class="absolute inset-0 grid-texture-dense opacity-[.03] pointer-events-none transition-opacity group-hover:opacity-[.08]"></div>
-          <div class="relative z-10 space-y-6">
-            <div class="flex justify-between items-start">
-              <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">05</span>
-              <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm group-hover:border-accent/20 transition-all">
-                <i data-lucide="activity" class="w-5 h-5 text-accent"></i>
+        <!-- Bento 5: Interactive GitHub Archive Card (Square) -->
+        <a href="https://github.com/yss-ef" target="_blank" class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1 block text-left">
+          <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.04] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-950">
+            <i data-lucide="external-link" class="w-5 h-5"></i>
+          </div>
+          <div class="relative z-10 space-y-6 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <div class="w-12 h-12 rounded-2xl bg-zinc-950 flex items-center justify-center shadow-sm">
+                  <i data-lucide="github" class="w-5 h-5 text-white"></i>
+                </div>
               </div>
+              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">GitHub Archive</h4>
+              <p class="text-base text-zinc-500 font-medium leading-relaxed">Dive into my absolute open-source library, system architectures, and utility scripts library.</p>
             </div>
-            <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Infrastructure Supervision</h4>
-            <p class="text-base text-zinc-500 font-medium leading-relaxed">Cloud monitoring with Zabbix on AWS, covering Linux and Windows servers for performance metrics and alerting.</p>
+            <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-500 leading-none">
+              <span>Explore Codebases</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Bento 6: Infrastructure Supervision (Wide, placed in Row 3) -->
+        <div class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-2">
+          <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-955">
+            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+          </div>
+          <div class="relative z-10 space-y-6 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <span class="num text-accent text-5xl group-hover:opacity-20 transition-opacity">05</span>
+                <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
+                  <i data-lucide="activity" class="w-5 h-5 text-accent"></i>
+                </div>
+              </div>
+              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Infrastructure Supervision</h4>
+              <p class="text-base text-zinc-500 font-medium leading-relaxed">Cloud monitoring with Zabbix on AWS, covering Linux and Windows servers for performance metrics and alerting.</p>
+            </div>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
               <span>AWS</span><span class="text-zinc-200">/</span><span>Zabbix</span><span class="text-zinc-200">/</span><span>Monitoring</span>
             </div>
@@ -672,16 +998,29 @@
     </div>
 
   </div>
+</div>
 </section>
 
 
-<section id="credentials" class="py-48 px-6">
-  <div class="max-w-7xl mx-auto space-y-24">
+<section id="credentials" class="relative py-48 px-6 overflow-hidden">
+  <!-- Parallax Floating Background Shapes -->
+  <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+    <div class="absolute top-[10%] right-[6%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.04">
+      <div class="w-24 h-24 md:w-36 md:h-36 relative float-medium glass-orb"></div>
+    </div>
+    <div class="absolute bottom-[12%] left-[4%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.05">
+      <div class="w-28 h-28 md:w-40 md:h-40 relative float-slow glass-orb-silver"></div>
+    </div>
+  </div>
 
-    <div class="reveal flex items-center gap-6">
-      
-      <span class="section-label">05 // Validated Expertise</span>
-      <div class="h-px flex-1 bg-zinc-100"></div>
+  <div class="max-w-7xl mx-auto space-y-24 relative z-10">
+
+    <div class="reveal space-y-4">
+      <div class="flex items-center gap-6">
+        <span class="section-label">05 // Validated Expertise</span>
+        <div class="h-px flex-1 bg-zinc-100"></div>
+      </div>
+      <h2 class="font-serif font-bold text-5xl md:text-8xl tracking-tighter text-zinc-900 leading-none">Credentials</h2>
     </div>
 
     <div class="reveal border-t border-zinc-200 divide-y divide-zinc-100">
@@ -797,6 +1136,7 @@
 
     </div>
   </div>
+</div>
 </section>
 
 
@@ -827,7 +1167,7 @@
     </div>
   </div>
   <footer class="mt-32 text-center tag !text-zinc-600" style="font-size:.7rem; letter-spacing:.4em; font-weight:700;">
-    ʏ ᴄ x ʀ ᴠ s &nbsp;//&nbsp; me.yss-ef.github.io &nbsp;//&nbsp; 2026
+    me.yss-ef.github.io &nbsp;//&nbsp; 2026
   </footer>
 </section>
 
@@ -854,16 +1194,18 @@
         const card = document.createElement('a');
         card.href = repo.html_url;
         card.target = '_blank';
-        card.className = 'card-lift group block p-8 border border-zinc-200 rounded-[2rem] bg-paper relative overflow-hidden';
+        card.className = 'card-lift group block p-8 border border-white/20 rounded-[2rem] bg-white/60 backdrop-blur-xl relative overflow-hidden transition-all duration-500';
         card.innerHTML = `
-          <div class="absolute inset-0 grid-texture-dense opacity-[.03] pointer-events-none transition-opacity group-hover:opacity-[.08]"></div>
+          <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-400 group-hover:text-zinc-955">
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </div>
           <div class="relative z-10 space-y-5">
             <div class="flex justify-between items-start">
               <h4 class="font-serif font-bold text-zinc-950 text-base tracking-tight uppercase group-hover:text-accent transition-colors">${repo.name}</h4>
-              <i data-lucide="arrow-up-right" class="w-4 h-4 text-zinc-300 group-hover:text-accent transition-colors"></i>
             </div>
             <p class="text-sm text-zinc-500 font-medium leading-relaxed line-clamp-2 h-10">${repo.description || 'No description.'}</p>
-            <div class="pt-4 border-t border-zinc-100 flex justify-between items-center">
+            <div class="pt-4 border-t border-zinc-100/50 flex justify-between items-center">
               <span class="tag !text-accent font-bold" style="font-size:.65rem">${repo.language || 'Code'}</span>
               <span class="tag font-bold" style="font-size:.65rem">${year}</span>
             </div>
@@ -876,7 +1218,67 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', fetchRepos);
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchRepos();
+
+    // High-performance parallax using IntersectionObserver and requestAnimationFrame with linear interpolation (lerp)
+    const parallaxLayers = document.querySelectorAll('.parallax-layer');
+    
+    if (parallaxLayers.length > 0) {
+      let mouseX = 0;
+      let mouseY = 0;
+      let targetX = 0;
+      let targetY = 0;
+      const activeLayers = new Set();
+
+      // Intersection Observer to track which shapes are visible in the viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            activeLayers.add(entry.target);
+          } else {
+            activeLayers.delete(entry.target);
+            // Reset position when offscreen to avoid layout shifts or frozen states
+            entry.target.style.transform = 'translate3d(0, 0, 0)';
+          }
+        });
+      }, { threshold: 0 }); // Trigger as soon as 1px is visible
+
+      parallaxLayers.forEach(layer => observer.observe(layer));
+
+      // Global window mousemove tracking
+      window.addEventListener('mousemove', (e) => {
+        // Calculate mouse offset from center of viewport
+        targetX = e.clientX - window.innerWidth / 2;
+        targetY = e.clientY - window.innerHeight / 2;
+      });
+
+      // Smooth mouseleave tracking (e.g. if the cursor leaves the window)
+      document.addEventListener('mouseleave', () => {
+        targetX = 0;
+        targetY = 0;
+      });
+
+      function updateParallax() {
+        // Silky smooth interpolation factor
+        const ease = 0.08;
+        mouseX += (targetX - mouseX) * ease;
+        mouseY += (targetY - mouseY) * ease;
+
+        // Perform transformations ONLY on active/visible layers
+        activeLayers.forEach(layer => {
+          const speed = parseFloat(layer.getAttribute('data-speed')) || -0.05;
+          const translateX = mouseX * speed;
+          const translateY = mouseY * speed;
+          layer.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+        });
+
+        requestAnimationFrame(updateParallax);
+      }
+
+      requestAnimationFrame(updateParallax);
+    }
+  });
 </script>
 </body>
 </html>
