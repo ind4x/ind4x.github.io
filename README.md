@@ -1,4 +1,4 @@
-# Icarus.sys portfolio
+# portfolio
 
 This repository contains the source code for the personal portfolio website of
 Youssef Fellah. The site features a terminal-inspired interface designed to
