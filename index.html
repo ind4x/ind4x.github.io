@@ -282,7 +282,7 @@
 
   <div class="pointer-events-none select-none absolute inset-0 opacity-[.06] z-0" aria-hidden="true">
     <div class="absolute top-20 left-10 font-mono text-[10px] font-bold tracking-[.6em] uppercase rotate-90 origin-top-left text-zinc-900">sys_arch // v3.0</div>
-    <div class="absolute bottom-32 right-10 font-mono text-[10px] font-bold tracking-[.6em] uppercase -rotate-90 origin-bottom-right text-zinc-900">me.yss-ef</div>
+    <div class="absolute bottom-32 right-10 font-mono text-[10px] font-bold tracking-[.6em] uppercase -rotate-90 origin-bottom-right text-zinc-900">me.ind4x</div>
   </div>
 
   <!-- Content Container (sit above the floating items) -->
@@ -377,7 +377,7 @@
             <i data-lucide="mail" class="w-4 h-4 text-accent"></i> fellahyoussef010@gmail.com
           </a>
           <div class="flex gap-3">
-            <a href="https://github.com/yss-ef" target="_blank"
+            <a href="https://github.com/ind4x" target="_blank"
                class="flex-1 flex items-center justify-center gap-3 px-6 py-4 bg-white border border-zinc-200 rounded-2xl tag tag-dark hover:border-accent hover:text-accent transition-all">
               <i data-lucide="github" class="w-4 h-4"></i> GitHub
             </a>
@@ -934,7 +934,7 @@
         </div>
 
         <!-- Bento 5: Interactive GitHub Archive Card (Square) -->
-        <a href="https://github.com/yss-ef" target="_blank" class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1 block text-left">
+        <a href="https://github.com/ind4x" target="_blank" class="card-lift p-10 rounded-[2rem] border border-white/20 bg-white/60 backdrop-blur-xl relative overflow-hidden group lg:col-span-1 block text-left">
           <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-indigo-500/0 to-indigo-500/[0.04] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
           <div class="absolute top-6 right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none text-zinc-950">
             <i data-lucide="external-link" class="w-5 h-5"></i>
@@ -987,7 +987,7 @@
           <span class="section-label">Technical Archive</span>
           <h3 class="font-serif font-bold text-4xl text-zinc-900">Open-source work</h3>
         </div>
-        <a href="https://github.com/yss-ef" target="_blank"
+        <a href="https://github.com/ind4x" target="_blank"
            class="flex items-center gap-3 tag tag-dark border border-zinc-200 px-8 py-3 rounded-full hover:border-accent hover:text-accent transition-all font-bold">
           All repositories <i data-lucide="external-link" class="w-4 h-4"></i>
         </a>
@@ -1167,7 +1167,7 @@
     </div>
   </div>
   <footer class="mt-32 text-center tag !text-zinc-600" style="font-size:.7rem; letter-spacing:.4em; font-weight:700;">
-    me.yss-ef.github.io &nbsp;//&nbsp; 2026
+    me.ind4x.github.io &nbsp;//&nbsp; 2026
   </footer>
 </section>
 
@@ -1186,7 +1186,7 @@
   async function fetchRepos() {
     const container = document.getElementById('github-repos');
     try {
-      const res = await fetch('https://api.github.com/users/yss-ef/repos?sort=updated&per_page=12');
+      const res = await fetch('https://api.github.com/users/ind4x/repos?sort=updated&per_page=12');
       const repos = await res.json();
       container.innerHTML = '';
       repos.slice(0, 6).forEach(repo => {

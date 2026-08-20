@@ -5,7 +5,7 @@ Youssef Fellah. The site features a terminal-inspired interface designed to
 showcase software engineering expertise, academic achievements, and professional
 experience.
 
-The live site is accessible at [yss-ef.github.io](https://yss-ef.github.io).
+The live site is accessible at [ind4x.github.io](https://ind4x.github.io).
 
 ## Technical overview
 
@@ -63,7 +63,7 @@ Follow these steps to run the system locally:
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:yss-ef/yss-ef.github.io.git
+   git clone git@github.com:ind4x/ind4x.github.io.git
    ```
 2. Launch the application:
    Open `index.html` in a modern browser. No build step is required.
