@@ -72,7 +72,7 @@ Follow these steps to run the system locally:
 
 - Role: Full Stack Engineer (Class of 2026)
 - Specializations: Spring Boot, Angular, Solidity, AI (RAG Systems)
-- Current Mission: Alternance at Broker Immobilier
+- Mission: Completed Alternance at Broker Immobilier
 - Base: Casablanca, Morocco
 
 Authored by Youssef Fellah.
