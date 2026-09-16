@@ -7,20 +7,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            serif: ['Space Grotesk', 'sans-serif'],
-            sans:  ['Archivo', 'sans-serif'],
-            mono:  ['Space Grotesk', 'monospace'],
+            serif: ['Manrope', 'sans-serif'],
+            sans:  ['Manrope', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono:  ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
             paper: '#fafafa',
-            accent: '#52525b',
+            surface: '#ffffff',
+            accent: '#3f3f46',
           }
         }
       }
@@ -32,18 +33,8 @@
     body { -webkit-font-smoothing: antialiased; overflow-x: hidden; background-color: #fafafa; color: #18181b; }
     ::selection { background: #52525b; color: #ffffff; }
 
-    .grid-texture {
-      background-image:
-        linear-gradient(rgba(0,0,0,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-    .grid-texture-dense {
-      background-image:
-        linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
+    
+    
 
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #fafafa; }
@@ -51,11 +42,11 @@
     ::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
 
     .nav-pill {
-      background: rgba(255,255,255,.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(228,228,231,0.8);
-      box-shadow: 0 4px 15px rgba(0,0,0,.03);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(228,228,231,0.9);
+      box-shadow: 0 1px 3px rgba(0,0,0,.03), 0 4px 12px rgba(0,0,0,.02);
     }
 
     .hero-head { letter-spacing: -0.04em; line-height: 0.9; }
@@ -86,42 +77,44 @@
     }
 
     .section-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: .7rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
       font-weight: 600;
-      letter-spacing: .15em;
+      letter-spacing: .12em;
       text-transform: uppercase;
       color: #71717a;
     }
 
     .card-lift {
-      background: rgba(255, 255, 255, 0.65) !important;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.8) !important;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(228, 228, 231, 0.6) !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02), inset 0 8px 32px rgba(255, 255, 255, 0.4);
-      transition: all 0.5s cubic-bezier(.16,1,.3,1);
+      border: 1px solid rgba(228, 228, 231, 0.8) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s cubic-bezier(.16,1,.3,1), box-shadow 0.3s cubic-bezier(.16,1,.3,1), border-color 0.3s ease;
     }
     .card-lift:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08), inset 0 8px 32px rgba(255, 255, 255, 0.6);
-      border-color: rgba(82, 82, 91, 0.4) !important;
-      background: rgba(255, 255, 255, 0.75) !important;
+      transform: translateY(-4px);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 12px 20px -4px rgba(0,0,0,0.06);
+      border-color: rgba(161, 161, 170, 0.6) !important;
+      background: rgba(255, 255, 255, 0.95) !important;
     }
 
     .cap-pill {
       display: inline-flex; align-items: center; gap: .5rem;
       padding: .5rem 1.25rem; border-radius: 99px;
-      border: 1px solid rgba(228, 228, 231, 0.6);
-      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(228, 228, 231, 0.8);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      font-size: .75rem; font-weight: 500; font-family: 'Space Grotesk', sans-serif;
-      text-transform: uppercase; letter-spacing: .1em; color: #3f3f46;
-      transition: all 0.4s cubic-bezier(.16,1,.3,1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      font-size: .75rem; font-weight: 600; font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase; letter-spacing: .06em; color: #3f3f46;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     }
-    .cap-pill:hover { background: #18181b; color: #ffffff; border-color: #18181b; transform: translateY(-2px); }
+    .cap-pill:hover { background: #18181b; color: #ffffff; border-color: #18181b; transform: translateY(-1px); }
+    .cap-pill:active { transform: scale(0.96); }
 
     /* Antigravity floating shape definitions */
     .parallax-layer {
@@ -136,11 +129,11 @@
     /* Glassmorphism shape presets */
     .glass-orb {
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      box-shadow: inset 0 8px 32px rgba(255,255,255,0.3), inset 0 -8px 32px rgba(0,0,0,0.05), 0 12px 32px rgba(0,0,0,0.03);
+      box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0, 0, 0, 0.03);
     }
     .glass-orb::after {
       content: '';
@@ -153,20 +146,20 @@
     
     .glass-orb-silver {
       border-radius: 50%;
-      border: 16px solid rgba(228, 228, 231, 0.6);
-      background: linear-gradient(135deg, rgba(250,250,250,0.1), rgba(161,161,170,0.05));
+      border: 16px solid rgba(228, 228, 231, 0.7);
+      background: linear-gradient(135deg, rgba(250,250,250,0.2), rgba(212,212,216,0.1));
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      box-shadow: inset 0 4px 12px rgba(255,255,255,0.8), inset 0 -4px 12px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.03);
+      box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0, 0, 0, 0.03);
     }
 
     .glass-orb-cube {
       border-radius: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.08));
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      box-shadow: inset 0 8px 24px rgba(255,255,255,0.3), inset 0 -8px 24px rgba(0,0,0,0.05), 0 10px 24px rgba(0,0,0,0.02);
+      box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.6), 0 4px 12px rgba(0, 0, 0, 0.02);
     }
 
     /* Unsynchronized global float animations */
@@ -205,37 +198,36 @@
 
     .cert-row {
       display: flex; align-items: center; gap: 2rem;
-      padding: 2rem; margin: 0 -1.5rem;
+      padding: 1.75rem 2rem; margin: 0 -1.5rem;
       border-radius: 1.25rem;
       border: 1px solid transparent;
-      transition: all 0.4s cubic-bezier(.16,1,.3,1);
+      transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
     .cert-row:hover {
-      background: rgba(255, 255, 255, 0.65) !important;
+      background: rgba(255, 255, 255, 0.85) !important;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-color: rgba(228, 228, 231, 0.6) !important;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.03), inset 0 4px 12px rgba(255, 255, 255, 0.4);
+      border-color: rgba(228, 228, 231, 0.8) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     }
 
 
     .rail { border-left: 2px solid #f4f4f5; padding-left: 2.5rem; }
 
     .tag {
-      font-family: 'Space Grotesk', sans-serif; font-size: .7rem;
-      font-weight: 500; text-transform: uppercase; letter-spacing: .1em;
+      font-family: 'JetBrains Mono', monospace; font-size: .75rem;
+      font-weight: 500; text-transform: uppercase; letter-spacing: .08em;
       color: #71717a;
     }
     .tag-dark { color: #18181b; }
 
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .marquee-inner { display: flex; animation: marquee 40s linear infinite; white-space: nowrap; }
-
-    .num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; opacity: 0.1; }
+    .num { font-family: 'JetBrains Mono', monospace; font-weight: 700; opacity: 0.15; font-variant-numeric: tabular-nums; }
+    .text-balance { text-wrap: balance; }
+    .text-pretty { text-wrap: pretty; }
   </style>
 </head>
 
-<body class="bg-paper font-sans text-zinc-900 grid-texture">
+<body class="bg-paper font-sans text-zinc-900 selection:bg-zinc-900 selection:text-white">
 
 <header class="fixed top-0 inset-x-0 z-[100] flex justify-center py-6 px-4">
   <nav class="nav-pill w-full max-w-[1200px] px-8 py-3 flex items-center justify-between rounded-full">
@@ -269,7 +261,7 @@
     
     <!-- Shape 1: Glass Sphere -->
     <div class="absolute top-[15%] left-[5%] md:left-[12%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.04">
-      <div class="w-36 h-36 md:w-64 md:h-64 rounded-full float-anim-1 glass-sphere border border-white/40 shadow-[inset_0_8px_32px_rgba(255,255,255,0.4),_inset_0_-8px_32px_rgba(0,0,0,0.05),_0_12px_32px_rgba(0,0,0,0.03)] bg-gradient-to-tr from-white/10 to-white/35 backdrop-blur-[16px]"></div>
+      <div class="w-36 h-36 md:w-64 md:h-64 rounded-full float-anim-1 glass-sphere border border-white/40 shadow-sm bg-gradient-to-tr from-white/10 to-white/35 backdrop-blur-[16px]"></div>
     </div>
     
     <!-- Shape 2: Silver Torus/Ring -->
@@ -279,12 +271,12 @@
     
     <!-- Shape 3: Frosted Glass Cube (isometric rot) -->
     <div class="absolute top-[20%] right-[5%] md:right-[12%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.03">
-      <div class="w-24 h-24 md:w-40 md:h-40 rounded-[1.5rem] md:rounded-[2.25rem] float-anim-3 rotate-[35deg] border border-white/30 shadow-[inset_0_8px_24px_rgba(255,255,255,0.3),_inset_0_-8px_24px_rgba(0,0,0,0.05),_0_10px_24px_rgba(0,0,0,0.02)] bg-gradient-to-br from-white/20 via-white/5 to-indigo-500/5 backdrop-blur-[14px]"></div>
+      <div class="w-24 h-24 md:w-40 md:h-40 rounded-[1.5rem] md:rounded-[2.25rem] float-anim-3 rotate-[35deg] border border-white/30 shadow-sm bg-gradient-to-br from-white/20 via-white/5 to-indigo-500/5 backdrop-blur-[14px]"></div>
     </div>
     
     <!-- Shape 4: Glowing Core Orb -->
     <div class="absolute bottom-[25%] left-[5%] md:left-[15%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.08">
-      <div class="w-20 h-20 md:w-32 md:h-32 rounded-full float-anim-4 shadow-[inset_0_6px_20px_rgba(255,255,255,0.4),_0_15px_30px_rgba(239,125,0,0.08),_0_-15px_30px_rgba(99,102,241,0.06)] bg-gradient-to-tr from-orange-500/10 via-white/20 to-indigo-500/15 backdrop-blur-[10px]"></div>
+      <div class="w-20 h-20 md:w-32 md:h-32 rounded-full float-anim-4 shadow-sm bg-gradient-to-tr from-orange-500/10 via-white/20 to-indigo-500/15 backdrop-blur-[10px]"></div>
     </div>
   </div>
 
@@ -297,7 +289,7 @@
   <div class="relative z-10 w-full flex flex-col items-center justify-center">
 
 
-    <h1 class="anim anim-2 hero-head font-serif font-bold text-[clamp(3.5rem,12vw,10.5rem)] text-zinc-900 max-w-7xl mx-auto leading-none">
+    <h1 class="anim anim-2 hero-head font-serif font-bold text-[clamp(3.5rem,12vw,10.5rem)] text-zinc-900 max-w-7xl mx-auto leading-none text-balance">
       Designing<br/>
       <em class="text-accent not-italic">Systems</em><br/>
       Executing Logic
@@ -324,25 +316,24 @@
 
   <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40 z-10">
     <div class="w-px h-12 bg-accent"></div>
-    <span class="tag text-accent" style="font-size:.6rem">scroll</span>
+    <span class="tag text-accent font-semibold tracking-widest text-xs">SCROLL</span>
   </div>
 </section>
 
 
-<div class="overflow-hidden border-y border-zinc-100 py-6 bg-white">
-  <div class="marquee-inner">
-    <span class="tag px-10 text-zinc-400">System Architecture</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">Full-Stack Engineering</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">Cloud Infrastructure</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">Blockchain &amp; Web3</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">RAG &amp; LLM Integration</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">ERP Customization</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">System Architecture</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">Full-Stack Engineering</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">Cloud Infrastructure</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">Blockchain &amp; Web3</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">RAG &amp; LLM Integration</span><span class="tag px-4 text-accent">✦</span>
-    <span class="tag px-10 text-zinc-400">ERP Customization</span><span class="tag px-4 text-accent">✦</span>
+<div class="border-y border-zinc-200/80 py-5 bg-white/80 backdrop-blur-sm">
+  <div class="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+    <span class="tag text-zinc-500">System Architecture</span>
+    <span class="text-zinc-300 font-mono text-xs">/</span>
+    <span class="tag text-zinc-500">Full-Stack Engineering</span>
+    <span class="text-zinc-300 font-mono text-xs">/</span>
+    <span class="tag text-zinc-500">Cloud Infrastructure</span>
+    <span class="text-zinc-300 font-mono text-xs">/</span>
+    <span class="tag text-zinc-500">Blockchain &amp; Web3</span>
+    <span class="text-zinc-300 font-mono text-xs">/</span>
+    <span class="tag text-zinc-500">RAG &amp; LLM Integration</span>
+    <span class="text-zinc-300 font-mono text-xs">/</span>
+    <span class="tag text-zinc-500">ERP Customization</span>
   </div>
 </div>
 
@@ -372,7 +363,7 @@
 
       <div class="reveal w-full lg:w-[40%] lg:sticky lg:top-32">
         <div class="relative bg-white rounded-[2rem] border border-zinc-200 overflow-hidden aspect-[4/5] corner-tl corner-br group">
-          <img src="assets/img/profile.png" alt="Youssef Fellah" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+          <img src="assets/img/profile.png" alt="Youssef Fellah" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 " />
         </div>
         <div class="mt-8 flex flex-col gap-3">
           <a href="mailto:fellahyoussef010@gmail.com"
@@ -442,7 +433,7 @@
 </section>
 
 
-<section id="stack" class="relative py-48 px-6 bg-white border-y border-zinc-100 overflow-hidden">
+<section id="stack" class="relative py-48 px-6 overflow-hidden">
   <!-- Parallax Floating Background Shapes -->
   <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
     <div class="absolute top-[15%] left-[8%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.05">
@@ -473,7 +464,7 @@
         </div>
         <div class="relative z-10 space-y-8">
           <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
-            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Backend &amp; Core</h4>
+            <h3 class="tag tag-dark font-bold text-sm tracking-widest">Backend &amp; Core</h3>
             <span class="tag text-accent font-bold">01</span>
           </div>
           <div class="flex flex-wrap gap-x-6 gap-y-4 font-serif text-lg font-bold uppercase tracking-widest leading-loose">
@@ -496,7 +487,7 @@
         </div>
         <div class="relative z-10 space-y-8">
           <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
-            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Frontend</h4>
+            <h3 class="tag tag-dark font-bold text-sm tracking-widest">Frontend</h3>
             <span class="tag text-accent font-bold">02</span>
           </div>
           <div class="flex flex-wrap gap-x-5 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
@@ -521,7 +512,7 @@
         <div class="relative z-10 space-y-8 flex-grow flex flex-col justify-between">
           <div class="space-y-6">
             <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
-              <h4 class="tag tag-dark font-bold text-sm tracking-widest">Blockchain &amp; Web3</h4>
+              <h3 class="tag tag-dark font-bold text-sm tracking-widest">Blockchain &amp; Web3</h3>
               <span class="tag text-accent font-bold">03</span>
             </div>
             <p class="text-xs text-zinc-400 font-medium tracking-tight">Decentralized protocols, smart contracts execution, and self-sovereign identity structures.</p>
@@ -544,7 +535,7 @@
         </div>
         <div class="relative z-10 space-y-8">
           <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
-            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Cloud &amp; Infrastructure</h4>
+            <h3 class="tag tag-dark font-bold text-sm tracking-widest">Cloud &amp; Infrastructure</h3>
             <span class="tag text-accent font-bold">04</span>
           </div>
           <div class="flex flex-wrap gap-x-4 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
@@ -568,7 +559,7 @@
         </div>
         <div class="relative z-10 space-y-8">
           <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
-            <h4 class="tag tag-dark font-bold text-sm tracking-widest">AI &amp; Integration</h4>
+            <h3 class="tag tag-dark font-bold text-sm tracking-widest">AI &amp; Integration</h3>
             <span class="tag text-accent font-bold">05</span>
           </div>
           <div class="flex flex-wrap gap-x-4 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
@@ -589,7 +580,7 @@
         </div>
         <div class="relative z-10 space-y-8">
           <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
-            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Data &amp; Analytics</h4>
+            <h3 class="tag tag-dark font-bold text-sm tracking-widest">Data &amp; Analytics</h3>
             <span class="tag text-accent font-bold">06</span>
           </div>
           <div class="flex flex-wrap gap-x-5 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
@@ -615,7 +606,7 @@
         </div>
         <div class="relative z-10 space-y-8">
           <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
-            <h4 class="tag tag-dark font-bold text-sm tracking-widest">Security &amp; Networks</h4>
+            <h3 class="tag tag-dark font-bold text-sm tracking-widest">Security &amp; Networks</h3>
             <span class="tag text-accent font-bold">07</span>
           </div>
           <div class="flex flex-wrap gap-x-5 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
@@ -636,7 +627,7 @@
         </div>
         <div class="relative z-10 space-y-8">
           <div class="flex justify-between items-baseline pb-4 border-b border-zinc-100/50">
-            <h4 class="tag tag-dark font-bold text-sm tracking-widest">DevOps &amp; Methods</h4>
+            <h3 class="tag tag-dark font-bold text-sm tracking-widest">DevOps &amp; Methods</h3>
             <span class="tag text-accent font-bold">08</span>
           </div>
           <div class="flex flex-wrap gap-x-4 gap-y-3 font-serif text-sm font-bold uppercase tracking-widest leading-loose">
@@ -699,7 +690,7 @@
               <div class="w-14 h-14 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center shadow-sm">
                 <i data-lucide="building-2" class="w-6 h-6 text-accent"></i>
               </div>
-              <h4 class="font-serif font-bold text-2xl text-zinc-950 tracking-tight">Broker Immobilier</h4>
+              <h3 class="font-serif font-bold text-2xl text-zinc-950 tracking-tight">Broker Immobilier</h3>
             </div>
             <div class="flex flex-wrap gap-2 pt-2">
               <span class="px-3 py-1 rounded-full bg-zinc-100/80 border border-zinc-200/50 text-[10px] font-bold tracking-wider text-zinc-500 uppercase">Angular</span>
@@ -710,12 +701,12 @@
           
           <!-- Columns 2-3: Core Content -->
           <div class="lg:col-span-2 space-y-6">
-            <h3 class="font-serif font-bold text-3xl md:text-4xl leading-tight text-zinc-900">
+            <h4 class="font-serif font-bold text-3xl md:text-4xl leading-tight text-zinc-900">
               Software Architect &amp; Systems Engineer<br/>
               <em class="text-zinc-400 not-italic">SaaS &amp; AI Infrastructure</em>
             </h3>
             <div class="space-y-6 text-base text-zinc-500 font-medium leading-relaxed">
-              <p>Leading the engineering of a <span class="text-zinc-900">next-generation real estate CRM</span>, translating product requirements into production-ready microservices, reactive interfaces, and AI-powered document pipelines.</p>
+              <p>Leading the engineering of a <span class="text-zinc-900">cloud-native real estate CRM</span>, translating product requirements into production-ready microservices, reactive interfaces, and AI-powered document pipelines.</p>
               <div class="space-y-4 pt-6 border-t border-zinc-100">
                 <div class="flex gap-4 items-start">
                   <span class="tag text-accent font-bold pt-1">01</span>
@@ -751,13 +742,13 @@
             </div>
             
             <div class="space-y-2">
-              <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">HTBS Africa</h4>
-              <h3 class="font-serif font-bold text-2xl leading-snug text-zinc-900">
+              <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">HTBS Africa</h3>
+              <h4 class="font-serif font-bold text-2xl leading-snug text-zinc-900">
                 ERP Developer &mdash; <em class="text-zinc-400 not-italic">Finance</em>
               </h3>
             </div>
             
-            <p class="text-sm text-zinc-500 font-medium leading-relaxed">Specialized in <span class="text-zinc-900">ERP customization</span> within a demanding financial environment. Engineered mission-critical modules that sharpened both reporting accuracy and operational throughput.</p>
+            <p class="text-sm text-zinc-500 font-medium leading-relaxed">Specialized in <span class="text-zinc-900">ERP customization</span> within a demanding financial environment. Engineered core financial modules that sharpened both reporting accuracy and operational throughput.</p>
           </div>
           
           <div class="space-y-4 pt-6 border-t border-zinc-100/50">
@@ -797,8 +788,8 @@
             </div>
             
             <div class="space-y-2">
-              <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">FST Errachidia</h4>
-              <h3 class="font-serif font-bold text-2xl leading-snug text-zinc-900">
+              <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">FST Errachidia</h3>
+              <h4 class="font-serif font-bold text-2xl leading-snug text-zinc-900">
                 Blockchain Developer &mdash; <em class="text-zinc-400 not-italic">Web3</em>
               </h3>
             </div>
@@ -830,7 +821,7 @@
 </section>
 
 
-<section id="projects" class="relative py-48 px-6 bg-white border-y border-zinc-100 overflow-hidden">
+<section id="projects" class="relative py-48 px-6 overflow-hidden">
   <!-- Parallax Floating Background Shapes -->
   <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
     <div class="absolute top-[12%] left-[4%] transform-gpu parallax-layer opacity-40 md:opacity-100" data-speed="-0.03">
@@ -868,7 +859,7 @@
                   <i data-lucide="terminal" class="w-5 h-5 text-accent"></i>
                 </div>
               </div>
-              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">devctl</h4>
+              <h3 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">devctl</h3>
               <p class="text-base text-zinc-500 font-medium leading-relaxed">A unified CLI that automates development lifecycle orchestration — spinning up Spring Boot, Angular, and Vue.js environments through a single command surface.</p>
             </div>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
@@ -891,7 +882,7 @@
                   <i data-lucide="link-2" class="w-5 h-5 text-accent"></i>
                 </div>
               </div>
-              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Decentralized Edu</h4>
+              <h3 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Decentralized Edu</h3>
               <p class="text-base text-zinc-500 font-medium leading-relaxed">Blockchain-native e-learning platform using smart contracts for tamper-proof certification issuance and IPFS for resilient content storage.</p>
             </div>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
@@ -914,7 +905,7 @@
                   <i data-lucide="building-2" class="w-5 h-5 text-accent"></i>
                 </div>
               </div>
-              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">CRM SaaS Platform</h4>
+              <h3 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">CRM SaaS Platform</h3>
               <p class="text-base text-zinc-500 font-medium leading-relaxed">Enterprise real estate ecosystem built on clean architecture principles, with RAG AI pipelines for intelligent document processing and client management.</p>
             </div>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
@@ -937,8 +928,8 @@
                   <i data-lucide="shield-check" class="w-5 h-5 text-accent"></i>
                 </div>
               </div>
-              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Firewall Config</h4>
-              <p class="text-base text-zinc-500 font-medium leading-relaxed">OPNsense firewall deployment with custom ruleset, VLAN segmentation, and enterprise-grade network hardening.</p>
+              <h3 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Firewall Config</h3>
+              <p class="text-base text-zinc-500 font-medium leading-relaxed">OPNsense firewall deployment with custom ruleset, VLAN segmentation, and hardened network architecture and protocol security.</p>
             </div>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
               <span>OPNsense</span><span class="text-zinc-200">/</span><span>Networking</span><span class="text-zinc-200">/</span><span>Security</span>
@@ -959,7 +950,7 @@
                   <i data-lucide="github" class="w-5 h-5 text-white"></i>
                 </div>
               </div>
-              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">GitHub Archive</h4>
+              <h3 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">GitHub Archive</h3>
               <p class="text-base text-zinc-500 font-medium leading-relaxed">Dive into my absolute open-source library, system architectures, and utility scripts library.</p>
             </div>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-500 leading-none">
@@ -982,7 +973,7 @@
                   <i data-lucide="activity" class="w-5 h-5 text-accent"></i>
                 </div>
               </div>
-              <h4 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Infrastructure Supervision</h4>
+              <h3 class="font-serif font-bold text-zinc-950 tracking-tight text-2xl group-hover:text-accent transition-colors">Infrastructure Supervision</h3>
               <p class="text-base text-zinc-500 font-medium leading-relaxed">Cloud monitoring with Zabbix on AWS, covering Linux and Windows servers for performance metrics and alerting.</p>
             </div>
             <div class="pt-6 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-2 font-serif text-[.65rem] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-600 transition-colors">
@@ -1044,7 +1035,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <p class="tag text-zinc-400 font-bold mb-2">Packt · Coursera</p>
-          <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">Advanced Java APIs and Functional Programming</h4>
+          <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">Advanced Java APIs and Functional Programming</h3>
         </div>
         <div class="flex items-center gap-6 flex-shrink-0">
           <a href="https://coursera.org/verify/01STQQE689SD" target="_blank"
@@ -1060,7 +1051,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <p class="tag text-zinc-400 font-bold mb-2">Amazon Web Services</p>
-          <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">AWS Academy Graduate — Cloud Foundations</h4>
+          <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">AWS Academy Graduate — Cloud Foundations</h3>
         </div>
         <div class="flex items-center gap-6 flex-shrink-0">
           <a href="https://www.credly.com/badges/499818eb-ee08-4b36-9eb5-6c7dd77333af/public_url" target="_blank"
@@ -1076,7 +1067,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <p class="tag text-zinc-400 font-bold mb-2">Huawei ICT Academy</p>
-          <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">HCIA-Cloud Computing V5.5</h4>
+          <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">HCIA-Cloud Computing V5.5</h3>
         </div>
         <div class="flex items-center gap-6 flex-shrink-0">
           <span class="px-6 py-3 border border-zinc-100 bg-zinc-50 rounded-full tag text-zinc-400 font-bold">Active</span>
@@ -1089,7 +1080,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <p class="tag text-zinc-400 font-bold mb-2">IBM · Coursera</p>
-          <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">Introduction to Software Engineering</h4>
+          <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">Introduction to Software Engineering</h3>
         </div>
         <div class="flex items-center gap-6 flex-shrink-0">
           <a href="https://coursera.org/share/4ed7bd110eee1929633c20be030418c0" target="_blank"
@@ -1105,7 +1096,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <p class="tag text-zinc-400 font-bold mb-2">Cisco Networking Academy</p>
-          <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">Data Analytics Essentials</h4>
+          <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">Data Analytics Essentials</h3>
         </div>
         <div class="flex items-center gap-6 flex-shrink-0">
           <a href="https://www.credly.com/badges/2ebafeec-8d1a-4c38-af96-00a793a7a939/public_url" target="_blank"
@@ -1121,7 +1112,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <p class="tag text-zinc-400 font-bold mb-2">Microsoft · GitHub</p>
-          <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">GitHub Foundations — Part 1 of 2</h4>
+          <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">GitHub Foundations — Part 1 of 2</h3>
         </div>
         <div class="flex items-center gap-6 flex-shrink-0">
           <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/NMWZVH8F?sharingId=57FCD8AE461DCC45" target="_blank"
@@ -1137,7 +1128,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <p class="tag text-zinc-400 font-bold mb-2">Microsoft · GitHub</p>
-          <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">GitHub Foundations — Part 2 of 2</h4>
+          <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">GitHub Foundations — Part 2 of 2</h3>
         </div>
         <div class="flex items-center gap-6 flex-shrink-0">
           <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/PGESC6D4?sharingId=57FCD8AE461DCC45" target="_blank"
@@ -1153,7 +1144,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <p class="tag text-zinc-400 font-bold mb-2">Microsoft · GitHub</p>
-          <h4 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">GitHub Admin &amp; Product Features</h4>
+          <h3 class="font-serif font-bold text-xl text-zinc-950 tracking-tight">GitHub Admin &amp; Product Features</h3>
         </div>
         <div class="flex items-center gap-6 flex-shrink-0">
           <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/9RCFAERU?sharingId=57FCD8AE461DCC45" target="_blank"
