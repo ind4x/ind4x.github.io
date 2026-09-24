@@ -2,10 +2,10 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Youssef Fellah — Software Engineer &amp; Systems Architect</title>
   
-  <meta name="description" content="Portfolio of Youssef Fellah — Software Engineer specializing in Backend Systems Architecture (Java / Spring Boot), Formal Modeling (UML, DDD, Clean Architecture), InfoSec, and Applied Data Science." />
+  <meta name="description" content="Portfolio of Youssef Fellah — Software Engineer specializing in Backend Systems Architecture (Java / Spring Boot), Formal Design (UML, DDD, Clean Architecture), InfoSec, and Applied Data Science." />
   <meta name="author" content="Youssef Fellah" />
 
   <!-- Tailwind CSS CDN -->
@@ -60,6 +60,11 @@
       background-color: #fbfbfb;
       color: #09090b;
       text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    body {
+      overflow-x: hidden;
+      width: 100%;
     }
     ::selection {
       background: #09090b;
@@ -74,140 +79,218 @@
     .text-pretty {
       text-wrap: pretty;
     }
-    /* Hairline Grid Dividers */
-    .grid-swiss {
-      border-top: 1px solid #e4e4e7;
-      border-left: 1px solid #e4e4e7;
-    }
-    .grid-swiss > * {
-      border-right: 1px solid #e4e4e7;
-      border-bottom: 1px solid #e4e4e7;
-    }
     .btn-press {
       transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      touch-action: manipulation;
     }
     .btn-press:active {
       transform: scale(0.97);
     }
-    /* Subtle fade-in on intersection */
+    /* Hide scrollbar for horizontal rails */
+    .scrollbar-none::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-none {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Intersection fade-in */
     .fade-in-section {
       opacity: 0;
       transform: translateY(14px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .fade-in-section.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
-    /* Precise 1px borders without subpixel jitter */
-    .border-b-hairline { border-bottom: 1px solid #e4e4e7; }
-    .border-t-hairline { border-top: 1px solid #e4e4e7; }
-    .border-l-hairline { border-left: 1px solid #e4e4e7; }
-    .border-r-hairline { border-right: 1px solid #e4e4e7; }
+    /* Mobile drawer slide */
+    #mobile-drawer {
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    }
+    #mobile-drawer.closed {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #mobile-drawer.open {
+      max-height: 600px;
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 
 <body class="bg-canvas text-ink font-sans selection:bg-ink selection:text-white">
 
-  <!-- Top System Telemetry Bar & Objective Announcement -->
-  <aside class="w-full bg-ink text-white px-4 md:px-8 py-2.5 text-[11px] font-mono border-b border-zinc-800 flex flex-wrap items-center justify-between gap-3 sticky top-0 z-[120]">
-    <div class="flex items-center gap-3">
-      <span class="inline-block w-2 h-2 bg-swiss animate-pulse"></span>
-      <span class="font-bold tracking-widest uppercase">STATUS: SEEKING FINAL-YEAR INTERNSHIP (PFE 2027)</span>
-      <span class="text-zinc-500 hidden sm:inline">&bull;</span>
-      <span class="text-zinc-400 hidden sm:inline">DISTRIBUTED BACKEND &amp; RESILIENT ARCHITECTURES</span>
-    </div>
-    <div class="flex items-center gap-4 text-xs font-mono text-zinc-400">
-      <span class="hidden md:inline">CASABLANCA, MOROCCO (UTC+1)</span>
-      <span class="text-zinc-700 hidden md:inline">|</span>
-      <a href="mailto:fellahyoussef010@gmail.com" class="text-white hover:text-swiss transition-colors">
-        fellahyoussef010@gmail.com
-      </a>
-    </div>
-  </aside>
-
-  <!-- Architectural Main Navigation -->
-  <header class="w-full bg-white/95 backdrop-blur-md border-b border-hairline sticky top-[37px] z-[110]">
-    <div class="max-w-[1440px] mx-auto grid grid-cols-12 divide-x divide-hairline">
-      
-      <!-- Brand & Coordinates -->
-      <div class="col-span-12 md:col-span-4 lg:col-span-3 px-6 py-4 flex items-center justify-between">
-        <a href="#hero" class="font-bold text-base tracking-tight uppercase hover:text-swiss transition-colors">
-          Youssef Fellah
-        </a>
-        <span class="font-mono text-[10px] text-ink-muted uppercase tracking-widest">[ENG // ARCH]</span>
+  <!-- Combined Sticky Architectural Header Wrapper (Guarantees zero overlap on any screen) -->
+  <div class="sticky top-0 z-[120] w-full bg-white">
+    
+    <!-- Top System Telemetry Bar -->
+    <aside class="w-full bg-ink text-white px-4 sm:px-6 md:px-8 py-2 text-[10px] sm:text-[11px] font-mono border-b border-zinc-800 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none whitespace-nowrap">
+      <div class="flex items-center gap-2.5">
+        <span class="inline-block w-2 h-2 bg-swiss animate-pulse flex-shrink-0"></span>
+        <span class="font-bold tracking-widest uppercase">STATUS: SEEKING FINAL-YEAR INTERNSHIP (PFE 2027)</span>
+        <span class="text-zinc-500 hidden sm:inline">&bull;</span>
+        <span class="text-zinc-400 hidden sm:inline">DISTRIBUTED BACKEND &amp; RESILIENT ARCHITECTURES</span>
       </div>
-
-      <!-- Section Navigation Index -->
-      <nav class="hidden md:flex col-span-8 lg:col-span-6 px-6 py-4 items-center justify-start gap-8 font-mono text-xs uppercase tracking-widest text-ink-muted">
-        <a href="#about" class="hover:text-ink hover:underline underline-offset-8 transition-colors">01. Profile</a>
-        <a href="#arsenal" class="hover:text-ink hover:underline underline-offset-8 transition-colors">02. Arsenal</a>
-        <a href="#experience" class="hover:text-ink hover:underline underline-offset-8 transition-colors">03. Field Work</a>
-        <a href="#projects" class="hover:text-ink hover:underline underline-offset-8 transition-colors">04. Major Systems</a>
-        <a href="#credentials" class="hover:text-ink hover:underline underline-offset-8 transition-colors">05. Credentials</a>
-      </nav>
-
-      <!-- Verified Dossier Downloads -->
-      <div class="hidden lg:flex col-span-3 px-6 py-4 items-center justify-end gap-3 font-mono text-[11px]">
-        <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download target="_blank"
-           class="px-3.5 py-1.5 border border-ink bg-ink text-white font-semibold tracking-wider uppercase hover:bg-swiss hover:border-swiss transition-all btn-press flex items-center gap-1.5 shadow-sm">
-          <i data-lucide="file-down" class="w-3.5 h-3.5"></i> CV (EN)
-        </a>
-        <a href="assets/docs/Youssef_Fellah_CV_FR.pdf" download target="_blank"
-           class="px-3.5 py-1.5 border border-hairline bg-surface text-ink-muted font-semibold tracking-wider uppercase hover:border-ink hover:text-ink transition-all btn-press flex items-center gap-1.5">
-          <i data-lucide="file-down" class="w-3.5 h-3.5"></i> CV (FR)
+      <div class="flex items-center gap-3 text-[10px] sm:text-xs font-mono text-zinc-400 flex-shrink-0">
+        <span class="hidden md:inline">CASABLANCA, MOROCCO</span>
+        <span class="text-zinc-700 hidden md:inline">|</span>
+        <a href="mailto:fellahyoussef010@gmail.com" class="text-white hover:text-swiss transition-colors">
+          fellahyoussef010@gmail.com
         </a>
       </div>
+    </aside>
 
-    </div>
-  </header>
+    <!-- Main Architectural Bar -->
+    <header class="w-full bg-white/98 backdrop-blur-md border-b border-hairline">
+      <div class="max-w-[1440px] mx-auto grid grid-cols-12 md:divide-x md:divide-hairline items-center">
+        
+        <!-- Brand & Mobile Controls -->
+        <div class="col-span-12 md:col-span-4 lg:col-span-3 px-4 sm:px-6 py-3.5 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <a href="#hero" class="font-bold text-base tracking-tight uppercase hover:text-swiss transition-colors">
+              Youssef Fellah
+            </a>
+            <span class="font-mono text-[10px] text-ink-muted uppercase tracking-widest hidden sm:inline">[ENG // ARCH]</span>
+          </div>
+
+          <!-- Mobile Action Controls (Hamburger + Quick CV link) -->
+          <div class="flex items-center gap-2 md:hidden">
+            <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download target="_blank"
+               class="px-2.5 py-1.5 border border-hairline font-mono text-[10px] font-bold uppercase text-ink hover:border-ink transition-colors flex items-center gap-1 btn-press"
+               aria-label="Download English CV">
+              <i data-lucide="file-down" class="w-3.5 h-3.5 text-swiss"></i>
+              <span>CV</span>
+            </a>
+            <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-drawer"
+                    class="px-2.5 py-1.5 bg-ink text-white border border-ink font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 btn-press"
+                    aria-label="Toggle Navigation Menu">
+              <span id="menu-btn-label">MENU</span>
+              <i data-lucide="menu" id="menu-icon" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Index -->
+        <nav class="hidden md:flex col-span-8 lg:col-span-6 px-6 py-4 items-center justify-start gap-6 lg:gap-8 font-mono text-xs uppercase tracking-widest text-ink-muted">
+          <a href="#about" class="hover:text-ink hover:underline underline-offset-8 transition-colors">01. Profile</a>
+          <a href="#arsenal" class="hover:text-ink hover:underline underline-offset-8 transition-colors">02. Arsenal</a>
+          <a href="#experience" class="hover:text-ink hover:underline underline-offset-8 transition-colors">03. Field Work</a>
+          <a href="#projects" class="hover:text-ink hover:underline underline-offset-8 transition-colors">04. Major Systems</a>
+          <a href="#credentials" class="hover:text-ink hover:underline underline-offset-8 transition-colors">05. Credentials</a>
+        </nav>
+
+        <!-- Desktop Dossier Download Buttons -->
+        <div class="hidden lg:flex col-span-3 px-6 py-4 items-center justify-end gap-3 font-mono text-[11px]">
+          <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download target="_blank"
+             class="px-3.5 py-1.5 border border-ink bg-ink text-white font-semibold tracking-wider uppercase hover:bg-swiss hover:border-swiss transition-all btn-press flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="file-down" class="w-3.5 h-3.5"></i> CV (EN)
+          </a>
+          <a href="assets/docs/Youssef_Fellah_CV_FR.pdf" download target="_blank"
+             class="px-3.5 py-1.5 border border-hairline bg-surface text-ink-muted font-semibold tracking-wider uppercase hover:border-ink hover:text-ink transition-all btn-press flex items-center gap-1.5">
+            <i data-lucide="file-down" class="w-3.5 h-3.5"></i> CV (FR)
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Expandable Mobile Drawer -->
+      <div id="mobile-drawer" class="closed md:hidden border-t border-hairline bg-white px-5 py-6 space-y-6 overflow-hidden">
+        <nav class="flex flex-col space-y-3 font-mono text-xs uppercase tracking-widest text-ink font-semibold">
+          <a href="#about" class="mobile-nav-link py-2 border-b border-hairline flex items-center justify-between">
+            <span>01. Profile &amp; Education</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-ink-muted"></i>
+          </a>
+          <a href="#arsenal" class="mobile-nav-link py-2 border-b border-hairline flex items-center justify-between">
+            <span>02. Technical Arsenal</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-ink-muted"></i>
+          </a>
+          <a href="#experience" class="mobile-nav-link py-2 border-b border-hairline flex items-center justify-between">
+            <span>03. Field Work (Experience)</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-ink-muted"></i>
+          </a>
+          <a href="#projects" class="mobile-nav-link py-2 border-b border-hairline flex items-center justify-between">
+            <span>04. Major Systems &amp; GitHub</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-ink-muted"></i>
+          </a>
+          <a href="#credentials" class="mobile-nav-link py-2 border-b border-hairline flex items-center justify-between">
+            <span>05. Credentials &amp; Certs</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-ink-muted"></i>
+          </a>
+          <a href="#contact" class="mobile-nav-link py-2 border-b border-hairline flex items-center justify-between text-swiss">
+            <span>06. Initialize Dispatch</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-swiss"></i>
+          </a>
+        </nav>
+
+        <div class="pt-2 grid grid-cols-2 gap-3 font-mono text-xs">
+          <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download target="_blank"
+             class="p-3 bg-ink text-white text-center font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 btn-press">
+            <i data-lucide="file-down" class="w-4 h-4 text-swiss"></i> CV (EN)
+          </a>
+          <a href="assets/docs/Youssef_Fellah_CV_FR.pdf" download target="_blank"
+             class="p-3 border border-ink text-ink text-center font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 btn-press">
+            <i data-lucide="file-down" class="w-4 h-4"></i> CV (FR)
+          </a>
+        </div>
+
+        <div class="pt-2 font-mono text-[11px] text-ink-muted space-y-1">
+          <div>TEL: <a href="tel:+212778874684" class="text-ink font-bold">+212 778 874 684</a></div>
+          <div>MAIL: <a href="mailto:fellahyoussef010@gmail.com" class="text-ink font-bold">fellahyoussef010@gmail.com</a></div>
+        </div>
+      </div>
+    </header>
+
+  </div>
 
   <main class="max-w-[1440px] mx-auto border-x border-hairline bg-white">
 
-    <!-- HERO SECTION: Strict Asymmetric 12-Column Grid -->
+    <!-- HERO SECTION: Fluid Asymmetric 12-Column Grid -->
     <section id="hero" class="border-b border-hairline">
       <div class="grid grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-hairline">
         
         <!-- Left Statement Surface (8 cols) -->
-        <div class="col-span-12 md:col-span-8 p-8 md:p-16 lg:p-20 flex flex-col justify-between">
-          <div class="space-y-6">
+        <div class="col-span-12 md:col-span-8 p-5 sm:p-10 md:p-14 lg:p-20 flex flex-col justify-between">
+          <div class="space-y-4 sm:space-y-6">
             
-            <div class="flex items-center gap-3 font-mono text-xs text-swiss font-bold tracking-widest uppercase">
+            <div class="flex items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-xs text-swiss font-bold tracking-widest uppercase">
               <span>INDEX // 00</span>
               <span>&mdash;</span>
-              <span>SOFTWARE ENGINEER &bull; BACKEND &amp; SYSTEMS ARCHITECTURE</span>
+              <span class="truncate">BACKEND &amp; SYSTEMS ARCHITECTURE</span>
             </div>
 
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-[0.92] text-ink uppercase text-balance">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-[0.94] text-ink uppercase text-balance">
               Distributed<br/>
               Backends.<br/>
               Formal Design.<br/>
               <span class="text-swiss">Resilient</span> Systems.
             </h1>
 
-            <p class="font-mono text-xs text-ink-muted uppercase tracking-wider pt-2">
+            <p class="font-mono text-[11px] sm:text-xs text-ink-muted uppercase tracking-wider pt-1">
               DISTRIBUTED BACKEND (SPRING BOOT) &bull; FORMAL DESIGN &bull; INFOSEC &bull; APPLIED DATA SCIENCE
             </p>
           </div>
 
-          <div class="pt-12 md:pt-20 space-y-8">
-            <p class="text-lg md:text-xl text-ink-muted font-normal leading-relaxed max-w-2xl text-pretty">
+          <div class="pt-8 sm:pt-14 md:pt-20 space-y-6 sm:space-y-8">
+            <p class="text-base sm:text-lg md:text-xl text-ink-muted font-normal leading-relaxed text-pretty">
               Engineering student at <strong class="text-ink font-semibold">Université Mundiapolis</strong> specializing in formal architectural modeling (UML 2.5, BPMN 2.0, Clean Architecture, DDD) and distributed Java / Spring Boot ecosystems. Augmenting backend rigor with Information Systems Security (Secure-by-Design, RBAC/IAM, OPNsense perimeter hardening) and Applied Data Science (RAG/vector retrieval, predictive pipelines).
             </p>
 
-            <div class="p-4 bg-canvas border border-hairline space-y-2">
+            <div class="p-4 sm:p-5 bg-canvas border border-hairline space-y-2">
               <div class="font-mono text-[10px] text-swiss font-bold tracking-widest uppercase">PRIMARY OBJECTIVE</div>
-              <p class="text-sm font-medium text-ink">
+              <p class="text-xs sm:text-sm font-medium text-ink leading-relaxed">
                 Seeking a <span class="font-bold underline decoration-swiss underline-offset-4">Final-Year Internship (PFE 2027)</span> to architect, model, and deploy high-concurrency, secure, and resilient enterprise platforms.
               </p>
             </div>
 
-            <div class="flex flex-wrap gap-4 pt-2 font-mono text-xs">
-              <a href="#projects" class="px-8 py-4 bg-ink text-white font-semibold uppercase tracking-widest hover:bg-swiss transition-colors btn-press flex items-center gap-2">
+            <div class="flex flex-col sm:flex-row gap-3 pt-2 font-mono text-xs w-full sm:w-auto">
+              <a href="#projects" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-ink text-white font-semibold uppercase tracking-widest hover:bg-swiss transition-colors btn-press flex items-center justify-center gap-2">
                 <span>Inspect Major Systems</span>
                 <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
               </a>
-              <a href="mailto:fellahyoussef010@gmail.com" class="px-8 py-4 border border-ink text-ink font-semibold uppercase tracking-widest hover:bg-ink hover:text-white transition-colors btn-press">
+              <a href="mailto:fellahyoussef010@gmail.com" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border border-ink text-ink font-semibold uppercase tracking-widest hover:bg-ink hover:text-white transition-colors btn-press text-center">
                 Initiate Contact
               </a>
             </div>
@@ -218,7 +301,7 @@
         <div class="col-span-12 md:col-span-4 bg-canvas flex flex-col justify-between divide-y divide-hairline font-mono text-xs">
           
           <!-- Identity & Coordinates -->
-          <div class="p-8 space-y-4">
+          <div class="p-5 sm:p-8 space-y-4">
             <div class="text-[10px] text-ink-muted tracking-widest uppercase font-semibold">SYSTEM TELEMETRY &amp; CONTACT</div>
             <div class="space-y-3">
               <div>
@@ -239,36 +322,36 @@
               </div>
               <div>
                 <span class="text-ink-muted block text-[10px] uppercase">University Mail</span>
-                <span class="text-zinc-600">y.fellah@mundiapolis.ma</span>
+                <span class="text-zinc-700 font-semibold break-all">y.fellah@mundiapolis.ma</span>
               </div>
             </div>
           </div>
 
           <!-- Quantitative Metrics Ledger -->
-          <div class="p-8 space-y-4">
+          <div class="p-5 sm:p-8 space-y-4">
             <div class="text-[10px] text-ink-muted tracking-widest uppercase font-semibold">QUANTITATIVE LEDGER</div>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 gap-3 sm:gap-4">
               <div class="border-l-2 border-ink pl-3">
-                <span class="text-3xl font-black text-ink tabular block">04+</span>
+                <span class="text-2xl sm:text-3xl font-black text-ink tabular block">04+</span>
                 <span class="text-[10px] text-ink-muted uppercase">Years Active</span>
               </div>
               <div class="border-l-2 border-ink pl-3">
-                <span class="text-3xl font-black text-ink tabular block">10+</span>
+                <span class="text-2xl sm:text-3xl font-black text-ink tabular block">10+</span>
                 <span class="text-[10px] text-ink-muted uppercase">Accreditations</span>
               </div>
               <div class="border-l-2 border-ink pl-3">
-                <span class="text-3xl font-black text-ink tabular block">07</span>
+                <span class="text-2xl sm:text-3xl font-black text-ink tabular block">07</span>
                 <span class="text-[10px] text-ink-muted uppercase">Major Systems</span>
               </div>
               <div class="border-l-2 border-swiss pl-3">
-                <span class="text-3xl font-black text-swiss tabular block">100%</span>
+                <span class="text-2xl sm:text-3xl font-black text-swiss tabular block">100%</span>
                 <span class="text-[10px] text-ink-muted uppercase">Clean Architecture</span>
               </div>
             </div>
           </div>
 
-          <!-- Linguistic Proficiency -->
-          <div class="p-8 space-y-3">
+          <!-- Linguistic Specs -->
+          <div class="p-5 sm:p-8 space-y-3">
             <div class="text-[10px] text-ink-muted tracking-widest uppercase font-semibold">LINGUISTIC SPECS</div>
             <div class="space-y-2 text-[11px]">
               <div class="flex justify-between">
@@ -287,7 +370,7 @@
           </div>
 
           <!-- Dossier Access Links -->
-          <div class="p-8 space-y-3">
+          <div class="p-5 sm:p-8 space-y-3">
             <div class="text-[10px] text-ink-muted tracking-widest uppercase font-semibold">VERIFIED DOCUMENTS</div>
             <div class="space-y-2">
               <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download class="flex items-center justify-between py-1 text-ink hover:text-swiss transition-colors">
@@ -314,8 +397,8 @@
       </div>
     </section>
 
-    <!-- HORIZONTAL ARCHITECTURAL TICKER -->
-    <div class="border-b border-hairline py-3 px-8 bg-canvas flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] text-ink-muted uppercase tracking-widest">
+    <!-- HORIZONTAL ARCHITECTURAL TICKER (Horizontal Rail on Mobile) -->
+    <div class="border-b border-hairline py-2.5 px-4 sm:px-8 bg-canvas overflow-x-auto scrollbar-none flex items-center justify-between gap-6 font-mono text-[10px] sm:text-[11px] text-ink-muted uppercase tracking-widest whitespace-nowrap">
       <span>DISTRIBUTED SYSTEMS</span>
       <span class="text-hairline-strong">&bull;</span>
       <span>JAVA &bull; SPRING BOOT</span>
@@ -334,26 +417,26 @@
       <div class="grid grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-hairline">
         
         <!-- Section Label Column (3 cols) -->
-        <div class="col-span-12 lg:col-span-3 p-8 lg:p-12 space-y-8 bg-canvas">
+        <div class="col-span-12 lg:col-span-3 p-5 sm:p-8 lg:p-12 space-y-6 sm:space-y-8 bg-canvas">
           <div class="space-y-2">
             <span class="font-mono text-xs text-swiss font-bold tracking-widest uppercase">SECTION 01</span>
-            <h2 class="text-3xl font-black uppercase tracking-tight text-ink">Profile</h2>
+            <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-ink">Profile</h2>
             <p class="font-mono text-xs text-ink-muted">THESIS &amp; ACADEMICS</p>
           </div>
 
-          <!-- Profile Photo with Swiss Hairline Frame -->
-          <div class="relative border border-hairline bg-white p-2">
+          <!-- Profile Photo with Swiss Hairline Frame (Centered & constrained on mobile) -->
+          <div class="relative border border-hairline bg-white p-2 max-w-[240px] sm:max-w-[280px] lg:max-w-none mx-auto lg:mx-0">
             <div class="aspect-[4/5] overflow-hidden bg-zinc-100">
               <img src="assets/img/profile.png" alt="Youssef Fellah" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" />
             </div>
-            <div class="pt-3 pb-1 px-1 flex justify-between items-center font-mono text-[10px] text-ink-muted">
+            <div class="pt-2.5 pb-1 px-1 flex justify-between items-center font-mono text-[10px] text-ink-muted">
               <span>FIG 1.0</span>
               <span>YOUSSEF FELLAH</span>
             </div>
           </div>
 
           <!-- Academic Affiliations -->
-          <div class="font-mono text-[11px] space-y-4 border-t border-hairline pt-6">
+          <div class="font-mono text-[11px] space-y-4 border-t border-hairline pt-5">
             <div>
               <div class="text-ink-muted uppercase text-[10px]">CURRENT FORMATION</div>
               <div class="text-ink font-bold">Diplôme d'Ingénieur (Software Eng.)</div>
@@ -368,16 +451,16 @@
         </div>
 
         <!-- Section Content Column (9 cols) -->
-        <div class="col-span-12 lg:col-span-9 p-8 md:p-16 space-y-12">
+        <div class="col-span-12 lg:col-span-9 p-5 sm:p-10 md:p-16 space-y-8 sm:space-y-12">
           
-          <div class="space-y-6">
+          <div class="space-y-4 sm:space-y-6">
             <div class="font-mono text-xs text-ink-muted uppercase tracking-widest">ARCHITECTURAL PHILOSOPHY</div>
-            <h3 class="text-3xl md:text-5xl font-black text-ink uppercase tracking-tight leading-[1.05] text-balance">
+            <h3 class="text-2xl sm:text-4xl md:text-5xl font-black text-ink uppercase tracking-tight leading-[1.08] text-balance">
               Form follows function. Logic precedes implementation.
             </h3>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-base text-ink-muted leading-relaxed font-normal text-pretty">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 text-sm sm:text-base text-ink-muted leading-relaxed font-normal text-pretty">
             <p>
               I approach software development through the lens of systems engineering: transforming complex business constraints into predictable, maintainable, and verifiable software models. My core engineering practices stem from <strong class="text-ink font-semibold">Clean Architecture</strong> and <strong class="text-ink font-semibold">Domain-Driven Design (DDD)</strong>, isolating business rules from storage drivers and delivery mechanisms.
             </p>
@@ -387,33 +470,33 @@
           </div>
 
           <!-- Formal Academic Background Table -->
-          <div class="border-t border-hairline pt-10 space-y-6">
+          <div class="border-t border-hairline pt-8 space-y-4 sm:space-y-6">
             <div class="font-mono text-xs text-ink-muted uppercase tracking-widest">EDUCATION &amp; RELEVANT CURRICULUM</div>
             
             <div class="border border-hairline divide-y divide-hairline">
               
-              <div class="p-6 bg-canvas flex flex-col md:flex-row justify-between gap-4">
+              <div class="p-4 sm:p-6 bg-canvas flex flex-col md:flex-row justify-between gap-3 sm:gap-4">
                 <div class="space-y-1">
-                  <div class="flex items-center gap-2">
+                  <div class="flex flex-wrap items-center gap-2">
                     <span class="px-2 py-0.5 bg-ink text-white font-mono text-[10px] font-bold">2025 &mdash; PRESENT</span>
-                    <h4 class="font-bold text-base uppercase text-ink">Université Mundiapolis &mdash; Casablanca</h4>
+                    <h4 class="font-bold text-sm sm:text-base uppercase text-ink">Université Mundiapolis &mdash; Casablanca</h4>
                   </div>
-                  <p class="text-sm font-semibold text-zinc-800">Engineering Degree (Diplôme d'Ingénieur) in Software Engineering</p>
-                  <p class="text-xs text-ink-muted font-mono pt-1">
+                  <p class="text-xs sm:text-sm font-semibold text-zinc-800">Engineering Degree (Diplôme d'Ingénieur) in Software Engineering</p>
+                  <p class="text-[11px] sm:text-xs text-ink-muted font-mono pt-1">
                     Relevant Curriculum: Distributed Systems, Advanced Software Architecture, Enterprise Frameworks, Cloud Infrastructure, Agile Governance.
                   </p>
                 </div>
                 <div class="font-mono text-xs text-swiss font-bold self-start">CURRENT</div>
               </div>
 
-              <div class="p-6 bg-white flex flex-col md:flex-row justify-between gap-4">
+              <div class="p-4 sm:p-6 bg-white flex flex-col md:flex-row justify-between gap-3 sm:gap-4">
                 <div class="space-y-1">
-                  <div class="flex items-center gap-2">
+                  <div class="flex flex-wrap items-center gap-2">
                     <span class="px-2 py-0.5 bg-hairline text-ink font-mono text-[10px] font-bold">2024 &mdash; 2025</span>
-                    <h4 class="font-bold text-base uppercase text-ink">FST Errachidia &mdash; Errachidia</h4>
+                    <h4 class="font-bold text-sm sm:text-base uppercase text-ink">FST Errachidia &mdash; Errachidia</h4>
                   </div>
-                  <p class="text-sm font-semibold text-zinc-800">Bachelor of Science and Technology (LST) in Software Engineering</p>
-                  <p class="text-xs text-ink-muted font-mono pt-1">
+                  <p class="text-xs sm:text-sm font-semibold text-zinc-800">Bachelor of Science and Technology (LST) in Software Engineering</p>
+                  <p class="text-[11px] sm:text-xs text-ink-muted font-mono pt-1">
                     Relevant Curriculum: Algorithms &amp; Data Structures, Relational Databases, Operating Systems, Web &amp; Mobile Engineering, Information Systems.
                   </p>
                 </div>
@@ -433,10 +516,10 @@
       <div class="grid grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-hairline">
         
         <!-- Section Label Column (3 cols) -->
-        <div class="col-span-12 lg:col-span-3 p-8 lg:p-12 space-y-6 bg-canvas">
+        <div class="col-span-12 lg:col-span-3 p-5 sm:p-8 lg:p-12 space-y-4 sm:space-y-6 bg-canvas">
           <div class="space-y-2">
             <span class="font-mono text-xs text-swiss font-bold tracking-widest uppercase">SECTION 02</span>
-            <h2 class="text-3xl font-black uppercase tracking-tight text-ink">Arsenal</h2>
+            <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-ink">Arsenal</h2>
             <p class="font-mono text-xs text-ink-muted">TECHNICAL COMPETENCY MATRIX</p>
           </div>
           <p class="text-xs text-ink-muted leading-relaxed font-mono">
@@ -450,12 +533,12 @@
           <!-- Row 1: Architecture & Backend -->
           <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-hairline border-b border-hairline">
             
-            <div class="p-8 space-y-4 hover:bg-canvas transition-colors">
+            <div class="p-5 sm:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors">
               <div class="flex items-center justify-between font-mono text-xs">
-                <span class="font-bold text-ink uppercase">01 // Architecture, Analysis &amp; Conception</span>
+                <span class="font-bold text-ink uppercase">01 // Architecture &amp; Conception</span>
                 <span class="text-swiss font-bold">CORE</span>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 font-mono text-xs">
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Clean Architecture</span>
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Domain-Driven Design (DDD)</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">UML 2.5</span>
@@ -467,12 +550,12 @@
               </div>
             </div>
 
-            <div class="p-8 space-y-4 hover:bg-canvas transition-colors border-t md:border-t-0">
+            <div class="p-5 sm:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors border-t md:border-t-0">
               <div class="flex items-center justify-between font-mono text-xs">
                 <span class="font-bold text-ink uppercase">02 // Backend Core &amp; Frameworks</span>
                 <span class="text-swiss font-bold">RUNTIMES</span>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 font-mono text-xs">
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Java (SE/EE)</span>
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Spring Boot</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">Spring Security</span>
@@ -491,33 +574,33 @@
           <!-- Row 2: Databases & Data Science -->
           <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-hairline border-b border-hairline">
             
-            <div class="p-8 space-y-4 hover:bg-canvas transition-colors">
+            <div class="p-5 sm:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors">
               <div class="flex items-center justify-between font-mono text-xs">
                 <span class="font-bold text-ink uppercase">03 // Databases &amp; Data Storage</span>
                 <span class="text-ink-muted font-bold">PERSISTENCE</span>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 font-mono text-xs">
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">PostgreSQL</span>
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">MySQL</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">MongoDB</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">Redis (Caching)</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">Vector DBs</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">IPFS</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">SQL Tuning &amp; Normalization</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface">SQL Tuning</span>
               </div>
             </div>
 
-            <div class="p-8 space-y-4 hover:bg-canvas transition-colors border-t md:border-t-0">
+            <div class="p-5 sm:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors border-t md:border-t-0">
               <div class="flex items-center justify-between font-mono text-xs">
                 <span class="font-bold text-ink uppercase">04 // Applied Data Science &amp; AI</span>
                 <span class="text-swiss font-bold">INTELLIGENCE</span>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 font-mono text-xs">
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">RAG Pipelines</span>
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Vector Embeddings</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">LLM Integration</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Exploratory Data Analysis (EDA)</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Machine Learning (Scikit-Learn)</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface">Statistical EDA</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface">Scikit-Learn</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">Statistical Validation</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">Power BI &bull; Tableau</span>
               </div>
@@ -528,28 +611,28 @@
           <!-- Row 3: InfoSec & Cloud -->
           <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-hairline border-b border-hairline">
             
-            <div class="p-8 space-y-4 hover:bg-canvas transition-colors">
+            <div class="p-5 sm:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors">
               <div class="flex items-center justify-between font-mono text-xs">
-                <span class="font-bold text-ink uppercase">05 // Information Systems Security (InfoSec)</span>
+                <span class="font-bold text-ink uppercase">05 // Information Systems Security</span>
                 <span class="text-swiss font-bold">HARDENED</span>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 font-mono text-xs">
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Secure-by-Design</span>
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">IAM &amp; RBAC Modeling</span>
+                <span class="px-2.5 py-1 bg-ink text-white font-medium">IAM &amp; RBAC</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">Stateless Auth (JWT)</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">OPNsense Firewall</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">802.1Q VLAN Segmentation</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface">802.1Q VLANs</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">OWASP Standards</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Endpoint &amp; Protocol Security</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface">Protocol Security</span>
               </div>
             </div>
 
-            <div class="p-8 space-y-4 hover:bg-canvas transition-colors border-t md:border-t-0">
+            <div class="p-5 sm:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors border-t md:border-t-0">
               <div class="flex items-center justify-between font-mono text-xs">
-                <span class="font-bold text-ink uppercase">06 // Cloud &amp; Systems Infrastructure</span>
+                <span class="font-bold text-ink uppercase">06 // Cloud &amp; Infrastructure</span>
                 <span class="text-ink-muted font-bold">OPERATIONS</span>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 font-mono text-xs">
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">AWS (EC2, S3, RDS)</span>
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Docker</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">Linux (Fedora, Debian, RHEL)</span>
@@ -564,12 +647,12 @@
           <!-- Row 4: Frontend & Governance -->
           <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-hairline">
             
-            <div class="p-8 space-y-4 hover:bg-canvas transition-colors">
+            <div class="p-5 sm:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors">
               <div class="flex items-center justify-between font-mono text-xs">
-                <span class="font-bold text-ink uppercase">07 // Frontend &amp; Web3 Integration</span>
+                <span class="font-bold text-ink uppercase">07 // Frontend &amp; Web3</span>
                 <span class="text-ink-muted font-bold">CLIENT</span>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 font-mono text-xs">
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Angular</span>
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">React.js</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">TypeScript</span>
@@ -580,15 +663,15 @@
               </div>
             </div>
 
-            <div class="p-8 space-y-4 hover:bg-canvas transition-colors border-t md:border-t-0">
+            <div class="p-5 sm:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors border-t md:border-t-0">
               <div class="flex items-center justify-between font-mono text-xs">
-                <span class="font-bold text-ink uppercase">08 // Governance &amp; Methodologies</span>
+                <span class="font-bold text-ink uppercase">08 // Governance &amp; Methods</span>
                 <span class="text-ink-muted font-bold">STANDARDS</span>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 font-mono text-xs">
                 <span class="px-2.5 py-1 bg-ink text-white font-medium">Agile (Scrum / Kanban)</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Git Flow &amp; Branching Policies</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Architecture Decision Records (ADRs)</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface">Git Flow &amp; Branching</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface">ADRs</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">ITIL Fundamentals</span>
                 <span class="px-2.5 py-1 border border-hairline bg-surface">ERP Governance (Dolibarr, Odoo)</span>
               </div>
@@ -606,10 +689,10 @@
       <div class="grid grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-hairline">
         
         <!-- Section Label Column (3 cols) -->
-        <div class="col-span-12 lg:col-span-3 p-8 lg:p-12 space-y-6 bg-canvas">
+        <div class="col-span-12 lg:col-span-3 p-5 sm:p-8 lg:p-12 space-y-4 sm:space-y-6 bg-canvas">
           <div class="space-y-2">
             <span class="font-mono text-xs text-swiss font-bold tracking-widest uppercase">SECTION 03</span>
-            <h2 class="text-3xl font-black uppercase tracking-tight text-ink">Field Work</h2>
+            <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-ink">Field Work</h2>
             <p class="font-mono text-xs text-ink-muted">PROFESSIONAL CHRONOLOGY</p>
           </div>
           <p class="text-xs text-ink-muted leading-relaxed font-mono">
@@ -621,40 +704,40 @@
         <div class="col-span-12 lg:col-span-9 divide-y divide-hairline">
           
           <!-- Experience Record 01: Broker Immobilier -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
-            <div class="flex flex-wrap items-baseline justify-between gap-4 font-mono text-xs">
-              <div class="flex items-center gap-3">
-                <span class="px-2.5 py-0.5 bg-swiss text-white font-bold">03.1 // WORK-STUDY (ALTERNANCE)</span>
-                <span class="font-bold text-ink uppercase text-sm">Broker Immobilier &mdash; Casablanca</span>
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-4 font-mono text-xs">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span class="px-2.5 py-0.5 bg-swiss text-white font-bold text-[10px]">03.1 // ALTERNANCE</span>
+                <span class="font-bold text-ink uppercase text-sm sm:text-base">Broker Immobilier &mdash; Casablanca</span>
               </div>
-              <span class="text-ink-muted font-bold">FEB. 2026 &mdash; AUG. 2026</span>
+              <span class="text-ink-muted font-bold text-[11px] sm:text-xs">FEB. 2026 &mdash; AUG. 2026</span>
             </div>
 
-            <div class="space-y-2">
-              <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">
+            <div class="space-y-1.5 sm:space-y-2">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">
                 Software Architect &amp; Systems Engineer
               </h3>
-              <p class="font-mono text-xs text-ink-muted uppercase tracking-wider">
-                DOMAIN: MULTI-TENANT SAAS REAL ESTATE CRM &bull; SPRING BOOT &bull; ANGULAR &bull; RAG AI
+              <p class="font-mono text-[10px] sm:text-xs text-ink-muted uppercase tracking-wider">
+                DOMAIN: MULTI-TENANT SAAS CRM &bull; SPRING BOOT &bull; ANGULAR &bull; RAG AI
               </p>
             </div>
 
-            <div class="space-y-3 text-sm text-ink-muted font-mono leading-relaxed">
-              <div class="flex items-start gap-3">
-                <span class="text-swiss font-bold">&mdash;</span>
+            <div class="space-y-2.5 text-xs sm:text-sm text-ink-muted font-mono leading-relaxed">
+              <div class="flex items-start gap-2.5">
+                <span class="text-swiss font-bold flex-shrink-0">&mdash;</span>
                 <p>Architected a multi-tenant SaaS real estate CRM utilizing Spring Boot and Angular, applying Clean Architecture principles to enforce domain layer isolation and long-term maintainability.</p>
               </div>
-              <div class="flex items-start gap-3">
-                <span class="text-swiss font-bold">&mdash;</span>
+              <div class="flex items-start gap-2.5">
+                <span class="text-swiss font-bold flex-shrink-0">&mdash;</span>
                 <p>Integrated a Retrieval-Augmented Generation (RAG) pipeline and LLM APIs for automated semantic search, document summarization, and metadata extraction.</p>
               </div>
-              <div class="flex items-start gap-3">
-                <span class="text-swiss font-bold">&mdash;</span>
+              <div class="flex items-start gap-2.5">
+                <span class="text-swiss font-bold flex-shrink-0">&mdash;</span>
                 <p>Enforced end-to-end security policies using stateless JWT authentication paired with granular Role-Based Access Control (RBAC).</p>
               </div>
             </div>
 
-            <div class="pt-2 flex flex-wrap gap-2 font-mono text-[11px]">
+            <div class="pt-2 flex flex-wrap gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-[11px]">
               <span class="px-2 py-0.5 border border-hairline bg-surface text-ink font-semibold">Spring Boot</span>
               <span class="px-2 py-0.5 border border-hairline bg-surface text-ink font-semibold">Angular</span>
               <span class="px-2 py-0.5 border border-hairline bg-surface text-swiss font-semibold">RAG Pipeline</span>
@@ -664,40 +747,40 @@
           </article>
 
           <!-- Experience Record 02: HTBS Africa -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
-            <div class="flex flex-wrap items-baseline justify-between gap-4 font-mono text-xs">
-              <div class="flex items-center gap-3">
-                <span class="px-2.5 py-0.5 bg-ink text-white font-bold">03.2 // ENGINEERING INTERNSHIP</span>
-                <span class="font-bold text-ink uppercase text-sm">HTBS Africa &mdash; Casablanca</span>
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-4 font-mono text-xs">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span class="px-2.5 py-0.5 bg-ink text-white font-bold text-[10px]">03.2 // INTERNSHIP</span>
+                <span class="font-bold text-ink uppercase text-sm sm:text-base">HTBS Africa &mdash; Casablanca</span>
               </div>
-              <span class="text-ink-muted font-bold">AUG. 2025 &mdash; OCT. 2025</span>
+              <span class="text-ink-muted font-bold text-[11px] sm:text-xs">AUG. 2025 &mdash; OCT. 2025</span>
             </div>
 
-            <div class="space-y-2">
-              <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">
+            <div class="space-y-1.5 sm:space-y-2">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">
                 Information Systems &amp; ERP Engineering Intern &mdash; Finance
               </h3>
-              <p class="font-mono text-xs text-ink-muted uppercase tracking-wider">
+              <p class="font-mono text-[10px] sm:text-xs text-ink-muted uppercase tracking-wider">
                 DOMAIN: DOLIBARR ERP &bull; TREASURY &amp; TAX COMPLIANCE &bull; SQL OPTIMIZATION
               </p>
             </div>
 
-            <div class="space-y-3 text-sm text-ink-muted font-mono leading-relaxed">
-              <div class="flex items-start gap-3">
-                <span class="text-ink font-bold">&mdash;</span>
+            <div class="space-y-2.5 text-xs sm:text-sm text-ink-muted font-mono leading-relaxed">
+              <div class="flex items-start gap-2.5">
+                <span class="text-ink font-bold flex-shrink-0">&mdash;</span>
                 <p>Analyzed Moroccan tax and treasury compliance regulations, converting operational constraints into formal technical specifications for Dolibarr ERP.</p>
               </div>
-              <div class="flex items-start gap-3">
-                <span class="text-ink font-bold">&mdash;</span>
+              <div class="flex items-start gap-2.5">
+                <span class="text-ink font-bold flex-shrink-0">&mdash;</span>
                 <p>Developed and deployed 4 custom modular extensions (Treasury, Invoicing, Tax Reporting) adhering to the Open-Closed Principle without modifying the application core.</p>
               </div>
-              <div class="flex items-start gap-3">
-                <span class="text-ink font-bold">&mdash;</span>
+              <div class="flex items-start gap-2.5">
+                <span class="text-ink font-bold flex-shrink-0">&mdash;</span>
                 <p>Optimized relational database schemas and refactored bottleneck SQL queries, cutting financial report generation time by 40%.</p>
               </div>
             </div>
 
-            <div class="pt-2 flex flex-wrap gap-2 font-mono text-[11px]">
+            <div class="pt-2 flex flex-wrap gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-[11px]">
               <span class="px-2 py-0.5 border border-hairline bg-surface text-ink font-semibold">PHP</span>
               <span class="px-2 py-0.5 border border-hairline bg-surface text-ink font-semibold">Dolibarr ERP</span>
               <span class="px-2 py-0.5 border border-hairline bg-surface text-ink font-semibold">MySQL</span>
@@ -706,40 +789,40 @@
           </article>
 
           <!-- Experience Record 03: FST Errachidia -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
-            <div class="flex flex-wrap items-baseline justify-between gap-4 font-mono text-xs">
-              <div class="flex items-center gap-3">
-                <span class="px-2.5 py-0.5 bg-ink text-white font-bold">03.3 // BACHELOR CAPSTONE (PFE)</span>
-                <span class="font-bold text-ink uppercase text-sm">FST Errachidia &mdash; Errachidia</span>
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-4 font-mono text-xs">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span class="px-2.5 py-0.5 bg-ink text-white font-bold text-[10px]">03.3 // BACHELOR CAPSTONE (PFE)</span>
+                <span class="font-bold text-ink uppercase text-sm sm:text-base">FST Errachidia &mdash; Errachidia</span>
               </div>
-              <span class="text-ink-muted font-bold">APR. 2025 &mdash; JUL. 2025</span>
+              <span class="text-ink-muted font-bold text-[11px] sm:text-xs">APR. 2025 &mdash; JUL. 2025</span>
             </div>
 
-            <div class="space-y-2">
-              <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">
+            <div class="space-y-1.5 sm:space-y-2">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">
                 Blockchain Developer Intern &mdash; Web3
               </h3>
-              <p class="font-mono text-xs text-ink-muted uppercase tracking-wider">
+              <p class="font-mono text-[10px] sm:text-xs text-ink-muted uppercase tracking-wider">
                 DOMAIN: DECENTRALIZED PROTOCOL &bull; SMART CONTRACTS &bull; IPFS PERSISTENCE
               </p>
             </div>
 
-            <div class="space-y-3 text-sm text-ink-muted font-mono leading-relaxed">
-              <div class="flex items-start gap-3">
-                <span class="text-ink font-bold">&mdash;</span>
+            <div class="space-y-2.5 text-xs sm:text-sm text-ink-muted font-mono leading-relaxed">
+              <div class="flex items-start gap-2.5">
+                <span class="text-ink font-bold flex-shrink-0">&mdash;</span>
                 <p>Designed and deployed an Ethereum-based decentralized e-learning and credentials verification platform.</p>
               </div>
-              <div class="flex items-start gap-3">
-                <span class="text-ink font-bold">&mdash;</span>
+              <div class="flex items-start gap-2.5">
+                <span class="text-ink font-bold flex-shrink-0">&mdash;</span>
                 <p>Authored and audited Solidity smart contracts for immutable academic diploma issuance and integrated IPFS for decentralized file persistence.</p>
               </div>
-              <div class="flex items-start gap-3">
-                <span class="text-ink font-bold">&mdash;</span>
+              <div class="flex items-start gap-2.5">
+                <span class="text-ink font-bold flex-shrink-0">&mdash;</span>
                 <p>Engineered a responsive Web3 frontend using React.js and Web3.js to handle client-side wallet authentication and contract execution.</p>
               </div>
             </div>
 
-            <div class="pt-2 flex flex-wrap gap-2 font-mono text-[11px]">
+            <div class="pt-2 flex flex-wrap gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-[11px]">
               <span class="px-2 py-0.5 border border-hairline bg-surface text-ink font-semibold">Solidity</span>
               <span class="px-2 py-0.5 border border-hairline bg-surface text-ink font-semibold">Ethereum</span>
               <span class="px-2 py-0.5 border border-hairline bg-surface text-ink font-semibold">React.js</span>
@@ -758,10 +841,10 @@
       <div class="grid grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-hairline">
         
         <!-- Section Label Column (3 cols) -->
-        <div class="col-span-12 lg:col-span-3 p-8 lg:p-12 space-y-6 bg-canvas">
+        <div class="col-span-12 lg:col-span-3 p-5 sm:p-8 lg:p-12 space-y-4 sm:space-y-6 bg-canvas">
           <div class="space-y-2">
             <span class="font-mono text-xs text-swiss font-bold tracking-widest uppercase">SECTION 04</span>
-            <h2 class="text-3xl font-black uppercase tracking-tight text-ink">Systems</h2>
+            <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-ink">Systems</h2>
             <p class="font-mono text-xs text-ink-muted">MAJOR ENGINEERING PROJECTS</p>
           </div>
           <p class="text-xs text-ink-muted leading-relaxed font-mono">
@@ -778,28 +861,28 @@
         <div class="col-span-12 lg:col-span-9 divide-y divide-hairline">
           
           <!-- System 01: Core Banking -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="text-swiss font-bold">SYSTEM SPEC // 04.1</span>
-              <span class="text-ink-muted">DISTRIBUTED ARCHITECTURE &bull; CORE BANKING</span>
+              <span class="text-ink-muted text-[10px] sm:text-xs">DISTRIBUTED &bull; BANKING</span>
             </div>
-            <div class="space-y-3">
-              <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
+            <div class="space-y-2 sm:space-y-3">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
                 Core Banking Transaction Engine
               </h3>
-              <p class="text-base text-ink-muted leading-relaxed font-normal text-pretty">
+              <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-normal text-pretty">
                 Designed a decoupled core banking transactional engine isolating ledger operations from edge client APIs. Enforced strict ACID transaction boundaries, idempotent processing, and fine-grained RBAC authorization over an integration bus.
               </p>
             </div>
-            <div class="border-t border-hairline pt-4 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div class="flex flex-wrap gap-2">
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Java</span>
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Spring Boot</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">PostgreSQL</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">ACID Engine</span>
+            <div class="border-t border-hairline pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Java</span>
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Spring Boot</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">PostgreSQL</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">ACID Engine</span>
               </div>
               <a href="https://github.com/ind4x/spring-boot-portfolio" target="_blank"
-                 class="flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
+                 class="min-h-[44px] sm:min-h-0 flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
                 <span>INSPECT CODEBASE</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -807,28 +890,28 @@
           </article>
 
           <!-- System 02: Business Modeling & ERP (Odoo) -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="text-swiss font-bold">SYSTEM SPEC // 04.2</span>
-              <span class="text-ink-muted">BUSINESS MODELING &amp; ERP ARCHITECTURE</span>
+              <span class="text-ink-muted text-[10px] sm:text-xs">MODELING &bull; ERP</span>
             </div>
-            <div class="space-y-3">
-              <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
+            <div class="space-y-2 sm:space-y-3">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
                 Enterprise Logistics Workflow &amp; Odoo Modules
               </h3>
-              <p class="text-base text-ink-muted leading-relaxed font-normal text-pretty">
+              <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-normal text-pretty">
                 Architected logistics workflow models for perishable goods via BPMN 2.0 standards. Developed custom Odoo 17 modules adhering strictly to Open-Closed (GoF) principles to eliminate regression risks and ensure full supply-chain traceability.
               </p>
             </div>
-            <div class="border-t border-hairline pt-4 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div class="flex flex-wrap gap-2">
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">BPMN 2.0</span>
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Python</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Odoo 17</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Open-Closed (GoF)</span>
+            <div class="border-t border-hairline pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">BPMN 2.0</span>
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Python</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">Odoo 17</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">Open-Closed (GoF)</span>
               </div>
               <a href="https://github.com/ind4x/si-portfolio" target="_blank"
-                 class="flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
+                 class="min-h-[44px] sm:min-h-0 flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
                 <span>INSPECT CODEBASE</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -836,28 +919,28 @@
           </article>
 
           <!-- System 03: devctl -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="text-swiss font-bold">SYSTEM SPEC // 04.3</span>
-              <span class="text-ink-muted">PLATFORM ENGINEERING &amp; LOCAL ORCHESTRATION</span>
+              <span class="text-ink-muted text-[10px] sm:text-xs">PLATFORM ENGINEERING</span>
             </div>
-            <div class="space-y-3">
-              <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
+            <div class="space-y-2 sm:space-y-3">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
                 devctl &mdash; Asynchronous Lifecycle CLI
               </h3>
-              <p class="text-base text-ink-muted leading-relaxed font-normal text-pretty">
+              <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-normal text-pretty">
                 Built an asynchronous CLI in Python automating environment bootstrapping, Docker container lifecycle, and dependency orchestration across Spring Boot, Angular, and Vue.js stacks, eliminating cross-environment configuration drift.
               </p>
             </div>
-            <div class="border-t border-hairline pt-4 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div class="flex flex-wrap gap-2">
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Python</span>
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Docker</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Bash</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Platform Automation</span>
+            <div class="border-t border-hairline pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Python</span>
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Docker</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">Bash</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">Automation</span>
               </div>
               <a href="https://github.com/ind4x/devctl" target="_blank"
-                 class="flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
+                 class="min-h-[44px] sm:min-h-0 flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
                 <span>INSPECT CODEBASE</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -865,28 +948,28 @@
           </article>
 
           <!-- System 04: Predictive Analytics & ML -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="text-swiss font-bold">SYSTEM SPEC // 04.4</span>
-              <span class="text-ink-muted">APPLIED DATA SCIENCE &amp; ML PIPELINES</span>
+              <span class="text-ink-muted text-[10px] sm:text-xs">DATA SCIENCE &bull; ML</span>
             </div>
-            <div class="space-y-3">
-              <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
+            <div class="space-y-2 sm:space-y-3">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
                 Predictive Analytics &amp; Machine Learning Pipelines
               </h3>
-              <p class="text-base text-ink-muted leading-relaxed font-normal text-pretty">
+              <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-normal text-pretty">
                 Engineered end-to-end classification and clustering pipelines (telecom churn prediction, customer segmentation) applying Random Forest, K-Means, and statistical EDA to generate actionable business intelligence.
               </p>
             </div>
-            <div class="border-t border-hairline pt-4 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div class="flex flex-wrap gap-2">
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Python</span>
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Scikit-Learn</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Pandas</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Statistical EDA</span>
+            <div class="border-t border-hairline pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Python</span>
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Scikit-Learn</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">Pandas</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">Statistical EDA</span>
               </div>
               <a href="https://github.com/ind4x/machine-learning-portfolio" target="_blank"
-                 class="flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
+                 class="min-h-[44px] sm:min-h-0 flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
                 <span>INSPECT CODEBASE</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -894,28 +977,28 @@
           </article>
 
           <!-- System 05: Infrastructure & Firewall -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="text-swiss font-bold">SYSTEM SPEC // 04.5</span>
-              <span class="text-ink-muted">CLOUD TELEMETRY &amp; PERIMETER HARDENING</span>
+              <span class="text-ink-muted text-[10px] sm:text-xs">CLOUD &bull; INFOSEC</span>
             </div>
-            <div class="space-y-3">
-              <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
+            <div class="space-y-2 sm:space-y-3">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
                 AWS Cloud Supervision &amp; OPNsense Perimeter
               </h3>
-              <p class="text-base text-ink-muted leading-relaxed font-normal text-pretty">
+              <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-normal text-pretty">
                 Provisioned multi-OS cloud telemetry on AWS EC2 via Zabbix daemons and Docker; configured an OPNsense firewall enforcing strict 802.1Q VLAN segmentation, protocol security, and zero-trust perimeter traffic filtering.
               </p>
             </div>
-            <div class="border-t border-hairline pt-4 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div class="flex flex-wrap gap-2">
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">AWS EC2</span>
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Zabbix</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">OPNsense</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">802.1Q VLAN</span>
+            <div class="border-t border-hairline pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">AWS EC2</span>
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Zabbix</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">OPNsense</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">802.1Q VLAN</span>
               </div>
               <a href="https://github.com/ind4x/aws-zabbix-monitoring" target="_blank"
-                 class="flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
+                 class="min-h-[44px] sm:min-h-0 flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
                 <span>INSPECT CODEBASE</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -923,28 +1006,28 @@
           </article>
 
           <!-- System 06: Decentralized Edu -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="text-swiss font-bold">SYSTEM SPEC // 04.6</span>
-              <span class="text-ink-muted">EVM PROTOCOL &amp; DECENTRALIZED STORAGE</span>
+              <span class="text-ink-muted text-[10px] sm:text-xs">WEB3 &bull; SOLIDITY</span>
             </div>
-            <div class="space-y-3">
-              <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
+            <div class="space-y-2 sm:space-y-3">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
                 Decentralized Edu &mdash; Smart Contracts
               </h3>
-              <p class="text-base text-ink-muted leading-relaxed font-normal text-pretty">
+              <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-normal text-pretty">
                 Authored and deployed gas-efficient Solidity smart contracts on Ethereum for tamper-proof academic credential verification, integrating IPFS via Web3.js and React to persist decentralized, verifiable records.
               </p>
             </div>
-            <div class="border-t border-hairline pt-4 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div class="flex flex-wrap gap-2">
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Solidity</span>
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Ethereum</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">React.js</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Web3.js &bull; IPFS</span>
+            <div class="border-t border-hairline pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Solidity</span>
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Ethereum</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">React.js</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">IPFS</span>
               </div>
               <a href="https://github.com/ind4x/decentralized-course-archive" target="_blank"
-                 class="flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
+                 class="min-h-[44px] sm:min-h-0 flex items-center gap-1.5 font-bold text-ink hover:text-swiss transition-colors">
                 <span>INSPECT CODEBASE</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -952,25 +1035,25 @@
           </article>
 
           <!-- System 07: Software Quality & Governance -->
-          <article class="p-8 md:p-12 space-y-6 hover:bg-canvas transition-colors">
+          <article class="p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6 hover:bg-canvas transition-colors">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="text-swiss font-bold">SYSTEM SPEC // 04.7</span>
-              <span class="text-ink-muted">ENGINEERING GOVERNANCE &amp; CI/CD</span>
+              <span class="text-ink-muted text-[10px] sm:text-xs">GOVERNANCE &bull; CI/CD</span>
             </div>
-            <div class="space-y-3">
-              <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
+            <div class="space-y-2 sm:space-y-3">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
                 Software Quality &amp; Engineering Governance
               </h3>
-              <p class="text-base text-ink-muted leading-relaxed font-normal text-pretty">
+              <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-normal text-pretty">
                 Standardized repository governance by implementing GitHub Actions CI validation policies, strict Trunk-Based development branching rules, and Architecture Decision Records (ADRs) while providing technical mentorship to engineering peers.
               </p>
             </div>
-            <div class="border-t border-hairline pt-4 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div class="flex flex-wrap gap-2">
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">GitHub Actions</span>
-                <span class="px-2.5 py-1 bg-ink text-white font-medium">Trunk-Based Git</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">ADRs</span>
-                <span class="px-2.5 py-1 border border-hairline bg-surface">Code Quality</span>
+            <div class="border-t border-hairline pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">GitHub Actions</span>
+                <span class="px-2.5 py-1 bg-ink text-white font-medium text-[11px]">Trunk-Based Git</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">ADRs</span>
+                <span class="px-2.5 py-1 border border-hairline bg-surface text-[11px]">Quality</span>
               </div>
               <span class="font-mono text-xs text-ink-muted font-bold uppercase">STANDARD GOVERNANCE</span>
             </div>
@@ -981,11 +1064,11 @@
       </div>
 
       <!-- Real-time GitHub Open Source Stream -->
-      <div class="border-t border-hairline p-8 md:p-16 space-y-8">
-        <div class="flex flex-wrap items-end justify-between gap-4">
-          <div class="space-y-2">
+      <div class="border-t border-hairline p-5 sm:p-8 md:p-16 space-y-6 sm:space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
+          <div class="space-y-1.5 sm:space-y-2">
             <span class="font-mono text-xs text-swiss font-bold tracking-widest uppercase">OPEN-SOURCE REGISTRY</span>
-            <h3 class="text-2xl md:text-4xl font-black uppercase tracking-tight text-ink">Live GitHub Telemetry</h3>
+            <h3 class="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tight text-ink">Live GitHub Telemetry</h3>
           </div>
           <a href="https://github.com/ind4x" target="_blank" class="font-mono text-xs font-bold uppercase tracking-wider text-ink hover:text-swiss transition-colors flex items-center gap-1.5">
             <span>EXPLORE ALL IND4X REPOSITORIES</span>
@@ -994,7 +1077,7 @@
         </div>
 
         <div id="github-repos-swiss" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y md:divide-y-0 divide-hairline border border-hairline">
-          <div class="col-span-full py-12 text-center font-mono text-xs text-ink-muted uppercase tracking-widest">
+          <div class="col-span-full py-10 sm:py-12 text-center font-mono text-xs text-ink-muted uppercase tracking-widest">
             SYNCHRONIZING WITH GITHUB API &hellip;
           </div>
         </div>
@@ -1006,10 +1089,10 @@
       <div class="grid grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-hairline">
         
         <!-- Section Label Column (3 cols) -->
-        <div class="col-span-12 lg:col-span-3 p-8 lg:p-12 space-y-6 bg-canvas">
+        <div class="col-span-12 lg:col-span-3 p-5 sm:p-8 lg:p-12 space-y-4 sm:space-y-6 bg-canvas">
           <div class="space-y-2">
             <span class="font-mono text-xs text-swiss font-bold tracking-widest uppercase">SECTION 05</span>
-            <h2 class="text-3xl font-black uppercase tracking-tight text-ink">Credentials</h2>
+            <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-ink">Credentials</h2>
             <p class="font-mono text-xs text-ink-muted">VERIFIED ACCREDITATIONS</p>
           </div>
           <p class="text-xs text-ink-muted leading-relaxed font-mono">
@@ -1021,104 +1104,104 @@
         <div class="col-span-12 lg:col-span-9 divide-y divide-hairline font-mono text-xs">
           
           <!-- AWS Academy Graduate -->
-          <div class="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-canvas transition-colors">
-            <div class="space-y-1.5 flex-1">
+          <div class="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-canvas transition-colors">
+            <div class="space-y-1 sm:space-y-1.5 flex-1">
               <span class="text-[10px] text-ink-muted uppercase tracking-wider block">AMAZON WEB SERVICES (AWS) &bull; NOV. 2025</span>
-              <h3 class="text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
+              <h3 class="text-sm sm:text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
                 AWS Academy Graduate &mdash; Cloud Foundations
               </h3>
             </div>
             <a href="https://www.credly.com/badges/499818eb-ee08-4b36-9eb5-6c7dd77333af/public_url" target="_blank"
-               class="self-start md:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center gap-1.5">
+               class="self-start sm:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center justify-center gap-1.5 w-full sm:w-auto text-center min-h-[40px] sm:min-h-0">
               <span>VERIFY</span>
               <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
             </a>
           </div>
 
           <!-- Advanced Java APIs -->
-          <div class="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-canvas transition-colors">
-            <div class="space-y-1.5 flex-1">
+          <div class="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-canvas transition-colors">
+            <div class="space-y-1 sm:space-y-1.5 flex-1">
               <span class="text-[10px] text-ink-muted uppercase tracking-wider block">PACKT &bull; COURSERA &bull; AUG. 2026</span>
-              <h3 class="text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
+              <h3 class="text-sm sm:text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
                 Advanced Java APIs and Functional Programming
               </h3>
             </div>
             <a href="https://coursera.org/verify/01STQQE689SD" target="_blank"
-               class="self-start md:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center gap-1.5">
+               class="self-start sm:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center justify-center gap-1.5 w-full sm:w-auto text-center min-h-[40px] sm:min-h-0">
               <span>VERIFY</span>
               <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
             </a>
           </div>
 
           <!-- Cisco Data Analytics -->
-          <div class="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-canvas transition-colors">
-            <div class="space-y-1.5 flex-1">
+          <div class="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-canvas transition-colors">
+            <div class="space-y-1 sm:space-y-1.5 flex-1">
               <span class="text-[10px] text-ink-muted uppercase tracking-wider block">CISCO NETWORKING ACADEMY / ENSET &bull; MAR. 2026</span>
-              <h3 class="text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
+              <h3 class="text-sm sm:text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
                 Data Analytics Essentials
               </h3>
             </div>
             <a href="https://www.credly.com/badges/2ebafeec-8d1a-4c38-af96-00a793a7a939/public_url" target="_blank"
-               class="self-start md:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center gap-1.5">
+               class="self-start sm:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center justify-center gap-1.5 w-full sm:w-auto text-center min-h-[40px] sm:min-h-0">
               <span>VERIFY</span>
               <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
             </a>
           </div>
 
           <!-- GitHub Foundations -->
-          <div class="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-canvas transition-colors">
-            <div class="space-y-1.5 flex-1">
+          <div class="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-canvas transition-colors">
+            <div class="space-y-1 sm:space-y-1.5 flex-1">
               <span class="text-[10px] text-ink-muted uppercase tracking-wider block">MICROSOFT &bull; GITHUB &bull; APR. 2026</span>
-              <h3 class="text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
+              <h3 class="text-sm sm:text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
                 GitHub Foundations (Parts 1 &amp; 2)
               </h3>
             </div>
             <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/NMWZVH8F?sharingId=57FCD8AE461DCC45" target="_blank"
-               class="self-start md:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center gap-1.5">
+               class="self-start sm:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center justify-center gap-1.5 w-full sm:w-auto text-center min-h-[40px] sm:min-h-0">
               <span>VERIFY</span>
               <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
             </a>
           </div>
 
           <!-- GitHub Administration -->
-          <div class="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-canvas transition-colors">
-            <div class="space-y-1.5 flex-1">
+          <div class="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-canvas transition-colors">
+            <div class="space-y-1 sm:space-y-1.5 flex-1">
               <span class="text-[10px] text-ink-muted uppercase tracking-wider block">MICROSOFT &bull; GITHUB &bull; APR. 2026</span>
-              <h3 class="text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
+              <h3 class="text-sm sm:text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
                 GitHub Administration Basics and Product Features
               </h3>
             </div>
             <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/9RCFAERU?sharingId=57FCD8AE461DCC45" target="_blank"
-               class="self-start md:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center gap-1.5">
+               class="self-start sm:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center justify-center gap-1.5 w-full sm:w-auto text-center min-h-[40px] sm:min-h-0">
               <span>VERIFY</span>
               <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
             </a>
           </div>
 
           <!-- IBM Software Engineering -->
-          <div class="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-canvas transition-colors">
-            <div class="space-y-1.5 flex-1">
+          <div class="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-canvas transition-colors">
+            <div class="space-y-1 sm:space-y-1.5 flex-1">
               <span class="text-[10px] text-ink-muted uppercase tracking-wider block">IBM &bull; COURSERA &bull; FEB. 2026</span>
-              <h3 class="text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
+              <h3 class="text-sm sm:text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
                 Introduction to Software Engineering
               </h3>
             </div>
             <a href="https://coursera.org/share/4ed7bd110eee1929633c20be030418c0" target="_blank"
-               class="self-start md:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center gap-1.5">
+               class="self-start sm:self-center px-4 py-2 border border-ink text-ink font-semibold uppercase tracking-wider hover:bg-ink hover:text-white transition-colors btn-press flex items-center justify-center gap-1.5 w-full sm:w-auto text-center min-h-[40px] sm:min-h-0">
               <span>VERIFY</span>
               <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
             </a>
           </div>
 
           <!-- Huawei HCIA -->
-          <div class="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-canvas transition-colors">
-            <div class="space-y-1.5 flex-1">
+          <div class="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-canvas transition-colors">
+            <div class="space-y-1 sm:space-y-1.5 flex-1">
               <span class="text-[10px] text-ink-muted uppercase tracking-wider block">HUAWEI ICT ACADEMY &bull; 2025</span>
-              <h3 class="text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
+              <h3 class="text-sm sm:text-base md:text-lg font-bold text-ink uppercase tracking-tight font-sans">
                 HCIA-Cloud Computing V5.5
               </h3>
             </div>
-            <span class="self-start md:self-center px-4 py-2 bg-canvas border border-hairline text-ink-muted uppercase tracking-wider">
+            <span class="self-start sm:self-center px-4 py-2 bg-canvas border border-hairline text-ink-muted uppercase tracking-wider w-full sm:w-auto text-center">
               VALIDATED
             </span>
           </div>
@@ -1129,48 +1212,48 @@
     </section>
 
     <!-- 06: DISPATCH & CONTACT CONSOLE -->
-    <section id="contact" class="bg-ink text-white p-8 md:p-16 lg:p-24 fade-in-section">
-      <div class="grid grid-cols-12 gap-12">
+    <section id="contact" class="bg-ink text-white p-6 sm:p-12 md:p-16 lg:p-24 fade-in-section">
+      <div class="grid grid-cols-12 gap-8 lg:gap-12">
         
-        <div class="col-span-12 lg:col-span-7 space-y-8">
-          <div class="space-y-3 font-mono text-xs">
+        <div class="col-span-12 lg:col-span-7 space-y-6 sm:space-y-8">
+          <div class="space-y-2 sm:space-y-3 font-mono text-xs">
             <span class="text-swiss font-bold tracking-widest uppercase">DISPATCH // 06</span>
-            <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white leading-none">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white leading-none">
               Initialize<br/>
               Connection
             </h2>
           </div>
           
-          <p class="text-lg text-zinc-400 font-normal max-w-xl leading-relaxed text-pretty">
+          <p class="text-base sm:text-lg text-zinc-400 font-normal max-w-xl leading-relaxed text-pretty">
             Actively seeking a <strong class="text-white">Final-Year Internship (PFE 2027)</strong> in Backend Systems Architecture, Distributed Platforms, or InfoSec Engineering. Reach out directly to initiate technical discussion.
           </p>
           
-          <div class="flex flex-wrap gap-4 pt-4 font-mono text-xs">
+          <div class="flex flex-col sm:flex-row gap-3 pt-2 font-mono text-xs w-full sm:w-auto">
             <a href="mailto:fellahyoussef010@gmail.com"
-               class="px-8 py-4 bg-swiss text-white font-semibold uppercase tracking-widest hover:bg-white hover:text-ink transition-colors btn-press flex items-center gap-2">
+               class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-swiss text-white font-semibold uppercase tracking-widest hover:bg-white hover:text-ink transition-colors btn-press flex items-center justify-center gap-2 text-center">
               <i data-lucide="mail" class="w-4 h-4"></i>
               <span>Send Email Dispatch</span>
             </a>
             <a href="https://linkedin.com/in/yss-ef" target="_blank"
-               class="px-8 py-4 border border-zinc-700 text-white font-semibold uppercase tracking-widest hover:border-white transition-colors btn-press flex items-center gap-2">
+               class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border border-zinc-700 text-white font-semibold uppercase tracking-widest hover:border-white transition-colors btn-press flex items-center justify-center gap-2 text-center">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn Profile</span>
             </a>
           </div>
         </div>
 
-        <div class="col-span-12 lg:col-span-5 bg-zinc-900 border border-zinc-800 p-8 font-mono text-xs flex flex-col justify-between space-y-6">
+        <div class="col-span-12 lg:col-span-5 bg-zinc-900 border border-zinc-800 p-5 sm:p-8 font-mono text-xs flex flex-col justify-between space-y-6">
           <div class="space-y-4">
             <div class="text-[10px] text-zinc-500 uppercase tracking-widest">TRANSMISSION CHANNELS</div>
             
             <div class="space-y-3 divide-y divide-zinc-800">
               <div class="pt-2">
                 <span class="text-zinc-500 block text-[10px] uppercase">Primary Email</span>
-                <a href="mailto:fellahyoussef010@gmail.com" class="text-white hover:text-swiss transition-colors">fellahyoussef010@gmail.com</a>
+                <a href="mailto:fellahyoussef010@gmail.com" class="text-white hover:text-swiss transition-colors break-all">fellahyoussef010@gmail.com</a>
               </div>
               <div class="pt-2">
                 <span class="text-zinc-500 block text-[10px] uppercase">Academic Email</span>
-                <a href="mailto:y.fellah@mundiapolis.ma" class="text-zinc-300 hover:text-swiss transition-colors">y.fellah@mundiapolis.ma</a>
+                <a href="mailto:y.fellah@mundiapolis.ma" class="text-zinc-300 hover:text-swiss transition-colors break-all">y.fellah@mundiapolis.ma</a>
               </div>
               <div class="pt-2">
                 <span class="text-zinc-500 block text-[10px] uppercase">Telephone</span>
@@ -1178,7 +1261,7 @@
               </div>
               <div class="pt-2">
                 <span class="text-zinc-500 block text-[10px] uppercase">Direct Dossiers</span>
-                <div class="flex gap-4 pt-1">
+                <div class="flex flex-wrap gap-4 pt-1">
                   <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download class="text-white underline underline-offset-4 hover:text-swiss flex items-center gap-1">
                     <i data-lucide="download" class="w-3 h-3"></i> Resume (EN)
                   </a>
@@ -1190,7 +1273,7 @@
             </div>
           </div>
 
-          <div class="pt-6 border-t border-zinc-800 text-[10px] text-zinc-500 flex justify-between items-center">
+          <div class="pt-6 border-t border-zinc-800 text-[10px] text-zinc-500 flex flex-wrap justify-between items-center gap-2">
             <span>CASABLANCA, MOROCCO</span>
             <span class="text-swiss font-bold">READY FOR PFE 2027 ENGAGEMENT</span>
           </div>
@@ -1202,29 +1285,69 @@
   </main>
 
   <!-- Architectural Footer -->
-  <footer class="w-full bg-white border-t border-hairline py-8 px-6 font-mono text-[11px] text-ink-muted">
-    <div class="max-w-[1440px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+  <footer class="w-full bg-white border-t border-hairline py-6 sm:py-8 px-4 sm:px-6 font-mono text-[10px] sm:text-[11px] text-ink-muted">
+    <div class="max-w-[1440px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
       <div>
         <span class="font-bold text-ink">YOUSSEF FELLAH</span>
-        <span class="mx-2">&bull;</span>
+        <span class="mx-1.5 sm:mx-2">&bull;</span>
         <span>SOFTWARE ENGINEER &amp; SYSTEMS ARCHITECT</span>
       </div>
       <div>
         <span>SWISS MODERNISM &bull; FORM FOLLOWS FUNCTION</span>
-        <span class="mx-2">&bull;</span>
+        <span class="mx-1.5 sm:mx-2">&bull;</span>
         <span>NO COOKIES &bull; NO TRACKING</span>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts: GitHub API Fetch & Observer -->
+  <!-- Scripts: Mobile Navigation, GitHub API Fetch & Observer -->
   <script>
     lucide.createIcons();
 
+    // Mobile Navigation Drawer Controller
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const menuBtnLabel = document.getElementById('menu-btn-label');
+    const menuIcon = document.getElementById('menu-icon');
+
+    function toggleMobileMenu() {
+      const isOpen = mobileDrawer.classList.contains('open');
+      if (isOpen) {
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.classList.add('closed');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuBtnLabel.textContent = 'MENU';
+        menuIcon.setAttribute('data-lucide', 'menu');
+      } else {
+        mobileDrawer.classList.remove('closed');
+        mobileDrawer.classList.add('open');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuBtnLabel.textContent = 'CLOSE';
+        menuIcon.setAttribute('data-lucide', 'x');
+      }
+      lucide.createIcons();
+    }
+
+    if (menuToggle && mobileDrawer) {
+      menuToggle.addEventListener('click', toggleMobileMenu);
+
+      // Close mobile drawer when clicking any link inside
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileDrawer.classList.remove('open');
+          mobileDrawer.classList.add('closed');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuBtnLabel.textContent = 'MENU';
+          menuIcon.setAttribute('data-lucide', 'menu');
+          lucide.createIcons();
+        });
+      });
+    }
+
     // Intersection Observer for Swiss Fade-in Sections
     const observerOptions = {
-      threshold: 0.08,
-      rootMargin: "0px 0px -40px 0px"
+      threshold: 0.05,
+      rootMargin: "0px 0px -30px 0px"
     };
 
     const sectionObserver = new IntersectionObserver((entries) => {
@@ -1258,21 +1381,21 @@
           const card = document.createElement('a');
           card.href = repo.html_url;
           card.target = '_blank';
-          card.className = 'p-6 md:p-8 space-y-4 hover:bg-canvas transition-colors border-r border-b border-hairline flex flex-col justify-between group';
+          card.className = 'p-5 sm:p-6 md:p-8 space-y-3 sm:space-y-4 hover:bg-canvas transition-colors border-r border-b border-hairline flex flex-col justify-between group';
           card.innerHTML = `
-            <div class="space-y-3">
+            <div class="space-y-2.5 sm:space-y-3">
               <div class="flex items-center justify-between font-mono text-[10px] text-ink-muted">
                 <span>INDEX // 0${idx + 1}</span>
                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-ink-muted group-hover:text-swiss transition-colors"></i>
               </div>
-              <h4 class="font-bold text-ink uppercase tracking-tight text-base font-sans group-hover:text-swiss transition-colors">
+              <h4 class="font-bold text-ink uppercase tracking-tight text-sm sm:text-base font-sans group-hover:text-swiss transition-colors">
                 ${repo.name}
               </h4>
               <p class="text-xs text-ink-muted leading-relaxed line-clamp-2">
                 ${repo.description || 'Public codebase archive and architecture definition.'}
               </p>
             </div>
-            <div class="pt-4 border-t border-hairline flex items-center justify-between font-mono text-[10px] text-ink-muted">
+            <div class="pt-3 sm:pt-4 border-t border-hairline flex items-center justify-between font-mono text-[10px] text-ink-muted">
               <span class="font-bold text-ink">${repo.language || 'Code'}</span>
               <span>UPDATED ${year}</span>
             </div>
