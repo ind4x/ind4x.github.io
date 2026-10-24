@@ -1,79 +1,77 @@
-# portfolio
+# ind4x.github.io
 
-This repository contains the source code for the personal portfolio website of
-Youssef Fellah. The site features a terminal-inspired interface designed to
-showcase software engineering expertise, academic achievements, and professional
-experience.
+Personal engineering portfolio and technical specification dossier of **Youssef Fellah**, Software Engineer specializing in Distributed Backend Systems, Formal Design (UML 2.5, BPMN 2.0, Clean Architecture, DDD), Information Systems Security, and AI Agents Orchestration (Multi-Agent Systems, MCP, Autonomous Workflows, RAG Pipelines).
 
-The live site is accessible at [ind4x.github.io](https://ind4x.github.io).
+Live at: [ind4x.github.io](https://ind4x.github.io)
 
-## Technical overview
+---
 
-The system utilizes modern web standards to provide a high-performance,
-immersive experience without the overhead of heavy frameworks.
+## Design System & Architecture
 
-### Core stack
+The site implements an **Industrial Technical Studio** design system inspired by [getartcraft.com](https://getartcraft.com/) and Neo-Brutalist craft:
 
-- Engine: Vanilla HTML5 and modern CSS3 (SCSS)
-- Logic: Modern JavaScript (ES6+)
-- Iconography: Lucide Icons
-- Typography: Google Fonts (Share Tech Mono, Cormorant Garamond, Syne)
-- Hosting: GitHub Pages
+### Typographic Trinity
+- **Display Sans:** Inter (Structural headings, navigation, and body hierarchy)
+- **Editorial Serif:** Instrument Serif (Italic expressive keywords for editorial contrast)
+- **Technical Monospace:** JetBrains Mono (HUD telemetry labels, indices, metadata, and specification badges)
 
-## System features
+### Color Tokens & Theming
+Natively supports dynamic dual-state theming derived systematically from **Sanzō Wada's *A Dictionary of Color Combinations* (Combination ID 340)**:
+- **Black (`#111314`)**: Primary ink and dark-mode technical background.
+- **Neutral Gray (`#b6bfc1`)**: Hairline dividers, 1px structural grid lines, and muted secondary tones.
+- **Peach Red (`#f15a30`)**: Signature architectural accent and active indicators.
+- **Sea Green (`#00b49b`)**: Real-time telemetry, verification status, and credential badges.
 
-### Boot sequence logic
+#### State Configurations:
+- **Light Theme (`:root`):**
+  - Canvas: `#f4f5f5` (warm concrete paper subtly imbued with Neutral Gray)
+  - Surfaces: `#ffffff` (raised), `#e7eaeb` (sunken)
+  - Ink: `#111314` (Sanzō Wada Black)
+  - Accent: `#f15a30` (Sanzō Wada Peach Red)
+  - Telemetry: `#00b49b` (Sanzō Wada Sea Green)
+  - Hairlines: `rgba(17, 19, 20, 0.14)`
+- **Dark Theme (`[data-theme="dark"]`):**
+  - Canvas: `#111314` (Sanzō Wada Black)
+  - Surfaces: `#181b1c` (raised), `#0c0d0e` (sunken)
+  - Ink: `#f4f5f5`
+  - Accent: `#f15a30` (Sanzō Wada Peach Red)
+  - Telemetry: `#00b49b` (Sanzō Wada Sea Green)
+  - Hairlines: `rgba(182, 191, 193, 0.16)` (Sanzō Wada Neutral Gray)
 
-The application implements a simulated operating system initialization sequence.
-Asynchronous JavaScript manages the transition from the boot screen to the main
-interface once all assets load.
+### Architectural Motifs
+- **True 1px Grid:** Utilizes `gap-px bg-line` container pattern to guarantee exact 1px hairline separation without overlapping borders.
+- **Precision Crosshairs (`.tick`):** Corner registration marks applied to technical specification cards and media viewports.
+- **Modular 48px Header (`h-12`):** Unified navigation cells with full vertical stretch and high-contrast invert hover states.
 
-### Reactive UI and motion
+---
 
-- Adaptive cursor: A custom cursor system reacts to mouse movement using
-  acceleration physics.
-- Dynamic grid: The background grid uses CSS custom properties updated in
-  real-time to create a reactive light-follow effect.
-- Impact effects: Flash feedback reinforces the industrial aesthetic during
-  system events.
+## Technical Specifications
 
-### Thematic engine
+- **Engine:** Semantic HTML5, CSS Custom Properties, Tailwind CSS
+- **Logic:** Vanilla JavaScript (ES6+), `localStorage` theme persistence, Intersection Observer
+- **Iconography:** Lucide Icons
+- **Performance:** Pre-converted WebP avatar assets (<50 KB), CSS Grid fractional height transitions (`grid-template-rows`), zero layout-thrashing animations.
+- **Accessibility:** Full WCAG 2.1 compliance with `@media (prefers-reduced-motion: reduce)` support, explicit element dimensions, high-contrast micro-labels, and safe DOM manipulation.
 
-The site includes a dual-state theme engine that persists across sessions. A
-custom animation handles icon transitions, while global CSS variables maintain
-high-contrast aesthetics.
+---
 
-### Responsive architecture
+## Local Development
 
-The layout uses Flexbox and Grid to ensure the terminal experience scales across
-desktop and mobile devices while maintaining its industrial character.
+No build pipeline or server runtime required:
 
-## System directory
-
-```text
-├── index.html   # Core structure and HUD layout
-├── style.css    # Industrial design system and animations
-├── script.js    # System logic, boot sequence, and reactive UI
-└── .git         # Version control history
+```bash
+git clone git@github.com:ind4x/ind4x.github.io.git
+cd ind4x.github.io
+# Open index.html directly in any modern browser
 ```
 
-## Installation and modification
+---
 
-Follow these steps to run the system locally:
+## Profile & Contact
 
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:ind4x/ind4x.github.io.git
-   ```
-2. Launch the application:
-   Open `index.html` in a modern browser. No build step is required.
-
-## Operator profile
-
-- Role: Full Stack Engineer (Class of 2026)
-- Specializations: Spring Boot, Angular, Solidity, AI (RAG Systems)
-- Mission: Completed Alternance at Broker Immobilier
-- Base: Casablanca, Morocco
-
-Authored by Youssef Fellah.
-Personal project.
+- **Engineer:** Youssef Fellah
+- **Affiliation:** Université Mundiapolis (Diplôme d'Ingénieur, Software Engineering)
+- **Primary Objective:** Seeking Final-Year Internship (PFE 2027)
+- **Direct Mail:** fellahyoussef010@gmail.com
+- **LinkedIn:** [linkedin.com/in/yss-ef](https://linkedin.com/in/yss-ef)
+- **GitHub:** [github.com/ind4x](https://github.com/ind4x)
