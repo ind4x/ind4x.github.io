@@ -70,7 +70,6 @@ cd ind4x.github.io
 ## Author & Contact
 
 - **Author:** Youssef Fellah ([ind4x_](https://github.com/ind4x))
-- **Institution:** Mundiapolis University, Engineering Cycle (PFE 2027)
 - **Email:** fellahyoussef010@gmail.com
 - **LinkedIn:** [linkedin.com/in/yss-ef](https://linkedin.com/in/yss-ef)
 - **Portfolio:** [ind4x.github.io](https://ind4x.github.io)
