@@ -67,11 +67,10 @@ cd ind4x.github.io
 
 ---
 
-## Profile & Contact
+## Author & Contact
 
-- **Engineer:** Youssef Fellah
-- **Affiliation:** Université Mundiapolis (Diplôme d'Ingénieur, Software Engineering)
-- **Primary Objective:** Seeking Final-Year Internship (PFE 2027)
-- **Direct Mail:** fellahyoussef010@gmail.com
+- **Author:** Youssef Fellah ([ind4x_](https://github.com/ind4x))
+- **Email:** fellahyoussef010@gmail.com
 - **LinkedIn:** [linkedin.com/in/yss-ef](https://linkedin.com/in/yss-ef)
-- **GitHub:** [github.com/ind4x](https://github.com/ind4x)
+- **Portfolio:** [ind4x.github.io](https://ind4x.github.io)
+
