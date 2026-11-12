@@ -84,8 +84,8 @@
       --bg-sunken: #e7eaeb;
       --ink: #111314;
       --ink-strong: #000000;
-      --muted: rgba(17, 19, 20, 0.68);
-      --faint: rgba(17, 19, 20, 0.46);
+      --muted: rgba(17, 19, 20, 0.78);
+      --faint: rgba(17, 19, 20, 0.62);
       --line: rgba(17, 19, 20, 0.14);
       --line-strong: rgba(17, 19, 20, 0.38);
       --accent: #f15a30;
@@ -105,8 +105,8 @@
       --bg-sunken: #0c0d0e;
       --ink: #f4f5f5;
       --ink-strong: #ffffff;
-      --muted: rgba(244, 245, 244, 0.68);
-      --faint: rgba(244, 245, 244, 0.45);
+      --muted: rgba(244, 245, 244, 0.78);
+      --faint: rgba(244, 245, 244, 0.62);
       --line: rgba(182, 191, 193, 0.16);
       --line-strong: rgba(182, 191, 193, 0.38);
       --accent: #f15a30;
@@ -143,31 +143,7 @@
       color: var(--invert-fg);
     }
 
-    /* Architectural Technical Crosshairs (Ticks) */
-    .tick {
-      pointer-events: none;
-      width: 11px;
-      height: 11px;
-      position: absolute;
-    }
-    .tick::before,
-    .tick::after {
-      content: "";
-      background: var(--line-strong);
-      position: absolute;
-    }
-    .tick::before {
-      width: 1px;
-      top: 0;
-      bottom: 0;
-      left: 5px;
-    }
-    .tick::after {
-      height: 1px;
-      top: 5px;
-      left: 0;
-      right: 0;
-    }
+    
 
     /* HUD Technical Labels (Short labels only) */
     .hud-label {
@@ -186,10 +162,10 @@
     }
 
     body { font-size: 1rem; line-height: 1.6; }
-    h4 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
-    h3 { font-size: 1.75rem; font-weight: 600; line-height: 1.2; }
-    h2 { font-size: 2.5rem; font-weight: 600; line-height: 1.15; }
-    h1 { font-size: 3.75rem; font-weight: 600; line-height: 1.05; }
+    h4 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; text-wrap: balance; }
+    h3 { font-size: 1.75rem; font-weight: 600; line-height: 1.2; text-wrap: balance; }
+    h2 { font-size: 2.5rem; font-weight: 600; line-height: 1.15; text-wrap: balance; }
+    h1 { font-size: 3.75rem; font-weight: 600; line-height: 1.05; text-wrap: balance; }
 
     .tabular {
       font-variant-numeric: tabular-nums;
@@ -412,7 +388,6 @@
         
         <!-- Left Statement Hero Pane (8 cols) -->
         <div class="col-span-12 md:col-span-8 p-6 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-between relative bg-bg">
-          <span aria-hidden="true" class="tick top-3 left-3 opacity-60"></span>
           
           <div class="space-y-6">
             <div class="flex items-center gap-3">
@@ -423,9 +398,9 @@
 
             <!-- Typographic Trinity: Bold Grotesque + Instrument Serif Italic -->
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-ink-strong leading-[1.02]">
-              Distributed <span class="font-serif italic font-normal text-accent">systems</span>.<br/>
+              Distributed systems.<br/>
               Formal design.<br/>
-              Resilient <span class="font-serif italic font-normal text-muted">architecture</span>.
+              Resilient architecture.
             </h1>
 
             <div class="text-spec text-faint pt-1">
@@ -440,7 +415,6 @@
 
             <!-- Objective Status Block -->
             <div class="p-5 border border-line bg-bg-sunken space-y-2 relative">
-              <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
               <div class="hud-label text-accent font-bold">PRIMARY OBJECTIVE</div>
               <p class="text-xs sm:text-sm font-medium text-ink leading-relaxed">
                 Seeking a <span class="font-bold underline decoration-accent underline-offset-4">Final-Year Internship (PFE 2027)</span> to architect, model, and deploy scalable, secure distributed platforms.
@@ -450,12 +424,12 @@
             <!-- Action CTAs: ArtCraft Button System (rounded-none, modular height) -->
             <div class="flex flex-wrap items-center gap-3 pt-2">
               <a href="#projects" 
-                 class="h-12 px-6 rounded-none font-mono font-bold uppercase tracking-[0.12em] text-xs whitespace-nowrap bg-invert-bg text-invert-fg hover:opacity-85 transition-opacity flex items-center justify-center gap-2">
+                 class="h-12 px-6 rounded-none font-sans font-semibold uppercase tracking-wider text-xs whitespace-nowrap bg-invert-bg text-invert-fg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 <span>Inspect Major Systems</span>
-                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                <i data-lucide="arrow-down-right" class="w-4 h-4 translate-y-px"></i>
               </a>
               <a href="mailto:fellahyoussef010@gmail.com" 
-                 class="h-12 px-6 rounded-none font-mono font-bold uppercase tracking-[0.12em] text-xs whitespace-nowrap border border-line-strong bg-bg text-ink hover:bg-invert-bg hover:text-invert-fg transition-colors flex items-center justify-center">
+                 class="h-12 px-6 rounded-none font-sans font-semibold uppercase tracking-wider text-xs whitespace-nowrap border border-line-strong bg-bg text-ink hover:bg-invert-bg hover:text-invert-fg active:scale-[0.98] transition-all flex items-center justify-center">
                 Initiate Connection
               </a>
             </div>
@@ -464,7 +438,6 @@
 
         <!-- Right Specification Ledger (4 cols) -->
         <div class="col-span-12 md:col-span-4 bg-bg-raised flex flex-col justify-between divide-y divide-line font-mono text-xs relative">
-          <span aria-hidden="true" class="tick top-3 right-3 opacity-60"></span>
           
           <!-- Identity Coordinates -->
           <div class="p-6 sm:p-8 space-y-4">
@@ -582,7 +555,6 @@
         
         <!-- Section Sidebar Column (3 cols) -->
         <div class="col-span-12 lg:col-span-3 p-6 sm:p-8 lg:p-10 space-y-6 bg-bg-raised relative">
-          <span aria-hidden="true" class="tick top-3 left-3 opacity-60"></span>
           <div class="space-y-1.5">
             <span class="hud-label text-accent font-bold">SECTION 01</span>
             <h2 class="text-2xl sm:text-3xl font-medium tracking-tight text-ink-strong">
@@ -593,7 +565,6 @@
 
           <!-- Profile Photo Frame with Optimized WebP and Explicit Dimensions -->
           <div class="relative border border-line bg-bg p-2 max-w-[260px] mx-auto lg:mx-0">
-            <span aria-hidden="true" class="tick top-1 right-1 opacity-60"></span>
             <div class="aspect-[4/5] overflow-hidden bg-bg-sunken">
               <img src="assets/img/profile.webp"
                    alt="Youssef Fellah, Software Engineer"
@@ -627,9 +598,8 @@
         <!-- Section Narrative Body (9 cols) -->
         <div class="col-span-12 lg:col-span-9 p-6 sm:p-10 lg:p-14 space-y-8 bg-bg">
           <div class="space-y-3">
-            <div class="hud-label text-faint">ARCHITECTURAL PHILOSOPHY</div>
             <h3 class="text-2xl sm:text-4xl md:text-5xl font-medium tracking-tight text-ink-strong leading-[1.08]">
-              Form follows function. <span class="font-serif italic font-normal text-muted">Logic precedes implementation.</span>
+              Form follows function. Logic precedes implementation.
             </h3>
           </div>
 
@@ -644,16 +614,15 @@
 
           <!-- Formal Academic Background Table -->
           <div class="border-t border-line pt-8 space-y-4 sm:space-y-6">
-            <div class="hud-label text-faint">EDUCATION &amp; RELEVANT CURRICULUM</div>
+            <div class="hud-label text-faint">ACADEMIC BACKGROUND</div>
             
             <div class="grid grid-cols-1 gap-px bg-line border border-line">
               
               <div class="p-6 bg-bg-sunken flex flex-col md:flex-row justify-between gap-4 relative">
-                <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
                 <div class="space-y-1.5 flex-1">
                   <div class="flex flex-wrap items-center gap-2">
                     <span class="px-2 py-0.5 bg-invert-bg text-invert-fg font-mono text-xs font-bold">2025 &mdash; PRESENT</span>
-                    <h4 class="font-bold text-sm sm:text-base text-ink-strong uppercase">Université Mundiapolis &mdash; Casablanca</h4>
+                    <h4 class="font-bold text-sm sm:text-base text-ink-strong">Université Mundiapolis &mdash; Casablanca</h4>
                   </div>
                   <p class="text-xs sm:text-sm font-semibold text-ink">Engineering Degree (Diplôme d'Ingénieur) in Software Engineering</p>
                   <p class="text-xs text-muted font-mono pt-1">
@@ -664,11 +633,10 @@
               </div>
 
               <div class="p-6 bg-bg flex flex-col md:flex-row justify-between gap-4 relative">
-                <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
                 <div class="space-y-1.5 flex-1">
                   <div class="flex flex-wrap items-center gap-2">
                     <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-mono text-xs font-bold">2024 &mdash; 2025</span>
-                    <h4 class="font-bold text-sm sm:text-base text-ink-strong uppercase">FST Errachidia &mdash; Errachidia</h4>
+                    <h4 class="font-bold text-sm sm:text-base text-ink-strong">FST Errachidia &mdash; Errachidia</h4>
                   </div>
                   <p class="text-xs sm:text-sm font-semibold text-ink">Bachelor of Science and Technology (LST) in Software Engineering</p>
                   <p class="text-xs text-muted font-mono pt-1">
@@ -691,11 +659,10 @@
         
         <!-- Section Sidebar Column (3 cols) -->
         <div class="col-span-12 lg:col-span-3 p-6 sm:p-8 lg:p-10 space-y-4 bg-bg-raised relative">
-          <span aria-hidden="true" class="tick top-3 left-3 opacity-60"></span>
           <div class="space-y-1.5">
             <span class="hud-label text-accent font-bold">SECTION 02</span>
             <h2 class="text-2xl sm:text-3xl font-medium tracking-tight text-ink-strong">
-              Technical <span class="font-serif italic font-normal text-muted">Arsenal</span>
+              Technical Arsenal
             </h2>
             <span class="hud-label text-faint block">Competency Matrix</span>
           </div>
@@ -709,9 +676,8 @@
           
           <!-- Cell 01: Architecture -->
           <div class="bg-bg p-6 sm:p-8 space-y-3 relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
             <div class="flex items-center justify-between font-mono text-xs">
-              <span class="font-bold text-ink uppercase">01 // Architecture &amp; Conception</span>
+              <span class="font-bold text-ink">01 // Architecture &amp; Conception</span>
               <span class="hud-label text-accent font-bold">CORE</span>
             </div>
             <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-xs">
@@ -728,9 +694,8 @@
 
           <!-- Cell 02: Backend Core -->
           <div class="bg-bg p-6 sm:p-8 space-y-3 relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
             <div class="flex items-center justify-between font-mono text-xs">
-              <span class="font-bold text-ink uppercase">02 // Backend Core &amp; Frameworks</span>
+              <span class="font-bold text-ink">02 // Backend Core &amp; Frameworks</span>
               <span class="hud-label text-accent font-bold">RUNTIMES</span>
             </div>
             <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-xs">
@@ -749,9 +714,8 @@
 
           <!-- Cell 03: Databases & Storage -->
           <div class="bg-bg p-6 sm:p-8 space-y-3 relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
             <div class="flex items-center justify-between font-mono text-xs">
-              <span class="font-bold text-ink uppercase">03 // Databases &amp; Data Storage</span>
+              <span class="font-bold text-ink">03 // Databases &amp; Data Storage</span>
               <span class="hud-label text-muted font-bold">PERSISTENCE</span>
             </div>
             <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-xs">
@@ -767,9 +731,8 @@
 
           <!-- Cell 04: AI Agents & Applied Intelligence -->
           <div class="bg-bg p-6 sm:p-8 space-y-3 relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
             <div class="flex items-center justify-between font-mono text-xs">
-              <span class="font-bold text-ink uppercase">04 // AI Agents &amp; Applied Intelligence</span>
+              <span class="font-bold text-ink">04 // AI Agents &amp; Applied Intelligence</span>
               <span class="hud-label text-accent font-bold">ORCHESTRATION</span>
             </div>
             <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-xs">
@@ -790,9 +753,8 @@
 
           <!-- Cell 05: InfoSec -->
           <div class="bg-bg p-6 sm:p-8 space-y-3 relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
             <div class="flex items-center justify-between font-mono text-xs">
-              <span class="font-bold text-ink uppercase">05 // Information Systems Security</span>
+              <span class="font-bold text-ink">05 // Information Systems Security</span>
               <span class="hud-label text-accent font-bold">HARDENED</span>
             </div>
             <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-xs">
@@ -808,9 +770,8 @@
 
           <!-- Cell 06: Infrastructure & DevOps -->
           <div class="bg-bg p-6 sm:p-8 space-y-3 relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
             <div class="flex items-center justify-between font-mono text-xs">
-              <span class="font-bold text-ink uppercase">06 // Cloud &amp; Infrastructure</span>
+              <span class="font-bold text-ink">06 // Cloud &amp; Infrastructure</span>
               <span class="hud-label text-muted font-bold">OPERATIONS</span>
             </div>
             <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-xs">
@@ -825,9 +786,8 @@
 
           <!-- Cell 07: Frontend & Web3 -->
           <div class="bg-bg p-6 sm:p-8 space-y-3 relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
             <div class="flex items-center justify-between font-mono text-xs">
-              <span class="font-bold text-ink uppercase">07 // Frontend &amp; Web3</span>
+              <span class="font-bold text-ink">07 // Frontend &amp; Web3</span>
               <span class="hud-label text-muted font-bold">CLIENT</span>
             </div>
             <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-xs">
@@ -843,9 +803,8 @@
 
           <!-- Cell 08: Governance & Methods -->
           <div class="bg-bg p-6 sm:p-8 space-y-3 relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-40"></span>
             <div class="flex items-center justify-between font-mono text-xs">
-              <span class="font-bold text-ink uppercase">08 // Governance &amp; Methods</span>
+              <span class="font-bold text-ink">08 // Governance &amp; Methods</span>
               <span class="hud-label text-muted font-bold">STANDARDS</span>
             </div>
             <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-xs">
@@ -868,11 +827,10 @@
         
         <!-- Section Sidebar Column (3 cols) -->
         <div class="col-span-12 lg:col-span-3 p-6 sm:p-8 lg:p-10 space-y-4 bg-bg-raised relative">
-          <span aria-hidden="true" class="tick top-3 left-3 opacity-60"></span>
           <div class="space-y-1.5">
             <span class="hud-label text-accent font-bold">SECTION 03</span>
             <h2 class="text-2xl sm:text-3xl font-medium tracking-tight text-ink-strong">
-              Field <span class="font-serif italic font-normal text-muted">Work</span>
+              Field Work
             </h2>
             <span class="hud-label text-faint block">Professional Chronology</span>
           </div>
@@ -886,11 +844,10 @@
           
           <!-- Experience Record 01: Broker Immobilier -->
           <article class="p-6 sm:p-10 space-y-5 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 font-mono text-xs">
               <div class="flex flex-wrap items-center gap-2">
                 <span class="px-2 py-0.5 bg-accent text-white font-bold text-[10px]">03.1 // ALTERNANCE</span>
-                <span class="font-bold text-ink uppercase text-sm">Broker Immobilier, Casablanca</span>
+                <span class="font-bold text-ink text-sm">Broker Immobilier, Casablanca</span>
               </div>
               <span class="hud-label text-muted">FEB. 2026 – AUG. 2026</span>
             </div>
@@ -921,11 +878,10 @@
 
           <!-- Experience Record 02: HTBS Africa -->
           <article class="p-6 sm:p-10 space-y-5 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 font-mono text-xs">
               <div class="flex flex-wrap items-center gap-2">
                 <span class="px-2 py-0.5 bg-invert-bg text-invert-fg font-bold text-[10px]">03.2 // INTERNSHIP</span>
-                <span class="font-bold text-ink uppercase text-sm">HTBS Africa, Casablanca</span>
+                <span class="font-bold text-ink text-sm">HTBS Africa, Casablanca</span>
               </div>
               <span class="hud-label text-muted">AUG. 2025 – OCT. 2025</span>
             </div>
@@ -955,11 +911,10 @@
 
           <!-- Experience Record 03: FST Errachidia -->
           <article class="p-6 sm:p-10 space-y-5 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 font-mono text-xs">
               <div class="flex flex-wrap items-center gap-2">
                 <span class="px-2 py-0.5 bg-invert-bg text-invert-fg font-bold text-[10px]">03.3 // BACHELOR CAPSTONE (PFE)</span>
-                <span class="font-bold text-ink uppercase text-sm">FST Errachidia</span>
+                <span class="font-bold text-ink text-sm">FST Errachidia</span>
               </div>
               <span class="hud-label text-muted">APR. 2025 – JUL. 2025</span>
             </div>
@@ -998,11 +953,10 @@
         
         <!-- Section Sidebar Column (3 cols) -->
         <div class="col-span-12 lg:col-span-3 p-6 sm:p-8 lg:p-10 space-y-4 bg-bg-raised relative">
-          <span aria-hidden="true" class="tick top-3 left-3 opacity-60"></span>
           <div class="space-y-1.5">
             <span class="hud-label text-accent font-bold">SECTION 04</span>
             <h2 class="text-2xl sm:text-3xl font-medium tracking-tight text-ink-strong">
-              Major <span class="font-serif italic font-normal text-muted">Systems</span>
+              Major Systems
             </h2>
             <span class="hud-label text-faint block">Specifications &amp; Codebases</span>
           </div>
@@ -1021,7 +975,6 @@
           
           <!-- System 01: Core Banking Transaction Engine -->
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.1</span>
               <span class="hud-label text-muted">DISTRIBUTED &bull; BANKING</span>
@@ -1051,7 +1004,6 @@
 
           <!-- System 02: Enterprise Logistics & Odoo -->
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.2</span>
               <span class="hud-label text-muted">MODELING &bull; ERP</span>
@@ -1081,7 +1033,6 @@
 
           <!-- System 03: devctl CLI -->
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.3</span>
               <span class="hud-label text-muted">PLATFORM ENGINEERING</span>
@@ -1111,7 +1062,6 @@
 
           <!-- System 04: Predictive Analytics & ML -->
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.4</span>
               <span class="hud-label text-muted">DATA SCIENCE &bull; ML</span>
@@ -1141,7 +1091,6 @@
 
           <!-- System 05: Cloud Infrastructure & Firewall -->
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.5</span>
               <span class="hud-label text-muted">CLOUD &bull; INFOSEC</span>
@@ -1171,7 +1120,6 @@
 
           <!-- System 06: Decentralized Edu -->
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.6</span>
               <span class="hud-label text-muted">WEB3 &bull; SOLIDITY</span>
@@ -1201,7 +1149,6 @@
 
           <!-- System 07: Software Quality & Governance -->
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
-            <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.7</span>
               <span class="hud-label text-muted">GOVERNANCE &bull; CI/CD</span>
@@ -1234,7 +1181,7 @@
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div class="space-y-1">
             <h3 class="text-2xl sm:text-3xl font-medium tracking-tight text-ink-strong">
-              Live GitHub <span class="font-serif italic font-normal text-muted">Telemetry</span>
+              Live GitHub Telemetry
             </h3>
             <p class="hud-label text-faint">Open-Source Registry</p>
           </div>
@@ -1259,11 +1206,10 @@
         
         <!-- Section Sidebar Column (3 cols) -->
         <div class="col-span-12 lg:col-span-3 p-6 sm:p-8 lg:p-10 space-y-4 bg-bg-raised relative">
-          <span aria-hidden="true" class="tick top-3 left-3 opacity-60"></span>
           <div class="space-y-1.5">
             <span class="hud-label text-accent font-bold">SECTION 05</span>
             <h2 class="text-2xl sm:text-3xl font-medium tracking-tight text-ink-strong">
-              Verified <span class="font-serif italic font-normal text-muted">Credentials</span>
+              Verified Credentials
             </h2>
             <span class="hud-label text-faint block">Official Accreditations</span>
           </div>
@@ -1279,7 +1225,7 @@
           <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-bg-sunken transition-colors">
             <div class="space-y-1 flex-1">
               <span class="text-spec text-muted block">Amazon Web Services (AWS) &bull; Nov. 2025</span>
-              <h3 class="text-base font-bold text-ink-strong uppercase tracking-tight font-sans">
+              <h3 class="text-base font-bold text-ink-strong tracking-tight font-sans">
                 AWS Academy Graduate: Cloud Foundations
               </h3>
             </div>
@@ -1294,7 +1240,7 @@
           <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-bg-sunken transition-colors">
             <div class="space-y-1 flex-1">
               <span class="text-spec text-muted block">Packt &bull; Coursera &bull; Aug. 2026</span>
-              <h3 class="text-base font-bold text-ink-strong uppercase tracking-tight font-sans">
+              <h3 class="text-base font-bold text-ink-strong tracking-tight font-sans">
                 Advanced Java APIs and Functional Programming
               </h3>
             </div>
@@ -1309,7 +1255,7 @@
           <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-bg-sunken transition-colors">
             <div class="space-y-1 flex-1">
               <span class="text-spec text-muted block">Cisco Networking Academy / ENSET &bull; Mar. 2026</span>
-              <h3 class="text-base font-bold text-ink-strong uppercase tracking-tight font-sans">
+              <h3 class="text-base font-bold text-ink-strong tracking-tight font-sans">
                 Data Analytics Essentials
               </h3>
             </div>
@@ -1324,7 +1270,7 @@
           <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-bg-sunken transition-colors">
             <div class="space-y-1 flex-1">
               <span class="text-spec text-muted block">Microsoft &bull; GitHub &bull; Apr. 2026</span>
-              <h3 class="text-base font-bold text-ink-strong uppercase tracking-tight font-sans">
+              <h3 class="text-base font-bold text-ink-strong tracking-tight font-sans">
                 GitHub Foundations (Parts 1 &amp; 2)
               </h3>
             </div>
@@ -1339,7 +1285,7 @@
           <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-bg-sunken transition-colors">
             <div class="space-y-1 flex-1">
               <span class="text-spec text-muted block">Microsoft &bull; GitHub &bull; Apr. 2026</span>
-              <h3 class="text-base font-bold text-ink-strong uppercase tracking-tight font-sans">
+              <h3 class="text-base font-bold text-ink-strong tracking-tight font-sans">
                 GitHub Administration Basics and Product Features
               </h3>
             </div>
@@ -1354,7 +1300,7 @@
           <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-bg-sunken transition-colors">
             <div class="space-y-1 flex-1">
               <span class="text-spec text-muted block">IBM &bull; Coursera &bull; Feb. 2026</span>
-              <h3 class="text-base font-bold text-ink-strong uppercase tracking-tight font-sans">
+              <h3 class="text-base font-bold text-ink-strong tracking-tight font-sans">
                 Introduction to Software Engineering
               </h3>
             </div>
@@ -1369,7 +1315,7 @@
           <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-bg-sunken transition-colors">
             <div class="space-y-1 flex-1">
               <span class="text-spec text-muted block">Huawei ICT Academy &bull; 2025</span>
-              <h3 class="text-base font-bold text-ink-strong uppercase tracking-tight font-sans">
+              <h3 class="text-base font-bold text-ink-strong tracking-tight font-sans">
                 HCIA-Cloud Computing V5.5
               </h3>
             </div>
@@ -1385,16 +1331,15 @@
 
     <!-- 06: DISPATCH & CONNECTION CONSOLE -->
     <section id="contact" class="p-6 sm:p-12 md:p-16 lg:p-20 bg-bg-sunken fade-in-section relative">
-      <span aria-hidden="true" class="tick top-3 left-3 opacity-60"></span>
-      <span aria-hidden="true" class="tick bottom-3 right-3 opacity-60"></span>
       
       <div class="grid grid-cols-12 gap-8 lg:gap-12">
         
         <div class="col-span-12 lg:col-span-7 space-y-6">
-          <div class="space-y-2">
-            <h2 class="text-3xl sm:text-5xl font-medium tracking-tight text-ink-strong leading-tight">
-              06 // Initialize <span class="font-serif italic font-normal text-muted">connection</span>.
+          <div class="space-y-1.5">
+            <h2 class="text-3xl sm:text-5xl font-semibold tracking-tight text-ink-strong leading-tight [text-wrap:balance]">
+              Dispatch Console
             </h2>
+            <span class="hud-label text-faint block">Direct Transmission</span>
           </div>
           
           <p class="text-base sm:text-lg text-muted font-normal max-w-xl leading-relaxed">
@@ -1403,12 +1348,12 @@
           
           <div class="flex flex-wrap items-center gap-3 pt-2">
             <a href="mailto:fellahyoussef010@gmail.com"
-               class="h-12 px-6 rounded-none font-mono font-bold uppercase tracking-[0.12em] text-xs whitespace-nowrap bg-invert-bg text-invert-fg hover:opacity-85 transition-opacity flex items-center justify-center gap-2">
+               class="h-12 px-6 rounded-none font-sans font-semibold uppercase tracking-wider text-xs whitespace-nowrap bg-invert-bg text-invert-fg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
               <i data-lucide="mail" class="w-4 h-4"></i>
               <span>Send Direct Email</span>
             </a>
             <a href="https://linkedin.com/in/yss-ef" target="_blank" rel="noopener noreferrer"
-               class="h-12 px-6 rounded-none font-mono font-bold uppercase tracking-[0.12em] text-xs whitespace-nowrap border border-line-strong bg-bg text-ink hover:bg-invert-bg hover:text-invert-fg transition-colors flex items-center justify-center gap-2">
+               class="h-12 px-6 rounded-none font-sans font-semibold uppercase tracking-wider text-xs whitespace-nowrap border border-line-strong bg-bg text-ink hover:bg-invert-bg hover:text-invert-fg active:scale-[0.98] transition-all flex items-center justify-center gap-2">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn Profile</span>
             </a>
@@ -1416,7 +1361,6 @@
         </div>
 
         <div class="col-span-12 lg:col-span-5 bg-bg border border-line p-6 sm:p-8 font-mono text-xs flex flex-col justify-between space-y-6 relative">
-          <span aria-hidden="true" class="tick top-2 right-2 opacity-50"></span>
           
           <div class="space-y-4">
             <div class="hud-label text-faint">TRANSMISSION CHANNELS</div>
@@ -1582,11 +1526,6 @@
           card.target = '_blank';
           card.rel = 'noopener noreferrer';
           card.className = 'p-6 space-y-4 bg-bg hover:bg-bg-sunken transition-colors flex flex-col justify-between group relative';
-          
-          const tick = document.createElement('span');
-          tick.className = 'tick top-2 right-2 opacity-40';
-          tick.setAttribute('aria-hidden', 'true');
-          card.appendChild(tick);
 
           const contentWrap = document.createElement('div');
           contentWrap.className = 'space-y-3';
