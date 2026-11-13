@@ -7,6 +7,18 @@
   
   <meta name="description" content="Portfolio of Youssef Fellah — Software Engineer &amp; Systems Architect specializing in DDD Architecture, Backend &amp; Distributed Systems (Java / Spring Boot), Agentic AI, and Security-by-Design." />
   <meta name="author" content="Youssef Fellah" />
+  <link rel="canonical" href="https://ind4x.github.io/" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111314'/%3E%3Crect x='23' y='4' width='5' height='5' fill='%23f15a30'/%3E%3Ctext x='4' y='23' fill='%23f4f5f5' font-family='monospace' font-weight='700' font-size='14'%3EYF%3C/text%3E%3C/svg%3E" />
+
+  <!-- Open Graph / Social Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ind4x.github.io/" />
+  <meta property="og:title" content="Youssef Fellah — Software Engineer &amp; Systems Architect" />
+  <meta property="og:description" content="DDD Architecture, Backend &amp; Distributed Systems (Java / Spring Boot), Agentic AI, and Security-by-Design. Seeking PFE 2027 Internship." />
+  <meta property="og:image" content="https://ind4x.github.io/assets/img/profile.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Youssef Fellah — Software Engineer &amp; Systems Architect" />
+  <meta name="twitter:description" content="DDD Architecture, Backend &amp; Distributed Systems (Java / Spring Boot), Agentic AI, and Security-by-Design." />
 
   <!-- Pre-render Theme Initialization (prevents flash of wrong theme) -->
   <script>
@@ -179,15 +191,11 @@
       opacity: 0.85;
     }
 
-    /* Fade-in Sections using opacity only to prevent layout recalculations */
+    /* Sections stay visible by default; subtle settle only on motion-safe scroll */
     .fade-in-section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .fade-in-section.is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* Layout-friendly drawer transition using CSS Grid (no layout thrashing) */
@@ -364,11 +372,11 @@
               </a>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-              <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download
+              <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download target="_blank" rel="noopener noreferrer"
                  class="h-10 border border-line-strong bg-bg flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-ink hover:bg-invert-bg hover:text-invert-fg transition-colors">
                 <i data-lucide="file-down" class="w-4 h-4"></i> Download CV (EN)
               </a>
-              <a href="assets/docs/Youssef_Fellah_CV_FR.pdf" download
+              <a href="assets/docs/Youssef_Fellah_CV_FR.pdf" download target="_blank" rel="noopener noreferrer"
                  class="h-10 border border-line-strong bg-bg flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-ink hover:bg-invert-bg hover:text-invert-fg transition-colors">
                 <i data-lucide="file-down" class="w-4 h-4"></i> Télécharger CV (FR)
               </a>
@@ -399,7 +407,7 @@
             <!-- Typographic Trinity: Bold Grotesque + Instrument Serif Italic -->
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-ink-strong leading-[1.02]">
               Distributed systems.<br/>
-              Formal design.<br/>
+              <span class="font-serif italic font-normal">Formal design.</span><br/>
               Resilient architecture.
             </h1>
 
@@ -475,16 +483,16 @@
             <div class="hud-label text-faint">QUANTITATIVE LEDGER</div>
             <div class="grid grid-cols-2 gap-4">
               <div class="border-l-2 border-line-strong pl-3">
-                <span class="text-3xl font-bold text-ink tabular block font-sans">04+</span>
-                <span class="hud-label text-muted">Years Active</span>
+                <span class="text-3xl font-bold text-ink tabular block font-sans">03</span>
+                <span class="hud-label text-muted">Field Roles</span>
               </div>
               <div class="border-l-2 border-line-strong pl-3">
-                <span class="text-3xl font-bold text-ink tabular block font-sans">20+</span>
-                <span class="hud-label text-muted">Repos &amp; Labs</span>
+                <span class="text-3xl font-bold text-ink tabular block font-sans">22+</span>
+                <span class="hud-label text-muted">Public Repos</span>
               </div>
               <div class="border-l-2 border-line-strong pl-3">
-                <span class="text-3xl font-bold text-ink tabular block font-sans">05</span>
-                <span class="hud-label text-muted">Major Systems</span>
+                <span class="text-3xl font-bold text-ink tabular block font-sans">07</span>
+                <span class="hud-label text-muted">Credentials</span>
               </div>
               <div class="border-l-2 border-accent pl-3">
                 <span class="text-3xl font-bold text-accent tabular block font-sans">100%</span>
@@ -503,7 +511,7 @@
               </div>
               <div class="flex justify-between">
                 <span class="text-ink font-semibold">French</span>
-                <span class="text-muted">Bilingual (C2)</span>
+                <span class="text-muted">Fluent (C2)</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-ink font-semibold">English</span>
@@ -518,12 +526,18 @@
             <div class="space-y-2">
               <a href="https://github.com/ind4x" target="_blank" rel="noopener noreferrer"
                  class="flex items-center justify-between py-1 text-ink hover:text-accent transition-colors">
-                <span class="flex items-center gap-1.5"><i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub // ind4x</span>
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                  GitHub // ind4x
+                </span>
                 <i data-lucide="external-link" class="w-3.5 h-3.5 text-muted"></i>
               </a>
               <a href="https://linkedin.com/in/yss-ef" target="_blank" rel="noopener noreferrer"
                  class="flex items-center justify-between py-1 text-ink hover:text-accent transition-colors">
-                <span class="flex items-center gap-1.5"><i data-lucide="linkedin" class="w-3.5 h-3.5"></i> LinkedIn // yss-ef</span>
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                  LinkedIn // yss-ef
+                </span>
                 <i data-lucide="external-link" class="w-3.5 h-3.5 text-muted"></i>
               </a>
             </div>
@@ -535,20 +549,20 @@
     </section>
 
     <!-- ARCHITECTURAL TICKER MARQUEE -->
-    <div class="border-b border-line py-3 px-6 bg-bg-sunken overflow-x-auto flex items-center justify-between gap-6 hud-label text-muted whitespace-nowrap">
-      <span>DISTRIBUTED SYSTEMS</span>
+    <div class="border-b border-line py-3 px-6 bg-bg-sunken overflow-x-auto flex items-center justify-between gap-6 text-spec text-muted whitespace-nowrap">
+      <span>Distributed Systems</span>
       <span class="text-line-strong">&bull;</span>
-      <span>JAVA &bull; SPRING BOOT</span>
+      <span>Java &bull; Spring Boot</span>
       <span class="text-line-strong">&bull;</span>
-      <span>DDD &bull; CLEAN &amp; HEXAGONAL ARCHITECTURE</span>
+      <span>DDD &bull; Clean &amp; Hexagonal Architecture</span>
       <span class="text-line-strong">&bull;</span>
-      <span>TDD &bull; JUNIT 5</span>
+      <span>TDD &bull; JUnit 5</span>
       <span class="text-line-strong">&bull;</span>
-      <span>AGENTIC AI &bull; MULTI-AGENTS</span>
+      <span>Agentic AI &bull; Multi-Agents</span>
       <span class="text-line-strong">&bull;</span>
-      <span>SECURITY-BY-DESIGN</span>
+      <span>Security-by-Design</span>
       <span class="text-line-strong">&bull;</span>
-      <span>BLOCKCHAIN &bull; SOLIDITY</span>
+      <span>Blockchain &bull; Solidity</span>
     </div>
 
     <!-- 01: PROFESSIONAL PROFILE & ACADEMIC FOUNDATION -->
@@ -601,7 +615,7 @@
         <div class="col-span-12 lg:col-span-9 p-6 sm:p-10 lg:p-14 space-y-8 bg-bg">
           <div class="space-y-3">
             <h3 class="text-2xl sm:text-4xl md:text-5xl font-medium tracking-tight text-ink-strong leading-[1.08]">
-              Form follows function. Logic precedes implementation.
+              Form follows function. <span class="font-serif italic font-normal">Logic precedes implementation.</span>
             </h3>
           </div>
 
@@ -854,24 +868,31 @@
                 Software Architect &amp; Systems Engineer (Work-Study)
               </h3>
               <div class="text-spec text-faint">
-                Domain: Multi-Tenant SaaS CRM (propsync) &bull; Spring Boot &bull; Angular &bull; DDD / TDD &bull; RAG AI
+                Domain: Multi-Tenant SaaS CRM (PropSync) &bull; Spring Boot &bull; Angular &bull; DDD / TDD &bull; RAG AI
               </div>
             </div>
 
             <div class="space-y-2 text-xs sm:text-sm text-muted font-mono leading-relaxed">
-              <p>&bull; End-to-end conception and architecture of a multi-tenant SaaS real estate CRM (propsync) with Spring Boot, applying DDD, Clean Architecture, and TDD to isolate and validate the domain layer.</p>
+              <p>&bull; End-to-end conception and architecture of a multi-tenant SaaS real estate CRM (PropSync) with Spring Boot, applying DDD, Clean Architecture, and TDD to isolate and validate the domain layer.</p>
               <p>&bull; Enforced Security-by-Design with stateless JWT authentication and granular Role-Based Access Control (RBAC).</p>
               <p>&bull; Integrated a RAG pipeline, LLM APIs, and AI workflows for semantic search, document summarization, and metadata extraction.</p>
             </div>
 
-            <div class="pt-1 flex flex-wrap gap-1.5 font-mono text-xs">
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Spring Boot</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Angular</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">DDD / Clean Arch</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-accent font-semibold">TDD</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-accent font-semibold">RAG Pipeline</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">JWT / RBAC</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">PostgreSQL</span>
+            <div class="pt-1 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Spring Boot</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Angular</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">DDD / Clean Arch</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-accent font-semibold">TDD</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-accent font-semibold">RAG Pipeline</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">JWT / RBAC</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">PostgreSQL</span>
+              </div>
+              <a href="https://github.com/ind4x/propsync" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 text-ink font-bold hover:text-accent transition-colors">
+                <span>PROPSYNC REPO</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
             </div>
           </article>
 
@@ -900,11 +921,18 @@
               <p>&bull; Optimized relational database schemas and refactored bottleneck SQL queries, cutting financial report generation time by 40%.</p>
             </div>
 
-            <div class="pt-1 flex flex-wrap gap-1.5 font-mono text-xs">
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">PHP</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Dolibarr ERP</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">MySQL</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-accent font-bold">SQL -40% Latency</span>
+            <div class="pt-1 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">PHP</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Dolibarr ERP</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">MySQL</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-accent font-bold">SQL -40% Latency</span>
+              </div>
+              <a href="https://github.com/ind4x/dolibarr-custom-modules" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 text-ink font-bold hover:text-accent transition-colors">
+                <span>DOLIBARR MODULES</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
             </div>
           </article>
 
@@ -933,11 +961,18 @@
               <p>&bull; Engineered a responsive Web3 frontend using React.js and Web3.js to handle client-side wallet authentication and contract execution.</p>
             </div>
 
-            <div class="pt-1 flex flex-wrap gap-1.5 font-mono text-xs">
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Solidity</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Ethereum</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">React.js</span>
-              <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">IPFS</span>
+            <div class="pt-1 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Solidity</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">Ethereum</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">React.js</span>
+                <span class="px-2 py-0.5 border border-line bg-bg-raised text-ink font-semibold">IPFS</span>
+              </div>
+              <a href="https://github.com/ind4x/decentralized-course-archive" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 text-ink font-bold hover:text-accent transition-colors">
+                <span>ARCHIVE REPO</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
             </div>
           </article>
 
@@ -972,18 +1007,18 @@
         <!-- Section Content Column: 5 Flagship Systems Spec Sheets (9 cols) -->
         <div class="col-span-12 lg:col-span-9 divide-y divide-line">
           
-          <!-- System 01: Agent-Forge Multi-Agent Runtime -->
+          <!-- System 01: Agent-Forge & AI Agent Skills -->
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.1</span>
-              <span class="hud-label text-muted">AGENTIC AI &bull; MULTI-AGENT RUNTIME</span>
+              <span class="text-spec text-muted">Agentic AI &bull; Multi-Agent Runtime</span>
             </div>
             <div class="space-y-2">
               <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-ink-strong font-sans">
-                Agent-Forge — Enterprise Multi-Agent Compiler &amp; Runtime
+                Agent-Forge &amp; AI Agent Skills — Multi-Agent Ecosystem
               </h3>
               <p class="text-sm text-muted leading-relaxed font-normal">
-                Enterprise multi-agent architecture compiler and conversational runtime orchestrating end-to-end company workflows (conception, engineering, security review) via modular agent skills and strict rubric validation.
+                Enterprise multi-agent architecture compiler and conversational runtime (Agent-Forge) paired with a curated open-standard library of 106 modular agent skills and strict UI rubric validation (<code class="font-mono text-xs text-ink">unslop-ai-design</code>).
               </p>
             </div>
             <div class="border-t border-line pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
@@ -991,13 +1026,13 @@
                 <span class="px-2.5 py-1 bg-invert-bg text-invert-fg font-medium text-xs">Agentic AI</span>
                 <span class="px-2.5 py-1 bg-invert-bg text-invert-fg font-medium text-xs">Python</span>
                 <span class="px-2.5 py-1 border border-line bg-bg-raised text-xs">Multi-Agent</span>
-                <span class="px-2.5 py-1 border border-line bg-bg-raised text-xs">Agent Skills</span>
+                <span class="px-2.5 py-1 border border-line bg-bg-raised text-xs">106 Agent Skills</span>
                 <span class="px-2.5 py-1 border border-line bg-bg-raised text-xs">Runtime</span>
               </div>
               <div class="flex flex-wrap items-center gap-2">
-                <a href="https://github.com/ind4x/agent-forge" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/ind4x/ai-agent-skills" target="_blank" rel="noopener noreferrer"
                    class="h-10 px-4 border border-line bg-bg-raised flex items-center gap-1.5 font-bold text-ink hover:bg-invert-bg hover:text-invert-fg transition-colors">
-                  <span>AGENT-FORGE</span>
+                  <span>AI-AGENT-SKILLS</span>
                   <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </a>
                 <a href="https://github.com/ind4x/unslop-ai-design" target="_blank" rel="noopener noreferrer"
@@ -1013,7 +1048,7 @@
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.2</span>
-              <span class="hud-label text-muted">JAVA &bull; SPRING BOOT &bull; DDD &bull; TDD</span>
+              <span class="text-spec text-muted">Java &bull; Spring Boot &bull; DDD &bull; TDD</span>
             </div>
             <div class="space-y-2">
               <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-ink-strong font-sans">
@@ -1044,7 +1079,7 @@
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.3</span>
-              <span class="hud-label text-muted">CRYPTOGRAPHY &bull; DLT &bull; CONSENSUS &bull; SOLIDITY</span>
+              <span class="text-spec text-muted">Cryptography &bull; DLT &bull; Consensus &bull; Solidity</span>
             </div>
             <div class="space-y-2">
               <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-ink-strong font-sans">
@@ -1081,7 +1116,7 @@
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.4</span>
-              <span class="hud-label text-muted">PYTHON &bull; DOCKER &bull; BASH</span>
+              <span class="text-spec text-muted">Python &bull; Docker &bull; Bash</span>
             </div>
             <div class="space-y-2">
               <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-ink-strong font-sans">
@@ -1110,7 +1145,7 @@
           <article class="p-6 sm:p-10 space-y-4 bg-bg relative group">
             <div class="flex items-center justify-between font-mono text-xs">
               <span class="hud-label text-accent font-bold">SYSTEM SPEC // 04.5</span>
-              <span class="hud-label text-muted">AWS &bull; ZABBIX &bull; OPNSENSE &bull; DEVSECOPS</span>
+              <span class="text-spec text-muted">AWS &bull; Zabbix &bull; OPNsense &bull; DevSecOps</span>
             </div>
             <div class="space-y-2">
               <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-ink-strong font-sans">
@@ -1150,12 +1185,11 @@
       <!-- Open Source & R&D Ethos Banner -->
       <div class="border-t border-line p-6 sm:p-10 lg:p-12 bg-bg-sunken flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div class="space-y-1.5 max-w-2xl">
-          <div class="hud-label text-accent font-bold">OPEN SOURCE &amp; R&amp;D ETHOS</div>
           <h4 class="text-lg sm:text-xl font-bold text-ink-strong tracking-tight font-sans">
             Open-Source First (FOSS) &amp; Self-Hosting
           </h4>
           <p class="text-xs sm:text-sm text-muted font-mono leading-relaxed">
-            Prioritizes free, open-source, and self-hosted stacks to ensure technical sovereignty, security auditability, and zero vendor lock-in. Maintainer of 20+ public repositories and engineering research labs.
+            Prioritizes free, open-source, and self-hosted stacks to ensure technical sovereignty, security auditability, and zero vendor lock-in. Maintainer of 22+ public repositories and engineering research labs.
           </p>
         </div>
         <a href="https://github.com/ind4x" target="_blank" rel="noopener noreferrer"
@@ -1249,7 +1283,7 @@
               </h3>
             </div>
             <span class="h-10 px-4 border border-line bg-bg-sunken flex items-center justify-center hud-label text-muted">
-              VALIDATED
+              INSTITUTIONAL
             </span>
           </div>
 
@@ -1258,7 +1292,7 @@
             <div class="space-y-1 flex-1">
               <span class="text-spec text-muted block">Microsoft &bull; GitHub &bull; Apr. 2026</span>
               <h3 class="text-base font-bold text-ink-strong tracking-tight font-sans">
-                GitHub Foundations (Parts 1 &amp; 2)
+                GitHub Foundations (Part 1 of 2)
               </h3>
             </div>
             <a href="https://learn.microsoft.com/api/achievements/share/en-us/YoussefFellah-2186/NMWZVH8F?sharingId=57FCD8AE461DCC45" target="_blank" rel="noopener noreferrer"
@@ -1343,7 +1377,7 @@
             </a>
             <a href="https://linkedin.com/in/yss-ef" target="_blank" rel="noopener noreferrer"
                class="h-12 px-6 rounded-none font-sans font-semibold uppercase tracking-wider text-xs whitespace-nowrap border border-line-strong bg-bg text-ink hover:bg-invert-bg hover:text-invert-fg active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-              <i data-lucide="linkedin" class="w-4 h-4"></i>
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
               <span>LinkedIn Profile</span>
             </a>
           </div>
@@ -1370,10 +1404,10 @@
               <div class="pt-2">
                 <span class="hud-label text-faint block">Direct Dossiers</span>
                 <div class="flex flex-wrap gap-4 pt-1 font-mono text-xs">
-                  <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download class="text-ink underline underline-offset-4 hover:text-accent flex items-center gap-1">
-                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Resume (EN)
+                  <a href="assets/docs/Youssef_Fellah_CV_EN.pdf" download target="_blank" rel="noopener noreferrer" class="text-ink underline underline-offset-4 hover:text-accent flex items-center gap-1">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> CV (EN)
                   </a>
-                  <a href="assets/docs/Youssef_Fellah_CV_FR.pdf" download class="text-ink underline underline-offset-4 hover:text-accent flex items-center gap-1">
+                  <a href="assets/docs/Youssef_Fellah_CV_FR.pdf" download target="_blank" rel="noopener noreferrer" class="text-ink underline underline-offset-4 hover:text-accent flex items-center gap-1">
                     <i data-lucide="download" class="w-3.5 h-3.5"></i> CV (FR)
                   </a>
                 </div>
@@ -1495,74 +1529,140 @@
       sectionObserver.observe(section);
     });
 
-    // Safe GitHub Repositories Fetcher (Prevents innerHTML injection & rate limit crashes)
+    // Curated GitHub Repositories Fetcher (Prioritizes engineering flagship repos + rate-limit fallback)
+    const CURATED_REPOS_PRIORITY = [
+      'spring-boot-portfolio',
+      'ai-agent-skills',
+      'devctl',
+      'smart-factory',
+      'security-lab',
+      'bi-etl-portfolio'
+    ];
+
+    const FALLBACK_REPOS = [
+      {
+        name: 'spring-boot-portfolio',
+        html_url: 'https://github.com/ind4x/spring-boot-portfolio',
+        description: 'Comprehensive collection of Java and Spring Boot projects for enterprise software development.',
+        language: 'Java',
+        updated_at: '2026-01-01T00:00:00Z'
+      },
+      {
+        name: 'ai-agent-skills',
+        html_url: 'https://github.com/ind4x/ai-agent-skills',
+        description: 'Curated, categorized, and standalone library of 106 open-standard agent skills for modern autonomous AI systems.',
+        language: 'JavaScript',
+        updated_at: '2026-01-01T00:00:00Z'
+      },
+      {
+        name: 'devctl',
+        html_url: 'https://github.com/ind4x/devctl',
+        description: 'Python-based CLI tool to instantly scaffold, configure, and orchestrate local Spring Boot, Angular, and Docker environments.',
+        language: 'Python',
+        updated_at: '2026-01-01T00:00:00Z'
+      },
+      {
+        name: 'smart-factory',
+        html_url: 'https://github.com/ind4x/smart-factory',
+        description: 'Real-time AI-powered quality control system for smart factories using YOLOv8, MQTT, and Flask.',
+        language: 'Python',
+        updated_at: '2026-01-01T00:00:00Z'
+      },
+      {
+        name: 'security-lab',
+        html_url: 'https://github.com/ind4x/security-lab',
+        description: 'Practical laboratory implementations and DevSecOps engineering: vulnerability auditing, penetration testing, and secure system remediation.',
+        language: 'Python',
+        updated_at: '2026-01-01T00:00:00Z'
+      },
+      {
+        name: 'bi-etl-portfolio',
+        html_url: 'https://github.com/ind4x/bi-etl-portfolio',
+        description: 'Business Intelligence and ETL data orchestration pipelines, data warehousing, and analytics.',
+        language: 'SQL / ETL',
+        updated_at: '2026-01-01T00:00:00Z'
+      }
+    ];
+
+    function renderStudioRepos(container, repos) {
+      container.innerHTML = '';
+      repos.forEach((repo, idx) => {
+        const year = new Date(repo.updated_at).getFullYear();
+        const card = document.createElement('a');
+        card.href = repo.html_url;
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+        card.className = 'p-6 space-y-4 bg-bg hover:bg-bg-sunken transition-colors flex flex-col justify-between group relative';
+
+        const contentWrap = document.createElement('div');
+        contentWrap.className = 'space-y-3';
+
+        const topMeta = document.createElement('div');
+        topMeta.className = 'flex items-center justify-between hud-label text-muted';
+
+        const indexSpan = document.createElement('span');
+        indexSpan.textContent = `INDEX // 0${idx + 1}`;
+        const icon = document.createElement('i');
+        icon.setAttribute('data-lucide', 'arrow-up-right');
+        icon.className = 'w-3.5 h-3.5 text-muted group-hover:text-accent transition-colors';
+        topMeta.appendChild(indexSpan);
+        topMeta.appendChild(icon);
+
+        const title = document.createElement('h4');
+        title.className = 'font-bold text-ink uppercase tracking-tight text-sm font-sans group-hover:text-accent transition-colors';
+        title.textContent = repo.name;
+
+        const desc = document.createElement('p');
+        desc.className = 'text-xs text-muted leading-relaxed line-clamp-2';
+        desc.textContent = repo.description || 'Public codebase archive and architecture definition.';
+
+        contentWrap.appendChild(topMeta);
+        contentWrap.appendChild(title);
+        contentWrap.appendChild(desc);
+
+        const bottomMeta = document.createElement('div');
+        bottomMeta.className = 'pt-3 border-t border-line flex items-center justify-between hud-label text-muted';
+
+        const lang = document.createElement('span');
+        lang.className = 'font-bold text-ink';
+        lang.textContent = repo.language || 'Architecture';
+
+        const updated = document.createElement('span');
+        updated.textContent = `UPDATED ${year}`;
+
+        bottomMeta.appendChild(lang);
+        bottomMeta.appendChild(updated);
+
+        card.appendChild(contentWrap);
+        card.appendChild(bottomMeta);
+
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
     async function fetchStudioRepos() {
       const container = document.getElementById('github-repos-swiss');
       try {
-        const response = await fetch('https://api.github.com/users/ind4x/repos?sort=updated&per_page=6');
+        const response = await fetch('https://api.github.com/users/ind4x/repos?sort=updated&per_page=30');
+        if (!response.ok) throw new Error('GitHub API unavailable');
         const repos = await response.json();
-        
+
         if (!Array.isArray(repos) || repos.length === 0) {
-          container.innerHTML = '<div class="col-span-full py-8 text-center hud-label text-muted bg-bg">ARCHIVE REPOSITORIES CURRENTLY CACHED</div>';
+          renderStudioRepos(container, FALLBACK_REPOS);
           return;
         }
 
-        container.innerHTML = '';
-        repos.forEach((repo, idx) => {
-          const year = new Date(repo.updated_at).getFullYear();
-          const card = document.createElement('a');
-          card.href = repo.html_url;
-          card.target = '_blank';
-          card.rel = 'noopener noreferrer';
-          card.className = 'p-6 space-y-4 bg-bg hover:bg-bg-sunken transition-colors flex flex-col justify-between group relative';
+        const excluded = new Set(['ind4x', 'ind4x.github.io']);
+        const filtered = repos.filter(r => !excluded.has(r.name) && !r.fork);
+        const byName = new Map(filtered.map(r => [r.name, r]));
+        const prioritized = CURATED_REPOS_PRIORITY.map(name => byName.get(name)).filter(Boolean);
+        const extras = filtered.filter(r => !CURATED_REPOS_PRIORITY.includes(r.name));
+        const selected = [...prioritized, ...extras].slice(0, 6);
 
-          const contentWrap = document.createElement('div');
-          contentWrap.className = 'space-y-3';
-
-          const topMeta = document.createElement('div');
-          topMeta.className = 'flex items-center justify-between hud-label text-muted';
-          
-          const indexSpan = document.createElement('span');
-          indexSpan.textContent = `INDEX // 0${idx + 1}`;
-          const icon = document.createElement('i');
-          icon.setAttribute('data-lucide', 'arrow-up-right');
-          icon.className = 'w-3.5 h-3.5 text-muted group-hover:text-accent transition-colors';
-          topMeta.appendChild(indexSpan);
-          topMeta.appendChild(icon);
-
-          const title = document.createElement('h4');
-          title.className = 'font-bold text-ink uppercase tracking-tight text-sm font-sans group-hover:text-accent transition-colors';
-          title.textContent = repo.name;
-
-          const desc = document.createElement('p');
-          desc.className = 'text-xs text-muted leading-relaxed line-clamp-2';
-          desc.textContent = repo.description || 'Public codebase archive and architecture definition.';
-
-          contentWrap.appendChild(topMeta);
-          contentWrap.appendChild(title);
-          contentWrap.appendChild(desc);
-
-          const bottomMeta = document.createElement('div');
-          bottomMeta.className = 'pt-3 border-t border-line flex items-center justify-between hud-label text-muted';
-          
-          const lang = document.createElement('span');
-          lang.className = 'font-bold text-ink';
-          lang.textContent = repo.language || 'Code';
-
-          const updated = document.createElement('span');
-          updated.textContent = `UPDATED ${year}`;
-
-          bottomMeta.appendChild(lang);
-          bottomMeta.appendChild(updated);
-
-          card.appendChild(contentWrap);
-          card.appendChild(bottomMeta);
-
-          container.appendChild(card);
-        });
-        lucide.createIcons();
+        renderStudioRepos(container, selected.length > 0 ? selected : FALLBACK_REPOS);
       } catch (err) {
-        container.innerHTML = '<div class="col-span-full py-8 text-center hud-label text-danger bg-bg">TELEMETRY_ENDPOINT_RATE_LIMITED</div>';
+        renderStudioRepos(container, FALLBACK_REPOS);
       }
     }
 
